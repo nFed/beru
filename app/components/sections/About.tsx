@@ -1,6 +1,7 @@
 import Container from '../ui/Container';
 import AnimatedSection from '../ui/AnimatedSection';
 import Image from 'next/image';
+import { personalInfo } from '../../data/portfolio';
 
 export default function About() {
   return (
@@ -27,7 +28,7 @@ export default function About() {
             <AnimatedSection animation="fade-in-left" className="relative">
               <div className="relative w-full h-96 lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl hover-lift group">
                 <Image
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+                  src={personalInfo.profileImage}
                   alt="Professional developer working"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"

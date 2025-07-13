@@ -10,18 +10,11 @@ export default function Navigation() {
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
-    if (href === '#hero') {
-      // For home/hero, scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // For other sections, scroll normally but account for header height
-      const targetId = href.substring(1);
-      const element = document.getElementById(targetId);
-      if (element) {
-        const headerHeight = 64; // h-16 = 64px
-        const offsetTop = element.offsetTop - headerHeight;
-        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-      }
+    // Let CSS scroll-padding-top handle the offset automatically
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
     
     // Close mobile menu if open
@@ -31,7 +24,7 @@ export default function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navigationItems.map(item => item.href.substring(1));
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 120; // Simple offset for section detection
 
       for (const section of sections) {
         const element = document.getElementById(section);

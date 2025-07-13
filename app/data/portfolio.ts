@@ -23,7 +23,7 @@ export const personalInfo = {
   name: 'John Developer',
   title: 'Full Stack Developer & UI/UX Designer',
   bio: 'I create beautiful, functional, and user-centered digital experiences that solve real-world problems with clean code and thoughtful design.',
-  profileImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Snoop_Dogg_2019_by_Glenn_Francis.jpg/800px-Snoop_Dogg_2019_by_Glenn_Francis.jpg',
+  profileImage: 'https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/snoop_dogg.png',
   aboutImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop',
   backgroundImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'
 };
