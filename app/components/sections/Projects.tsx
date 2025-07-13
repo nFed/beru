@@ -29,40 +29,27 @@ export default function Projects() {
             {projects.map((project, index) => (
               <div 
                 key={index} 
-                className="animate-fade-in-up animate-stagger-1 hover-lift group"
+                className="animate-fade-in-up group h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <Card className="overflow-hidden hover-glow glass relative">
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                <Card className="overflow-hidden relative flex flex-col h-full">
                   
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:blur-sm"
+                      className="object-cover transition-all duration-300 group-hover:scale-105"
                     />
                     
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="flex gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <Button size="sm" href={project.liveUrl} className="animate-bounce-in">
-                          Live Demo
-                        </Button>
-                        <Button variant="outline" size="sm" href={project.githubUrl} className="animate-bounce-in animate-stagger-1">
-                          View Code
-                        </Button>
-                      </div>
-                    </div>
                   </div>
                   
-                  <div className="p-6 relative z-20">
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-gradient-primary transition-all duration-300">
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
                       {project.title}
                     </h3>
                     
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3 flex-1">
                       {project.description}
                     </p>
                     
@@ -70,18 +57,18 @@ export default function Projects() {
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm hover-grow transition-all duration-300 cursor-default"
+                          className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
                     
-                    <div className="flex gap-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button size="sm" href={project.liveUrl} className="hover-lift">
+                    <div className="flex gap-4 mt-auto">
+                      <Button size="sm" href={project.liveUrl}>
                         Live Demo
                       </Button>
-                      <Button variant="outline" size="sm" href={project.githubUrl} className="hover-lift">
+                      <Button variant="outline" size="sm" href={project.githubUrl}>
                         View Code
                       </Button>
                     </div>
@@ -96,7 +83,7 @@ export default function Projects() {
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               Interested in working together?
             </h3>
-            <Button size="lg" href="#contact" className="hover-lift hover-glow">
+            <Button size="lg" href="#contact">
               Let's Connect
             </Button>
           </div>
