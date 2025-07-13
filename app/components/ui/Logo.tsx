@@ -3,18 +3,13 @@
 import { useCallback } from 'react';
 
 export default function Logo({ className = "h-8 w-auto" }: { className?: string }) {
-  const scrollToHero = useCallback(() => {
-    const heroSection = document.getElementById('hero');
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (
     <button 
-      onClick={scrollToHero}
+      onClick={scrollToTop}
       className={`flex items-center ${className} transition-all duration-300 group focus:outline-none focus:ring-0 focus:shadow-none focus:border-none active:outline-none focus-visible:outline-none`}
       style={{ outline: 'none', boxShadow: 'none' }}
       aria-label="Go to homepage"

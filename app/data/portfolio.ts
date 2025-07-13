@@ -23,7 +23,7 @@ export const personalInfo = {
   name: 'John Developer',
   title: 'Full Stack Developer & UI/UX Designer',
   bio: 'I create beautiful, functional, and user-centered digital experiences that solve real-world problems with clean code and thoughtful design.',
-  profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=387&auto=format&fit=crop',
+  profileImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Snoop_Dogg_2019_by_Glenn_Francis.jpg/800px-Snoop_Dogg_2019_by_Glenn_Francis.jpg',
   aboutImage: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop',
   backgroundImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'
 };
@@ -49,7 +49,7 @@ export const techIcons: TechIcon = {
   'AWS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
   'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
   'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-  'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
+  'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
   'Express.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
   'Vercel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',
   'Figma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',

@@ -715,6 +715,76 @@ button:focus, a:focus, input:focus, textarea:focus, select:focus {
   animation: rotateIn 0.6s ease-out;
 }
 
+/* Text Selection Fixes */
+/* Ensure all text content is selectable */
+p, h1, h2, h3, h4, h5, h6, span, div, li, td, th {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+/* Override any potential selection blocking */
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-fade-in-left,
+.animate-fade-in-right,
+.animate-scale-in,
+.animate-bounce-in,
+.animate-slide-in-up,
+.animate-rotate-in {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+/* Fix gradient text selection issues */
+.bg-clip-text {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+/* Ensure text in positioned elements is selectable */
+.relative, .absolute, .fixed {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+/* Only prevent selection on interactive elements */
+button, .button, input[type="submit"], input[type="button"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Ensure background/decorative elements don't block text selection */
+.absolute.inset-0,
+.absolute[class*="inset"],
+.absolute[class*="top-"],
+.absolute[class*="bottom-"],
+.absolute[class*="left-"],
+.absolute[class*="right-"] {
+  pointer-events: none;
+}
+
+/* Re-enable pointer events for content containers */
+.relative.z-10,
+.relative.z-20,
+.relative.z-30 {
+  pointer-events: auto;
+}
+
+/* Ensure interactive elements work properly */
+button, a, input, textarea, select, .button {
+  pointer-events: auto;
+}
+
 /* Reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

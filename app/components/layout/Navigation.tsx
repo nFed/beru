@@ -1,11 +1,32 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { navigationItems } from '../../data/portfolio';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    if (href === '#hero') {
+      // For home/hero, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // For other sections, scroll normally but account for header height
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        const headerHeight = 64; // h-16 = 64px
+        const offsetTop = element.offsetTop - headerHeight;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    }
+    
+    // Close mobile menu if open
+    setIsOpen(false);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +60,7 @@ export default function Navigation() {
             <a
               key={item.name}
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               className={`transition-colors duration-200 font-medium relative ${
                 isActive 
                   ? 'text-blue-600 dark:text-blue-400' 
@@ -76,12 +98,12 @@ export default function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`block px-4 py-2 transition-colors duration-200 ${
                     isActive
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
-                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                   {isActive && (
