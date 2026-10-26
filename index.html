@@ -175,7 +175,9 @@ body.locked .nav { background: var(--ink); }
 .slate b { display: block; color: var(--paper); font-family: var(--mono); font-weight: 500; font-size: 14px; }
 
 /* ---------- TICKER ---------- */
-.ticker { background: var(--gold); color: var(--ink); overflow: hidden; padding-block: 14px; }
+.ticker { background: var(--ink-2); color: var(--paper); overflow: hidden; padding-block: 16px; border-block: 1px solid var(--line); }
+.ticker .track span { font-family: var(--display); font-weight: 400; font-size: 20px; }
+.ticker .track span::before { color: var(--gold); opacity: 1; }
 .track { display: flex; width: max-content; direction: ltr; animation: marquee 34s linear infinite; }
 .track span { font-weight: 600; font-size: 16px; padding-inline: 1.6rem; white-space: nowrap; direction: rtl; display: inline-flex; align-items: center; gap: 3.2rem; }
 .track span::before { content: "✦"; opacity: .45; font-size: 12px; }
@@ -409,6 +411,80 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
   .foot-top { grid-template-columns: 1fr 1fr; padding-block: 48px 32px; }
 }
 .swipe { display: none; align-items: center; gap: 8px; color: var(--dust); font-size: 13px; margin-top: 14px; }
+
+/* ---------- MOBILE-ONLY PIECES ---------- */
+.reel-btn, .rail-bar, .mbar, .rail-count { display: none; }
+
+@media (max-width: 600px) {
+  .grain { animation: none; opacity: .05; }
+  body { font-size: 16px; }
+
+  /* hero: the showreel becomes a full-screen cinematic background */
+  .hero { min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; padding-block: calc(var(--navh) + 32px) 36px; }
+  .hero .wrap { width: 100%; display: block; }
+  .leak { display: none; }
+  .hero::before { display: none; }
+  .reel { position: absolute; inset: 0; z-index: -1; animation: none; }
+  .reel-screen { aspect-ratio: auto; height: 100%; border: 0; cursor: default; }
+  .reel-screen { background: radial-gradient(circle at 64% 24%, rgba(230,203,132,.6) 0 6%, rgba(230,203,132,.14) 16%, transparent 36%), linear-gradient(180deg, #2b2014 0%, #4a3418 30%, #1a120a 30.5%, #0d0a07 100%); }
+  .reel-screen .sil { bottom: 69.5%; height: 9%; }
+  .reel-screen .figure { display: none; }
+  .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,9,.55) 0%, rgba(11,10,9,0) 22%, rgba(11,10,9,.15) 42%, rgba(11,10,9,.88) 68%, var(--ink) 100%); }
+  .reel .lb, .reel .slate, .reel .play, .reel .reel-cap, .reel .corner, .hud.iso, .hud.fmt { display: none; }
+  .hud.rec { top: calc(var(--navh) + env(safe-area-inset-top, 0px) + 14px); right: var(--gr); }
+  .hud.tc { top: calc(var(--navh) + env(safe-area-inset-top, 0px) + 14px); bottom: auto; left: var(--gl); }
+  .hero h1 { font-size: clamp(54px, 16.5vw, 76px); }
+  .hero-sub { color: #c9c3b8; margin-top: 1.2rem; }
+  .hero-actions { margin-top: 1.8rem; gap: 10px; }
+  .hero-actions .btn { flex: 1 1 100%; padding-block: 16px; }
+  .hero-actions .link { display: none; }
+  .reel-btn { display: inline-flex; flex: 1 1 100%; justify-content: center; align-items: center; gap: 12px; padding: 14px; border: 1px solid rgba(243,239,230,.35); color: var(--paper); text-decoration: none; font-size: 16px; font-weight: 400; background: rgba(11,10,9,.35); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .reel-btn i { width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 10px solid var(--gold); }
+  .hero-meta { margin-top: 1.8rem; justify-content: space-between; }
+  .hero-meta span { display: flex; flex-direction: column; font-size: 13px; line-height: 1.3; }
+  .hero-meta b { margin: 0 0 2px; font-size: 26px; }
+
+  .ticker { padding-block: 12px; }
+  .ticker .track span { font-size: 17px; }
+
+  section.band { padding-block: 72px; }
+  .title { font-size: clamp(38px, 11vw, 48px); }
+  .head { margin-bottom: 2.2rem; gap: 14px; }
+  .head > p { font-size: 16px; }
+  .lead { font-size: 23px; }
+
+  /* swipe rails: services + work */
+  .rail-bar { display: block; height: 2px; background: var(--line); margin-top: 18px; position: relative; overflow: hidden; }
+  .rail-bar i { position: absolute; inset: 0 0 0 auto; width: 20%; background: var(--gold); transition: width .2s; }
+  .rail-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 18px; }
+  .rail-head .rail-bar { flex: 1; margin: 0; }
+  .rail-count { display: block; font-family: var(--mono); font-size: 12px; color: var(--dust); direction: ltr; font-variant-numeric: tabular-nums; }
+  .service { flex-basis: 84%; padding: 2rem 1.5rem; }
+  .service h3 { font-size: 25px; }
+
+  .work-grid { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gr)) calc(-1 * var(--gl)); padding-inline: var(--gr) var(--gl); scrollbar-width: none; }
+  .work-grid::-webkit-scrollbar { display: none; }
+  .work, .work-grid:not(.filtered) .work:nth-child(n) { flex: 0 0 84%; scroll-snap-align: start; }
+  .work-grid:not(.filtered) .work:nth-child(1) .thumb, .thumb { aspect-ratio: 4 / 5; min-height: 0; flex: none; }
+  .thumb .see { opacity: 1; background: linear-gradient(to top, rgba(11,10,9,.55), transparent 50%); place-items: end start; padding: 16px; }
+  .thumb .see span { transform: none; width: 48px; height: 48px; }
+  .meta h3 { font-size: 20px; }
+  .chip { min-height: 44px; }
+
+  .clients .track span { font-size: 30px; }
+  .quote .big { font-size: 150px; top: 24px; }
+  .quote blockquote { font-size: 25px; }
+
+  /* sticky action bar */
+  .mbar { display: grid; grid-template-columns: auto 1fr; gap: 8px; position: fixed; z-index: 120; left: 0; right: 0; bottom: 0; padding: 10px var(--gr) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gl); background: rgba(11,10,9,.9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .mbar.show { transform: none; }
+  .mbar a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; text-decoration: none; font-weight: 500; font-size: 16px; }
+  .mbar .call { width: 52px; border: 1px solid var(--line); }
+  .mbar .call svg { width: 20px; height: 20px; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .mbar .go { background: var(--gold); color: var(--ink); }
+  body.locked .mbar { transform: translateY(110%); }
+  .foot-bottom { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+}
 </style>
 </head>
 <body>
@@ -458,6 +534,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
         <div class="hero-actions fade f3">
           <a class="btn" href="#contact">קבעו פגישת ייעוץ</a>
           <a class="link" href="#work">לעבודות שלנו ←</a>
+          <a class="reel-btn" href="#work"><i></i>צפו בשואוריל · 1:42</a>
         </div>
         <div class="hero-meta fade f4">
           <span><b>300+</b>פרויקטים</span>
@@ -530,7 +607,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
         </div>
         <p>צוות אחד שמלווה אתכם מהבריף ועד המסירה, בלי להעביר את הפרויקט מיד ליד.</p>
       </div>
-      <div class="services">
+      <div class="services" id="services-rail">
         <article class="service">
           <div class="ico"><svg viewBox="0 0 44 44"><rect x="4" y="13" width="26" height="20" rx="2"/><path d="M30 20l10-6v16l-10-6"/><circle cx="12" cy="8" r="4"/><circle cx="23" cy="8" r="4"/></svg></div>
           <h3>הפקת פרסומות</h3>
@@ -568,7 +645,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
           <div class="tags"><span>שחקנים</span><span>ניצבים</span><span>לוקיישנים</span></div>
         </article>
       </div>
-      <div class="swipe">החליקו לשירותים נוספים ←</div>
+      <div class="rail-head" data-rail-for="services-rail"><div class="rail-bar"><i></i></div><span class="rail-count">1 / 6</span></div>
     </div>
   </section>
 
@@ -614,6 +691,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
           <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr">2022</span></div>
         </a>
       </div>
+      <div class="rail-head" data-rail-for="work-grid"><div class="rail-bar"><i></i></div><span class="rail-count">1 / 6</span></div>
     </div>
   </section>
 
@@ -725,6 +803,11 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
   </section>
 </main>
 
+<div class="mbar" id="mbar" aria-label="פעולות מהירות">
+  <a class="call" href="tel:+97236123456" aria-label="התקשרו 03-612-3456"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></a>
+  <a class="go" href="#contact">קבעו פגישת ייעוץ חינם</a>
+</div>
+
 <footer class="band">
   <div class="wrap">
     <div class="foot-top">
@@ -820,6 +903,37 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
       if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); io.observe(el); }
     });
   }
+
+  // swipe rails: progress bar + counter (RTL scrollLeft is 0 → negative in most browsers)
+  document.querySelectorAll('[data-rail-for]').forEach(head => {
+    const rail = document.getElementById(head.dataset.railFor);
+    const bar = head.querySelector('.rail-bar i');
+    const count = head.querySelector('.rail-count');
+    const update = () => {
+      const items = [...rail.children].filter(c => !c.hidden);
+      const max = rail.scrollWidth - rail.clientWidth;
+      const p = max > 0 ? Math.min(1, Math.abs(rail.scrollLeft) / max) : 1;
+      bar.style.width = `${Math.max(1 / Math.max(items.length, 1), p) * 100}%`;
+      const idx = Math.min(items.length, Math.round(p * (items.length - 1)) + 1);
+      count.textContent = `${idx} / ${items.length}`;
+    };
+    rail.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => { rail.scrollLeft = 0; requestAnimationFrame(update); }));
+    update();
+  });
+
+  // sticky mobile action bar: after the hero, hidden while the contact form is on screen
+  const mbar = document.getElementById('mbar');
+  const hero = document.querySelector('.hero');
+  const contact = document.getElementById('contact');
+  const syncBar = () => {
+    const pastHero = hero.getBoundingClientRect().bottom < 80;
+    const cr = contact.getBoundingClientRect();
+    const atContact = cr.top < window.innerHeight * .75 && cr.bottom > 0;
+    mbar.classList.toggle('show', pastHero && !atContact);
+  };
+  window.addEventListener('scroll', syncBar, { passive: true }); syncBar();
 
   // contact form (not connected to a mail service yet)
   const form = document.getElementById('contact-form');
