@@ -340,7 +340,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
 .foot-top ul { list-style: none; display: grid; gap: 8px; }
 .foot-top ul a { color: var(--dust); text-decoration: none; font-size: 15px; transition: color .3s; }
 .foot-top ul a:hover { color: var(--paper); }
-.foot-word { font-family: var(--display); font-weight: 900; font-size: clamp(110px, 26vw, 360px); line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,.25); text-align: center; user-select: none; margin-bottom: -.12em; }
+.foot-word { font-family: var(--display); font-weight: 900; font-size: clamp(110px, 26vw, 360px); line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,.25); text-align: center; user-select: none; padding-block: .08em .18em; }
 .foot-bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 20px calc(20px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); color: var(--dust); font-size: 13px; }
 
 /* ---------- KEYFRAMES ---------- */
@@ -388,9 +388,9 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
   .stat:nth-child(odd) { padding-left: 1rem; }
   .stat:nth-child(even) { padding-right: 1rem; }
   /* services become a swipeable rail */
-  .services { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; background: none; border: 0; margin-inline: calc(-1 * var(--gr)) calc(-1 * var(--gl)); padding-inline: var(--gr) var(--gl); padding-bottom: 8px; scrollbar-width: none; }
+  .services { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overflow-y: hidden; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scroll-padding-inline: var(--gr) var(--gl); gap: 12px; background: none; border: 0; margin-inline: calc(-1 * var(--gr)) calc(-1 * var(--gl)); padding-inline: var(--gr) var(--gl); padding-bottom: 8px; scrollbar-width: none; }
   .services::-webkit-scrollbar { display: none; }
-  .service { flex: 0 0 82%; scroll-snap-align: start; border: 1px solid var(--line); background: var(--ink-2); }
+  .service { flex: 0 0 78%; scroll-snap-align: start; border: 1px solid var(--line); background: var(--ink-2); }
   .swipe { display: flex !important; }
   .work-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .work-grid:not(.filtered) .work:nth-child(1) { grid-column: span 1; }
@@ -413,10 +413,10 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
 .swipe { display: none; align-items: center; gap: 8px; color: var(--dust); font-size: 13px; margin-top: 14px; }
 
 /* ---------- MOBILE-ONLY PIECES ---------- */
-.reel-btn, .rail-bar, .mbar, .rail-count { display: none; }
+.reel-btn, .rail-bar, .mbar, .rail-count, .rail-arrows { display: none; }
 
 @media (max-width: 600px) {
-  .grain { animation: none; opacity: .05; }
+  .grain { display: none; }
   body { font-size: 16px; }
 
   /* hero: the showreel becomes a full-screen cinematic background */
@@ -431,8 +431,9 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
   .reel-screen .figure { display: none; }
   .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,9,.55) 0%, rgba(11,10,9,0) 22%, rgba(11,10,9,.15) 42%, rgba(11,10,9,.88) 68%, var(--ink) 100%); }
   .reel .lb, .reel .slate, .reel .play, .reel .reel-cap, .reel .corner, .hud.iso, .hud.fmt { display: none; }
-  .hud.rec { top: calc(var(--navh) + env(safe-area-inset-top, 0px) + 14px); right: var(--gr); }
-  .hud.tc { top: calc(var(--navh) + env(safe-area-inset-top, 0px) + 14px); bottom: auto; left: var(--gl); }
+  .hud.rec, .hud.tc { display: none; }
+  .eyebrow .live, .eyebrow .since { display: none; }
+  .eyebrow { font-size: 13px; margin-bottom: 1rem; }
   .hero h1 { font-size: clamp(54px, 16.5vw, 76px); }
   .hero-sub { color: #c9c3b8; margin-top: 1.2rem; }
   .hero-actions { margin-top: 1.8rem; gap: 10px; }
@@ -458,13 +459,19 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
   .rail-bar i { position: absolute; inset: 0 0 0 auto; width: 20%; background: var(--gold); transition: width .2s; }
   .rail-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 18px; }
   .rail-head .rail-bar { flex: 1; margin: 0; }
+  .services .pre, .work-grid .pre { opacity: 1; transform: none; transition: none; }
+  .work:hover .scene { transform: none; }
+  .rail-arrows { display: flex; gap: 8px; }
+  .rail-arrow { width: 44px; height: 44px; display: grid; place-items: center; background: transparent; color: var(--paper); border: 1px solid var(--line); cursor: pointer; font-size: 18px; font-family: var(--sans); transition: border-color .25s, color .25s, opacity .25s; }
+  .rail-arrow:not(:disabled):active { border-color: var(--gold); color: var(--gold); }
+  .rail-arrow:disabled { opacity: .3; cursor: default; }
   .rail-count { display: block; font-family: var(--mono); font-size: 12px; color: var(--dust); direction: ltr; font-variant-numeric: tabular-nums; }
-  .service { flex-basis: 84%; padding: 2rem 1.5rem; }
+  .service { flex-basis: 78%; padding: 2rem 1.5rem; }
   .service h3 { font-size: 25px; }
 
-  .work-grid { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gr)) calc(-1 * var(--gl)); padding-inline: var(--gr) var(--gl); scrollbar-width: none; }
+  .work-grid { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; overflow-y: hidden; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scroll-padding-inline: var(--gr) var(--gl); margin-inline: calc(-1 * var(--gr)) calc(-1 * var(--gl)); padding-inline: var(--gr) var(--gl); scrollbar-width: none; }
   .work-grid::-webkit-scrollbar { display: none; }
-  .work, .work-grid:not(.filtered) .work:nth-child(n) { flex: 0 0 84%; scroll-snap-align: start; }
+  .work, .work-grid:not(.filtered) .work:nth-child(n) { flex: 0 0 78%; scroll-snap-align: start; }
   .work-grid:not(.filtered) .work:nth-child(1) .thumb, .thumb { aspect-ratio: 4 / 5; min-height: 0; flex: none; }
   .thumb .see { opacity: 1; background: linear-gradient(to top, rgba(11,10,9,.55), transparent 50%); place-items: end start; padding: 16px; }
   .thumb .see span { transform: none; width: 48px; height: 48px; }
@@ -528,7 +535,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
     <span class="leak a" aria-hidden="true"></span><span class="leak b" aria-hidden="true"></span>
     <div class="wrap">
       <div>
-        <div class="eyebrow fade f1"><span class="live"></span>חברת הפקות · תל אביב · מאז 2010</div>
+        <div class="eyebrow fade f1"><span class="live"></span>חברת הפקות · תל אביב<span class="since"> · מאז 2010</span></div>
         <h1><span class="line"><span>כל פרויקט</span></span><span class="line"><span>הוא <em>יצירה.</em></span></span></h1>
         <p class="hero-sub fade f2">פרסומות, סדרות תוכן וסרטים שאנשים זוכרים. אנחנו לוקחים את הרעיון שלכם ומביאים אותו עד הפריים האחרון.</p>
         <div class="hero-actions fade f3">
@@ -645,7 +652,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
           <div class="tags"><span>שחקנים</span><span>ניצבים</span><span>לוקיישנים</span></div>
         </article>
       </div>
-      <div class="rail-head" data-rail-for="services-rail"><div class="rail-bar"><i></i></div><span class="rail-count">1 / 6</span></div>
+      <div class="rail-head" data-rail-for="services-rail"><span class="rail-count">1 / 6</span><div class="rail-bar"><i></i></div><div class="rail-arrows"><button class="rail-arrow" data-step="-1" aria-label="הקודם" disabled>→</button><button class="rail-arrow" data-step="1" aria-label="הבא">←</button></div></div>
     </div>
   </section>
 
@@ -691,7 +698,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
           <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr">2022</span></div>
         </a>
       </div>
-      <div class="rail-head" data-rail-for="work-grid"><div class="rail-bar"><i></i></div><span class="rail-count">1 / 6</span></div>
+      <div class="rail-head" data-rail-for="work-grid"><span class="rail-count">1 / 6</span><div class="rail-bar"><i></i></div><div class="rail-arrows"><button class="rail-arrow" data-step="-1" aria-label="הקודם" disabled>→</button><button class="rail-arrow" data-step="1" aria-label="הבא">←</button></div></div>
     </div>
   </section>
 
@@ -916,7 +923,27 @@ footer { background: var(--ink); border-top: 1px solid var(--line); overflow: hi
       bar.style.width = `${Math.max(1 / Math.max(items.length, 1), p) * 100}%`;
       const idx = Math.min(items.length, Math.round(p * (items.length - 1)) + 1);
       count.textContent = `${idx} / ${items.length}`;
+      prev.disabled = p <= 0.01;
+      next.disabled = p >= 0.99;
     };
+    const [prev, next] = head.querySelectorAll('.rail-arrow');
+    const cardStep = () => { const c = [...rail.children].find(x => !x.hidden); return c ? c.getBoundingClientRect().width + 14 : rail.clientWidth * .8; };
+    [prev, next].forEach(b => b.addEventListener('click', () => {
+      rail.scrollBy({ left: -Number(b.dataset.step) * cardStep(), behavior: reduce ? 'auto' : 'smooth' });
+    }));
+    // one-time hint that the row scrolls sideways
+    if (!reduce && 'IntersectionObserver' in window) {
+      const hint = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting || rail.scrollWidth <= rail.clientWidth) return;
+        hint.disconnect();
+        setTimeout(() => {
+          rail.style.scrollSnapType = 'none';
+          rail.scrollBy({ left: -70, behavior: 'smooth' });
+          setTimeout(() => { rail.scrollTo({ left: 0, behavior: 'smooth' }); setTimeout(() => { rail.style.scrollSnapType = ''; }, 500); }, 550);
+        }, 350);
+      }), { threshold: .6 });
+      hint.observe(rail);
+    }
     rail.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => { rail.scrollLeft = 0; requestAnimationFrame(update); }));
