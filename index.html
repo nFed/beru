@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ליו הפקות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Heebo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cinematic dark one-pager. Right-aligned editorial headlines, a "slate" showreel beside the hero, gold used only for emphasis. */
+:root {
+  --ink: #0b0a09;
+  --ink-2: #12110f;
+  --ink-3: #1a1815;
+  --line: #2b2823;
+  --gold: #c9a84c;
+  --gold-soft: #e3c77e;
+  --paper: #f3efe6;
+  --dust: #948f85;
+  --display: 'Frank Ruhl Libre', 'David Libre', Georgia, serif;
+  --sans: 'Heebo', 'Arial Hebrew', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --wrap: 1200px;
+  color-scheme: dark;
+}
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  direction: rtl;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.band { padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(0px, 3vw, 32px); }
+
+/* NAV */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 101; background: var(--ink); }
+.nav {
+  position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 100;
+  padding-left: var(--gutter-l); padding-right: var(--gutter-r);
+  background: linear-gradient(to bottom, rgba(11,10,9,.94), rgba(11,10,9,0));
+  transition: background .4s, border-color .4s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { background: rgba(11,10,9,.96); border-bottom-color: rgba(201,168,76,.16); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 18px; }
+.logo { font-family: var(--display); font-weight: 700; font-size: 28px; line-height: 1; text-decoration: none; color: var(--paper); display: flex; align-items: baseline; gap: 8px; }
+.logo b { color: var(--gold); font-weight: 700; }
+.logo small { font-family: var(--sans); font-size: 12px; font-weight: 400; letter-spacing: .2em; color: var(--dust); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--dust); text-decoration: none; transition: color .3s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { font-size: 14px; font-weight: 500; color: var(--ink); background: var(--gold); padding: 9px 22px; text-decoration: none; transition: background .3s; white-space: nowrap; }
+.nav-cta:hover { background: var(--gold-soft); }
+
+/* HERO */
+.hero { position: relative; overflow: hidden; padding-block: 150px 90px; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 25% 45%, rgba(201,168,76,.09), transparent 55%),
+    linear-gradient(rgba(201,168,76,.035) 1px, transparent 1px) 0 0 / 80px 80px,
+    linear-gradient(90deg, rgba(201,168,76,.035) 1px, transparent 1px) 0 0 / 80px 80px;
+}
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 64px; align-items: end; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--gold); display: flex; align-items: center; gap: 12px; margin-bottom: 1.6rem; }
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+.hero h1 { font-family: var(--display); font-weight: 300; font-size: clamp(54px, 9vw, 124px); line-height: .98; letter-spacing: -.01em; text-wrap: balance; }
+.hero h1 em { font-style: normal; font-weight: 500; color: var(--gold); }
+.hero-sub { color: var(--dust); font-size: 17px; max-width: 34ch; margin-top: 1.8rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1.4rem; align-items: center; margin-top: 2.4rem; }
+.btn { display: inline-block; background: var(--gold); color: var(--ink); font-weight: 500; font-size: 15px; padding: 14px 30px; text-decoration: none; border: 0; cursor: pointer; font-family: var(--sans); transition: background .3s, transform .2s; }
+.btn:hover { background: var(--gold-soft); transform: translateY(-1px); }
+.btn-ghost { font-size: 15px; color: var(--dust); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: color .3s, border-color .3s; }
+.btn-ghost:hover { color: var(--paper); border-color: var(--paper); }
+
+.load { animation: fadeUp 1s both; }
+.d1 { animation-delay: .15s; } .d2 { animation-delay: .3s; } .d3 { animation-delay: .45s; } .d4 { animation-delay: .7s; }
+
+/* Showreel slate */
+.reel { width: 100%; max-width: 440px; justify-self: end; }
+.reel-screen {
+  position: relative; aspect-ratio: 16 / 9; max-width: 100%;
+  background: radial-gradient(ellipse at 60% 40%, #2a2418, #0f0e0c 70%);
+  border: 1px solid rgba(201,168,76,.25);
+  display: grid; place-items: center; overflow: hidden; cursor: pointer;
+}
+.reel-screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,.18) 2px 4px); }
+.corner { position: absolute; width: 14px; height: 14px; border-color: var(--gold); border-style: solid; opacity: .7; }
+.c1 { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+.c2 { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+.c3 { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+.c4 { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
+.rec { position: absolute; top: 12px; right: 32px; font-family: var(--mono); font-size: 11px; color: var(--paper); display: flex; align-items: center; gap: 6px; direction: ltr; }
+.rec i { width: 7px; height: 7px; border-radius: 50%; background: #d4533f; animation: blink 1.4s infinite; }
+.tc { position: absolute; bottom: 12px; left: 32px; font-family: var(--mono); font-size: 12px; color: var(--gold-soft); direction: ltr; font-variant-numeric: tabular-nums; }
+.play { width: 58px; height: 58px; border-radius: 50%; border: 1.5px solid var(--gold); display: grid; place-items: center; transition: background .3s, transform .3s; position: relative; z-index: 1; }
+.reel-screen:hover .play { background: rgba(201,168,76,.14); transform: scale(1.06); }
+.play::after { content: ""; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 15px solid var(--gold); margin-left: 4px; }
+.slate { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-top: 0; font-family: var(--mono); font-size: 11px; }
+.slate div { padding: 8px 10px; border-left: 1px solid var(--line); color: var(--dust); }
+.slate div:last-child { border-left: 0; }
+.slate b { display: block; color: var(--paper); font-weight: 500; font-size: 13px; }
+
+/* TICKER */
+.ticker { background: var(--gold); color: var(--ink); overflow: hidden; padding-block: 12px; }
+.ticker-track { display: flex; width: max-content; direction: ltr; animation: ticker 32s linear infinite; }
+.ticker-track span { font-weight: 500; font-size: 15px; padding-inline: 2.2rem; white-space: nowrap; direction: rtl; }
+.ticker-track span::after { content: "✦"; margin-right: 4.4rem; margin-left: -2.2rem; opacity: .4; }
+
+/* SECTIONS */
+section.band { padding-block: 110px; }
+.alt { background: var(--ink-2); }
+.label { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--gold); margin-bottom: .9rem; }
+.title { font-family: var(--display); font-weight: 300; font-size: clamp(38px, 5.5vw, 68px); line-height: 1.05; text-wrap: balance; }
+.title em { font-style: normal; font-weight: 500; color: var(--gold); }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: 4rem; }
+.head p { color: var(--dust); max-width: 38ch; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+.about-text p { color: var(--dust); font-size: 17px; margin-bottom: 1.2rem; max-width: 56ch; }
+.about-text strong { color: var(--paper); font-weight: 400; }
+.about-text .btn { margin-top: 1rem; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.stat { background: var(--ink-3); padding: 2.2rem 1.6rem; }
+.stat .n { font-family: var(--display); font-weight: 300; font-size: clamp(44px, 5vw, 64px); line-height: 1; color: var(--gold); display: block; font-variant-numeric: tabular-nums; }
+.stat .l { color: var(--dust); font-size: 14px; margin-top: 10px; display: block; }
+
+/* SERVICES */
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.service { background: var(--ink); padding: 2.6rem 2rem; position: relative; transition: background .3s; }
+.service::after { content: ""; position: absolute; inset: auto 0 0 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .45s; }
+.service:hover { background: var(--ink-3); }
+.service:hover::after { transform: scaleX(1); }
+.service .tag { font-family: var(--mono); font-size: 11px; color: var(--dust); letter-spacing: .1em; display: block; margin-bottom: 1.4rem; }
+.service h3 { font-family: var(--display); font-weight: 500; font-size: 25px; margin-bottom: .8rem; }
+.service p { color: var(--dust); font-size: 15px; }
+
+/* WORK */
+.work-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
+.work { background: var(--ink-3); display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.work:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+.work:nth-child(2), .work:nth-child(3) { grid-column: span 5; }
+.work:nth-child(n+4) { grid-column: span 4; }
+.thumb { position: relative; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; display: flex; align-items: flex-end; padding: 16px; }
+.work:nth-child(1) .thumb { aspect-ratio: auto; flex: 1; min-height: 320px; }
+.thumb::before { content: ""; position: absolute; inset: 0; background: var(--g); transition: transform .8s; }
+.work:hover .thumb::before { transform: scale(1.05); }
+.thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,10,9,.85), transparent 55%); opacity: 0; transition: opacity .4s; }
+.work:hover .thumb::after, .work:focus-visible .thumb::after { opacity: 1; }
+.frame { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: rgba(243,239,230,.6); z-index: 1; direction: ltr; }
+.see { position: relative; z-index: 1; color: var(--gold); font-size: 14px; opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s; }
+.work:hover .see, .work:focus-visible .see { opacity: 1; transform: none; }
+.meta { padding: 1.1rem 1.3rem 1.3rem; border-top: 1px solid var(--line); }
+.meta h3 { font-weight: 400; font-size: 16px; }
+.meta span { color: var(--dust); font-size: 13px; }
+
+/* CLIENTS */
+.clients { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.client { background: var(--ink); padding: 2.2rem 1rem; text-align: center; font-family: var(--display); font-size: 21px; color: var(--dust); transition: color .3s, background .3s; }
+.client:hover { color: var(--gold); background: var(--ink-3); }
+
+/* PROCESS */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; position: relative; list-style: none; counter-reset: s; }
+.steps::before { content: ""; position: absolute; top: 28px; right: 28px; left: 12%; height: 1px; background: linear-gradient(to left, var(--gold), rgba(201,168,76,.1)); }
+.step { position: relative; }
+.step .dot { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--gold); background: var(--ink-2); display: grid; place-items: center; font-family: var(--mono); color: var(--gold); font-size: 14px; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+.step h3 { font-family: var(--display); font-weight: 500; font-size: 23px; margin-bottom: .6rem; }
+.step p { color: var(--dust); font-size: 15px; }
+
+/* QUOTE */
+.quote { background: var(--ink-3); border-block: 1px solid var(--line); text-align: center; }
+.quote blockquote { font-family: var(--display); font-weight: 300; font-size: clamp(24px, 3.4vw, 40px); line-height: 1.4; max-width: 30ch; margin: 0 auto 2rem; text-wrap: balance; }
+.quote blockquote::before { content: "״"; display: block; font-size: 2.4em; line-height: .6; color: var(--gold); margin-bottom: .6rem; }
+.quote cite { font-style: normal; color: var(--dust); font-size: 14px; }
+.quote cite strong { color: var(--gold); font-weight: 500; }
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 72px; }
+.contact-info h3 { font-family: var(--display); font-weight: 400; font-size: 30px; margin-bottom: 1rem; }
+.contact-info > p { color: var(--dust); max-width: 40ch; margin-bottom: 2.4rem; }
+.details { display: grid; gap: 1.3rem; }
+.details dt { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--gold); opacity: .8; }
+.details dd { font-size: 17px; user-select: all; }
+.details dd.ltr { direction: ltr; text-align: right; }
+form { display: grid; gap: 1.1rem; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; color: var(--dust); }
+.field input, .field select, .field textarea {
+  background: var(--ink-3); border: 1px solid var(--line); color: var(--paper);
+  font-family: var(--sans); font-size: 16px; font-weight: 300; padding: 13px 16px; outline: none; transition: border-color .3s; width: 100%;
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.form-foot { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; margin-top: .4rem; }
+.form-note { color: var(--gold-soft); font-size: 14px; }
+
+/* FOOTER */
+footer { background: var(--ink-2); border-top: 1px solid var(--line); }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-block: 2rem; }
+footer p { color: var(--dust); font-size: 13px; }
+.social { display: flex; gap: 1.5rem; }
+.social a { color: var(--dust); font-size: 14px; text-decoration: none; transition: color .3s; }
+.social a:hover { color: var(--gold); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes blink { 50% { opacity: .2; } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .hero .wrap, .about-grid, .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .reel { justify-self: start; }
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work:nth-child(n) { grid-column: span 1; grid-row: auto; }
+  .work:nth-child(1) { grid-column: span 2; }
+  .work:nth-child(1) .thumb { min-height: 0; aspect-ratio: 16 / 9; flex: none; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
+  .steps::before { display: none; }
+}
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .clients { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .hero { padding-block: 120px 64px; }
+  section.band { padding-block: 80px; }
+  .services, .work-grid, .steps, .row { grid-template-columns: minmax(0, 1fr); }
+  .work:nth-child(1) { grid-column: span 1; }
+  .logo small { display: none; }
+  .head { margin-bottom: 2.6rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="ליו הפקות, לראש העמוד">ליו<b>.</b><small>הפקות</small></a>
+    <ul class="nav-links">
+      <li><a href="#about">אודות</a></li>
+      <li><a href="#services">שירותים</a></li>
+      <li><a href="#work">עבודות</a></li>
+      <li><a href="#process">תהליך</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">צור קשר</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero band" aria-label="פתיח">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow load d1">חברת הפקות · תל אביב</div>
+        <h1 class="load d2">כל פרויקט<br>הוא <em>יצירה.</em></h1>
+        <p class="hero-sub load d3">אנחנו מפיקים סרטים, פרסומות וסדרות תוכן שמשאירים רושם. מהרעיון הראשון ועד הפריים האחרון, אנחנו איתכם.</p>
+        <div class="hero-actions load d4">
+          <a class="btn" href="#work">צפייה בעבודות</a>
+          <a class="btn-ghost" href="#contact">דברו איתנו ←</a>
+        </div>
+      </div>
+      <div class="reel load d4">
+        <div class="reel-screen" role="button" tabindex="0" aria-label="צפייה בשואוריל 2026">
+          <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+          <span class="rec"><i></i>REC</span>
+          <span class="tc" id="tc">00:00:00:00</span>
+          <span class="play"></span>
+        </div>
+        <div class="slate">
+          <div>הפקה<b>LIU</b></div>
+          <div>סצנה<b>01</b></div>
+          <div>טייק<b>03</b></div>
+          <div>שנה<b>2026</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="תחומי פעילות">
+    <div class="ticker-track">
+      <span>הפקת סרטים</span><span>פרסומות</span><span>סדרות תוכן</span><span>פוסט-פרודקשן</span><span>מוזיקה לפרסומות</span><span>קאסטינג</span>
+      <span aria-hidden="true">הפקת סרטים</span><span aria-hidden="true">פרסומות</span><span aria-hidden="true">סדרות תוכן</span><span aria-hidden="true">פוסט-פרודקשן</span><span aria-hidden="true">מוזיקה לפרסומות</span><span aria-hidden="true">קאסטינג</span>
+    </div>
+  </div>
+
+  <section class="band alt" id="about">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label">אודות ליו הפקות</div>
+          <h2 class="title">אמנות ההפקה<br>ב<em>רמה אחרת.</em></h2>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>ליו הפקות נוסדה ב-2010 מתוך אמונה אחת: סרט טוב יכול לשנות את הדרך שבה אנשים חושבים, מרגישים ומחליטים.</p>
+          <p>מאז הפקנו מאות פרויקטים עבור <strong>המותגים הגדולים בישראל</strong>, חברות בינלאומיות וגופי תקשורת מובילים.</p>
+          <p>הצוות שלנו כולל במאים, מפיקים, צלמים ועורכים. <strong>אנשי מקצוע שאוהבים את מה שהם עושים.</strong></p>
+          <a class="btn" href="#work">לצפייה בעבודות</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="n">16</span><span class="l">שנות פעילות</span></div>
+          <div class="stat"><span class="n">300+</span><span class="l">פרויקטים</span></div>
+          <div class="stat"><span class="n">80+</span><span class="l">לקוחות</span></div>
+          <div class="stat"><span class="n">12</span><span class="l">פרסים מקצועיים</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="services">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label">מה אנחנו עושים</div>
+          <h2 class="title">שירותי<br><em>הפקה מלאים.</em></h2>
+        </div>
+        <p>צוות אחד שמלווה אתכם מהברייף ועד המסירה, בלי להעביר את הפרויקט מיד ליד.</p>
+      </div>
+      <div class="services">
+        <article class="service"><span class="tag">TV · DIGITAL · OOH</span><h3>הפקת פרסומות</h3><p>קמפיינים לטלוויזיה, לדיגיטל ולחוצות, מהברייף ועד הסרט הסופי. אנחנו יודעים מה הופך פרסומת לכזו שנשארת בזיכרון.</p></article>
+        <article class="service"><span class="tag">BRANDED · WEB</span><h3>סדרות תוכן</h3><p>תוכן ממותג, פודקאסטים מצולמים וסדרות רשת. אנחנו בונים עולמות תוכן שלמים שמחזקים את הקשר עם הקהל שלכם.</p></article>
+        <article class="service"><span class="tag">DRAMA · DOC</span><h3>סרטים קצרים</h3><p>מדרמה ועד דוקומנטרי. הצוות האמנותי שלנו מלווה פרויקטים קולנועיים מגיבוש הרעיון ועד מסך הקולנוע.</p></article>
+        <article class="service"><span class="tag">EDIT · GRADE · VFX</span><h3>פוסט-פרודקשן</h3><p>עריכה, מיקס, Color Grading, Sound Design ו-VFX. סטודיו פוסט מלא עם ציוד מהמתקדמים בתעשייה.</p></article>
+        <article class="service"><span class="tag">CORPORATE</span><h3>הפקות קורפורייט</h3><p>סרטי חברה, הרצאות, אירועים מצולמים ותיעוד. נציג את הארגון שלכם בצורה המקצועית ביותר.</p></article>
+        <article class="service"><span class="tag">CAST · LOCATION</span><h3>קאסטינג ולוקיישן</h3><p>מחלקת קאסטינג פנימית ומאגר לוקיישנים מגוון. אנחנו מוצאים את הפנים הנכונות ואת המקום המושלם.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="work">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label">פרויקטים נבחרים</div>
+          <h2 class="title"><em>העבודות</em><br>מדברות בעד עצמן.</h2>
+        </div>
+      </div>
+      <div class="work-grid">
+        <a class="work" href="#contact">
+          <div class="thumb" style="--g: radial-gradient(ellipse at 30% 30%, #4a3a1a, #15100a 70%)"><span class="frame"><span>4K · 2.39:1</span><span>00:00:45</span></span><span class="see">צפייה בפרויקט ←</span></div>
+          <div class="meta"><h3>קמפיין לאומי 2024 · בנק לאומי</h3><span>פרסומת · טלוויזיה ודיגיטל</span></div>
+        </a>
+        <a class="work" href="#contact">
+          <div class="thumb" style="--g: linear-gradient(135deg, #142231, #233b52)"><span class="frame"><span>HD · 16:9</span><span>6 פרקים</span></span><span class="see">צפייה בפרויקט ←</span></div>
+          <div class="meta"><h3>סדרת תוכן · סופר-פארם</h3><span>תוכן ממותג · 6 פרקים</span></div>
+        </a>
+        <a class="work" href="#contact">
+          <div class="thumb" style="--g: linear-gradient(135deg, #251a06, #4a340a)"><span class="frame"><span>35MM</span><span>00:18:20</span></span><span class="see">צפייה בפרויקט ←</span></div>
+          <div class="meta"><h3>״גבולות״ · זוכה פסטיבל חיפה</h3><span>סרט קצר · קולנוע</span></div>
+        </a>
+        <a class="work" href="#contact">
+          <div class="thumb" style="--g: linear-gradient(135deg, #12201a, #22392c)"><span class="frame"><span>LIVE</span><span>MULTI-CAM</span></span><span class="see">צפייה בפרויקט ←</span></div>
+          <div class="meta"><h3>הרצאות TED · תל אביב</h3><span>תיעוד אירועים</span></div>
+        </a>
+        <a class="work" href="#contact">
+          <div class="thumb" style="--g: linear-gradient(135deg, #2a1512, #4a2620)"><span class="frame"><span>4K · DRONE</span><span>00:02:10</span></span><span class="see">צפייה בפרויקט ←</span></div>
+          <div class="meta"><h3>מסע בישראל · משרד התיירות</h3><span>סרט תדמית · דיגיטל</span></div>
+        </a>
+        <a class="work" href="#contact">
+          <div class="thumb" style="--g: linear-gradient(135deg, #17172a, #28284a)"><span class="frame"><span>3-CAM</span><span>עונה 2</span></span><span class="see">צפייה בפרויקט ←</span></div>
+          <div class="meta"><h3>פודקאסט מצולם · Walla!</h3><span>תוכן דיגיטלי · עונה 2</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label">לקוחות</div>
+          <h2 class="title">בטוחים ב<em>מי שאנחנו.</em></h2>
+        </div>
+      </div>
+      <div class="clients">
+        <div class="client">לאומי</div><div class="client">HOT</div><div class="client">שטראוס</div><div class="client">Walla!</div><div class="client">yes</div>
+        <div class="client">אסם</div><div class="client">קשת</div><div class="client">טבע</div><div class="client">אורקם</div><div class="client">גלובס</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="process">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label">איך עובדים איתנו</div>
+          <h2 class="title">תהליך<br><em>שקוף ומדויק.</em></h2>
+        </div>
+      </div>
+      <ol class="steps">
+        <li class="step"><div class="dot">01</div><h3>פגישת ייעוץ</h3><p>מבינים את הצרכים, הקהל ומטרות הפרויקט. בלי עלות ובלי התחייבות.</p></li>
+        <li class="step"><div class="dot">02</div><h3>קונספט ותכנון</h3><p>מציגים קונספט יצירתי, תקציב ולוח זמנים מפורט לאישורכם.</p></li>
+        <li class="step"><div class="dot">03</div><h3>צילום והפקה</h3><p>צוות מקצועי, ציוד מתקדם וניהול הפקה מדויק. ביום הצילום הכול מתחבר.</p></li>
+        <li class="step"><div class="dot">04</div><h3>פוסט ומסירה</h3><p>עריכה, מיקס וגימור. מסירה בזמן, בפורמטים הנכונים ועם ליווי מלא.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band quote" aria-label="המלצה">
+    <div class="wrap">
+      <blockquote>עבדנו עם הרבה חברות הפקה לאורך השנים. ליו הם הראשונים שגרמו לנו להרגיש שהסרט שלנו, לא שלהם.</blockquote>
+      <cite><strong>דנה לוי</strong> · סמנכ״לית שיווק, סופר-פארם</cite>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="label">יצירת קשר</div>
+          <h2 class="title">יש לכם<br><em>פרויקט?</em></h2>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>נשמח לשמוע מכם.</h3>
+          <p>בין אם זו פרסומת ראשונה ובין אם הפקה גדולה, אנחנו מתחילים בפגישת ייעוץ קצרה וללא עלות.</p>
+          <dl class="details">
+            <div><dt>טלפון</dt><dd class="ltr">03-612-3456</dd></div>
+            <div><dt>אימייל</dt><dd class="ltr">hello@liu.co.il</dd></div>
+            <div><dt>כתובת</dt><dd>רוטשילד 45, תל אביב</dd></div>
+            <div><dt>שעות פעילות</dt><dd>ראשון עד חמישי, 9:00–18:00</dd></div>
+          </dl>
+        </div>
+        <form id="contact-form" novalidate>
+          <div class="row">
+            <div class="field"><label for="f-name">שם מלא</label><input id="f-name" name="name" type="text" placeholder="ישראל ישראלי" required></div>
+            <div class="field"><label for="f-email">אימייל</label><input id="f-email" name="email" type="email" placeholder="israel@company.co.il" dir="ltr" required></div>
+          </div>
+          <div class="field">
+            <label for="f-type">סוג הפרויקט</label>
+            <select id="f-type" name="type">
+              <option>פרסומת</option><option>סדרת תוכן</option><option>סרט קצר</option><option>הפקת קורפורייט</option><option>פוסט-פרודקשן</option><option>אחר</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-msg">ספרו לנו</label><textarea id="f-msg" name="msg" placeholder="תארו בקצרה את הפרויקט, התקציב המשוער ולוח הזמנים"></textarea></div>
+          <div class="form-foot">
+            <button class="btn" type="submit">שליחת פנייה ←</button>
+            <span class="form-note" id="form-note" role="status"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="band">
+  <div class="wrap">
+    <a class="logo" href="#top">ליו<b>.</b><small>הפקות</small></a>
+    <p>© 2026 ליו הפקות בע״מ · כל הזכויות שמורות</p>
+    <div class="social"><a href="#top">אינסטגרם</a><a href="#top">לינקדאין</a><a href="#top">וימאו</a></div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+// Running timecode on the showreel (25fps)
+const tc = document.getElementById('tc');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let frames = 0;
+const pad = n => String(n).padStart(2, '0');
+function tick() {
+  const f = frames % 25, s = Math.floor(frames / 25) % 60, m = Math.floor(frames / 1500) % 60;
+  tc.textContent = `00:${pad(m)}:${pad(s)}:${pad(f)}`;
+  frames++;
+}
+tick();
+if (!reduce) setInterval(tick, 40);
+
+// Contact form (preview only, not connected yet)
+const form = document.getElementById('contact-form');
+const note = document.getElementById('form-note');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = form.elements.name.value.trim();
+  const email = form.elements.email.value.trim();
+  if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
+    note.textContent = 'נא למלא שם ואימייל תקין.';
+    return;
+  }
+  note.textContent = `תודה ${name}! זו גרסת תצוגה, הטופס עדיין לא מחובר לשליחה.`;
+  form.reset();
+});
+</script>
+</body>
+</html>
