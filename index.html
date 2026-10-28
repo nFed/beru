@@ -49,12 +49,12 @@ a{color:inherit}a:hover{color:inherit}
 .dark .metal{background-image:var(--metal-lite)}
 
 /* ----- lockup (mirrors the horizontal Hebrew logo: mark · gold rule · wordmark) ----- */
-.lockup{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
-.lockup img{width:44px;height:auto}
-.lockup .rule{width:1px;height:38px;background:var(--gold)}
+.lockup{display:inline-flex;align-items:center;gap:16px;text-decoration:none;color:inherit}
+.lockup img{width:46px;height:auto;transform:translateY(-1px)}
+.lockup .rule{width:1px;height:34px;background:linear-gradient(to bottom,transparent,var(--gold) 15%,var(--gold) 85%,transparent)}
 .lockup .word{display:flex;flex-direction:column;align-items:center;line-height:1}
-.lockup .word b{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.01em}
-.lockup .word small{font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.42em;margin-top:5px;padding-right:.42em;color:var(--gold-ink)}
+.lockup .word b{font-family:var(--display);font-weight:700;font-size:34px;line-height:.82;letter-spacing:-.01em}
+.lockup .word small{display:block;margin-top:7px;font-family:var(--sans);font-weight:500;font-size:12px;line-height:1;letter-spacing:.16em;text-indent:-.16em;color:var(--gold-ink)}
 
 /* ----- labels: the logo's "— הפקות —" hairline motif ----- */
 .label{display:inline-flex;align-items:center;gap:14px;font-size:13px;font-weight:500;letter-spacing:.28em;color:var(--gold-ink);margin-bottom:20px}
@@ -418,9 +418,11 @@ a{color:inherit}a:hover{color:inherit}
 }
 @media (max-width:600px){
   .lv{--navh:68px}
-  .lockup img{width:36px}
-  .lockup .rule{height:32px}
-  .lockup .word b{font-size:24px}
+  .lockup{gap:13px}
+  .lockup img{width:38px}
+  .lockup .rule{height:28px}
+  .lockup .word b{font-size:28px}
+  .lockup .word small{font-size:11px;margin-top:6px}
   .nav-cta{display:none}
   .hero{padding:calc(var(--navh) + 20px) 0 56px}
   .hero-art{max-width:72vw;margin-bottom:6px}
