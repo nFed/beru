@@ -177,8 +177,8 @@ a{color:inherit}a:hover{color:inherit}
 .hero h1 .ln:nth-child(2) > span{animation-delay:.12s}
 .hero h1 em{font-style:normal;font-weight:400}
 .hero-sub{max-width:36ch;margin-top:28px;font-size:19px;color:var(--mute)}
-.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:40px}
-.reel-btn{display:none}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:40px}
+.hero-actions .btn.ghost{background:rgba(255,255,255,.45)}
 .fade{animation:fadeUp 1s both}.d1{animation-delay:.05s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}.d4{animation-delay:.6s}
 
 .hero-art{position:relative;aspect-ratio:1;width:100%;max-width:560px;margin-inline:auto;display:grid;place-items:center}
@@ -489,9 +489,6 @@ a{color:inherit}a:hover{color:inherit}
   .hero-sub{max-width:32ch;margin:14px auto 0;font-size:16px;line-height:1.6;text-align:center}
   .hero-actions{gap:10px;margin-top:22px}
   .hero-actions .btn{flex:1 1 100%}
-  .hero-actions .link{display:none}
-  .reel-btn{display:inline-flex;flex:1 1 100%;justify-content:center;align-items:center;gap:12px;min-height:52px;border:1px solid rgba(13,11,9,.3);border-radius:999px;background:rgba(255,255,255,.45);text-decoration:none;font-size:16px;font-weight:400}
-  .reel-btn i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
   .ticker{padding-block:13px}
   .events-tag{gap:6px;padding-inline:10px;font-size:12px;letter-spacing:.04em}
   .events .track span{font-size:14px;padding-inline:20px}
@@ -631,8 +628,7 @@ a{color:inherit}a:hover{color:inherit}
           <p class="hero-sub fade d2">פרסומות, סדרות תוכן וסרטים שאנשים זוכרים. אנחנו לוקחים את הרעיון שלכם ומביאים אותו עד הפריים האחרון.</p>
           <div class="hero-actions fade d3">
             <a class="btn" href="#contact">בואו נדבר <span class="arr">←</span></a>
-            <a class="link" href="#work">לעבודות שלנו ←</a>
-            <a class="reel-btn" href="#showreel"><i></i>״האגר – ארץ״ · עכשיו בהקרנות</a>
+            <a class="btn ghost" href="#work">לעבודות שלנו</a>
           </div>
         </div>
         <span class="vrule" aria-hidden="true"></span>
