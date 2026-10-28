@@ -160,7 +160,7 @@ a{color:inherit}a:hover{color:inherit}
 
 /* ===== DARK CINEMA ZONE: ticker + showreel ===== */
 .dark{background:var(--ink);color:var(--on-dark)}
-.ticker{overflow:hidden;padding-block:18px;border-bottom:1px solid var(--ink-line)}
+.ticker{direction:ltr;overflow:hidden;padding-block:18px;border-bottom:1px solid var(--ink-line)}
 .track{display:flex;width:max-content;direction:ltr;animation:marquee var(--dur,48s) linear infinite;will-change:transform}
 .track span{display:inline-flex;align-items:center;gap:3.2rem;padding-inline:1.6rem;white-space:nowrap;direction:rtl;font-family:var(--display);font-weight:400;font-size:21px}
 .track span::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
@@ -315,7 +315,7 @@ a{color:inherit}a:hover{color:inherit}
 .meta .yr{flex-shrink:0;font-family:var(--mono);font-size:12px;color:var(--gold-lite)}
 
 /* clients */
-.clients{overflow:hidden;padding-block:10px;border-block:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.clients{direction:ltr;overflow:hidden;padding-block:10px;border-block:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .clients .track{--dur:56s}
 .clients .row2{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
 .clients .row2 .track{--dur:62s;animation-direction:reverse}
@@ -413,6 +413,7 @@ a{color:inherit}a:hover{color:inherit}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes blink{50%{opacity:.25}}
 @keyframes pulse{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.35);opacity:0}}
+@keyframes nudge{0%,100%{transform:none}45%{transform:translateX(-5px)}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.lv *,.lv *::before,.lv *::after{animation:none!important;transition:none!important}}
 
@@ -501,6 +502,12 @@ a{color:inherit}a:hover{color:inherit}
   .rail-arrow{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);font-family:var(--sans);font-size:18px;cursor:pointer;transition:opacity .25s}
   .dark .rail-arrow{border-color:var(--ink-line);color:var(--on-dark)}
   .rail-arrow:disabled{opacity:.3;cursor:default}
+  .services,.work-grid,.filters{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 44px);mask-image:linear-gradient(to right,transparent 0,#000 44px);transition:-webkit-mask-image .3s}
+  .services.is-end,.work-grid.is-end,.filters.is-end{-webkit-mask-image:none;mask-image:none}
+  .rail-arrow.hint{position:relative;border-color:var(--gold);color:var(--gold-ink)}
+  .dark .rail-arrow.hint{color:var(--gold-lite)}
+  .rail-arrow.hint::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--gold);animation:pulse 1.8s ease-out infinite}
+  .rail-arrow.hint span{display:inline-block;animation:nudge 1.8s ease-in-out infinite}
   .clients .track span{font-size:32px}
   .stage{order:-1;aspect-ratio:16/12;border-radius:22px}
   .lec-info > p{font-size:16px}
@@ -737,7 +744,7 @@ a{color:inherit}a:hover{color:inherit}
             <div class="tags"><span>שחקנים</span><span>ניצבים</span><span>לוקיישנים</span></div>
           </article>
         </div>
-        <div class="rail-head"><span class="rail-count">1 / 7</span><div class="rail-bar"><i style="width: 14.3%"></i></div><div class="rail-arrows"><button class="rail-arrow" type="button" aria-label="הקודם" disabled>→</button><button class="rail-arrow" type="button" aria-label="הבא">←</button></div></div>
+        <div class="rail-head"><span class="rail-count">1 / 7</span><div class="rail-bar"><i style="width: 14.3%"></i></div><div class="rail-arrows"><button class="rail-arrow" type="button" aria-label="הקודם" disabled>→</button><button type="button" class="rail-arrow hint" aria-label="הבא"><span>←</span></button></div></div>
       </div>
     </section>
 
@@ -759,6 +766,7 @@ a{color:inherit}a:hover{color:inherit}
             <dl class="facts">
               <div><dt>1984</dt><dd>עלייה לישראל מאתיופיה, בגיל 8</dd></div>
               <div><dt>2008</dt><dd><b>״זרובבל״</b> · סרט הביכורים שלו כבמאי, פרס הדרמה הטובה ביותר בפסטיבל חיפה</dd></div>
+              <div><dt>דוקו</dt><dd><b>״שכחו אותי בטוסטר״</b> · סרט תיעודי שעוקב אחרי צמד הקומיקאים שמואל ויוסי בדרך לקריירת משחק בישראל, ובניסיון להפיק ולשווק קלטת מערכונים משלהם</dd></div>
               <div><dt>הבמה</dt><dd>שחקן תיאטרון וסטנדאפיסט, בין היתר על במת הבימה</dd></div>
             </dl>
             <div class="tags"><span>כנסים</span><span>ארגונים</span><span>מוסדות חינוך</span><span>אירועים</span></div>
@@ -786,7 +794,7 @@ a{color:inherit}a:hover{color:inherit}
             <div class="label"><span class="no">04</span> פרויקטים נבחרים</div>
             <h2 class="title">העבודות<br><em class="metal">מדברות בעד עצמן.</em></h2>
           </div>
-          <div class="filters" role="group" aria-label="סינון עבודות">
+          <div class="filters" id="work-filters" role="group" aria-label="סינון עבודות">
             <button class="chip" type="button" aria-pressed="true" data-f="all">הכול</button>
             <button class="chip" type="button" aria-pressed="false" data-f="ad">פרסומות</button>
             <button class="chip" type="button" aria-pressed="false" data-f="content">תוכן</button>
@@ -820,7 +828,7 @@ a{color:inherit}a:hover{color:inherit}
             <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr">2022</span></div>
           </a>
         </div>
-        <div class="rail-head"><span class="rail-count">1 / 6</span><div class="rail-bar"><i style="width: 16.7%"></i></div><div class="rail-arrows"><button class="rail-arrow" type="button" aria-label="הקודם" disabled>→</button><button class="rail-arrow" type="button" aria-label="הבא">←</button></div></div>
+        <div class="rail-head"><span class="rail-count">1 / 6</span><div class="rail-bar"><i style="width: 16.7%"></i></div><div class="rail-arrows"><button class="rail-arrow" type="button" aria-label="הקודם" disabled>→</button><button type="button" class="rail-arrow hint" aria-label="הבא"><span>←</span></button></div></div>
       </div>
     </section>
 
@@ -1027,7 +1035,12 @@ a{color:inherit}a:hover{color:inherit}
       bar.style.width = `${Math.max(1 / Math.max(items.length, 1), p) * 100}%`;
       count.textContent = `${Math.min(items.length, Math.round(p * (items.length - 1)) + 1)} / ${items.length}`;
       prev.disabled = p <= .01; next.disabled = p >= .99;
+      rail.classList.toggle('is-end', p >= .99);
+      if (p > .02) next.classList.remove('hint');
     };
+    const touched = () => next.classList.remove('hint');
+    ['touchstart', 'pointerdown'].forEach(ev => rail.addEventListener(ev, touched, { passive: true }));
+    next.addEventListener('click', touched);
     const step = () => { const c = [...rail.children].find(x => !x.hidden); return c ? c.getBoundingClientRect().width + 14 : rail.clientWidth * .8; };
     prev.addEventListener('click', () => rail.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }));
     next.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }));
@@ -1036,6 +1049,24 @@ a{color:inherit}a:hover{color:inherit}
     update();
     return { rail, update };
   });
+
+  // swipe hint: each rail peeks sideways once when it first comes into view
+  const filters = $('#work-filters');
+  const fltEnd = () => { const m = filters.scrollWidth - filters.clientWidth; filters.classList.toggle('is-end', m <= 0 || Math.abs(filters.scrollLeft) >= m - 2); };
+  filters.addEventListener('scroll', fltEnd, { passive: true }); window.addEventListener('resize', fltEnd); fltEnd();
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target; io.unobserve(el);
+      if (el.scrollWidth <= el.clientWidth + 4 || Math.abs(el.scrollLeft) > 4) return;
+      setTimeout(() => {
+        el.style.scrollSnapType = 'none';
+        el.scrollBy({ left: -72, behavior: 'smooth' });
+        setTimeout(() => { el.scrollTo({ left: 0, behavior: 'smooth' }); setTimeout(() => { el.style.scrollSnapType = ''; }, 600); }, 700);
+      }, 350);
+    }), { threshold: .6 });
+    ['#services-rail', '#work-grid', '#work-filters'].forEach(sel => io.observe($(sel)));
+  }
 
   // work filters
   const grid = $('#work-grid');
