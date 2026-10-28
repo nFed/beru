@@ -151,12 +151,12 @@ a{color:inherit}a:hover{color:inherit}
 .burger[aria-expanded="true"] span:nth-child(2){top:23px;right:14px;transform:rotate(-45deg)}
 
 /* mobile menu: a sunlit sheet, not a black curtain */
-.menu{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:calc(var(--navh) + var(--evh) + 24px) 20px 32px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:radial-gradient(ellipse 80% 45% at 85% 100%,rgba(240,169,78,.28),transparent 70%),radial-gradient(ellipse 70% 40% at 10% 0%,rgba(255,255,255,.9),transparent 70%),var(--cream);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s cubic-bezier(.7,0,.2,1),visibility 0s .6s}
+.menu{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:space-between;gap:clamp(12px,3vh,32px);padding:calc(var(--navh) + var(--evh) + clamp(8px,2.5vh,24px)) 20px clamp(16px,3vh,32px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:radial-gradient(ellipse 80% 45% at 85% 100%,rgba(240,169,78,.28),transparent 70%),radial-gradient(ellipse 70% 40% at 10% 0%,rgba(255,255,255,.9),transparent 70%),var(--cream);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s cubic-bezier(.7,0,.2,1),visibility 0s .6s}
 .menu.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .6s cubic-bezier(.7,0,.2,1)}
 .menu .ghost-mark{position:absolute;left:0;bottom:4%;width:68vw;max-width:400px;opacity:.12;pointer-events:none}
 .menu ul{position:relative;display:grid}
 .menu li{overflow:hidden;border-bottom:1px solid rgba(201,168,76,.28)}
-.menu li a{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;font-family:var(--display);font-weight:400;font-size:clamp(28px,7.6vw,38px);line-height:1.2;letter-spacing:.005em;color:#2A2119;text-decoration:none;transform:translateY(110%);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.menu li a{display:flex;justify-content:space-between;align-items:baseline;padding:clamp(5px,1.5vh,16px) 0;font-family:var(--display);font-weight:400;font-size:clamp(20px,min(7.6vw,4.6vh),38px);line-height:1.2;letter-spacing:.005em;color:#2A2119;text-decoration:none;transform:translateY(110%);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .menu li a small{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.08em;color:var(--gold-ink);opacity:.8}
 .menu li a:hover,.menu li a:active{color:var(--gold-ink)}
 .menu.open li a{transform:none}
@@ -195,7 +195,7 @@ a{color:inherit}a:hover{color:inherit}
 .events{position:sticky;top:0;z-index:61;transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;align-items:stretch;height:var(--evh);background:linear-gradient(90deg,#1A130D,var(--ink) 30%,var(--ink) 70%,#1A130D);border-bottom:1px solid rgba(217,184,96,.35);color:var(--on-dark)}
 .events[hidden]{display:none}
 .lv.ev-off .events{transform:translateY(-100%)}
-.events-tag{flex-shrink:0;display:flex;align-items:center;gap:10px;padding-inline:clamp(16px,3vw,32px);background:var(--metal-lite);background-size:220% 100%;color:var(--ink);font-size:13px;font-weight:600;letter-spacing:.12em;animation:shimmer 9s ease-in-out infinite}
+.events-tag{flex-shrink:0;display:flex;align-items:center;gap:8px;padding-inline:clamp(12px,1.8vw,22px);background:var(--metal-lite);background-size:220% 100%;color:var(--ink);font-size:13px;font-weight:600;letter-spacing:.08em;animation:shimmer 9s ease-in-out infinite}
 .events-tag i{width:7px;height:7px;border-radius:50%;background:#B8401E;box-shadow:0 0 0 3px rgba(184,64,30,.25)}
 .events-run{flex:1;min-width:0;direction:ltr;overflow:hidden;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
 .events-run:hover .track{animation-play-state:paused}
@@ -493,7 +493,7 @@ a{color:inherit}a:hover{color:inherit}
   .reel-btn{display:inline-flex;flex:1 1 100%;justify-content:center;align-items:center;gap:12px;min-height:52px;border:1px solid rgba(13,11,9,.3);border-radius:999px;background:rgba(255,255,255,.45);text-decoration:none;font-size:16px;font-weight:400}
   .reel-btn i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
   .ticker{padding-block:13px}
-  .events-tag{padding-inline:14px;font-size:12px;letter-spacing:.06em}
+  .events-tag{gap:6px;padding-inline:10px;font-size:12px;letter-spacing:.04em}
   .events .track span{font-size:14px;padding-inline:20px}
   .events .track span::after{margin-inline-start:20px}
   .track span{font-size:17px}
@@ -576,7 +576,7 @@ a{color:inherit}a:hover{color:inherit}
 
   <!-- EVENTS BAR: filled from EVENTS in the script below -->
   <div class="events" aria-label="לוח אירועים">
-    <span class="events-tag"><i aria-hidden="true"></i>אירועים קרובים</span>
+    <span class="events-tag"><i aria-hidden="true"></i>אירועים<span class="hide-sm">&nbsp;קרובים</span></span>
     <div class="events-run"><div class="track" id="events-track"></div></div>
   </div>
 
