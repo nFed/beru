@@ -115,9 +115,9 @@ a{color:inherit}a:hover{color:inherit}
 .burger[aria-expanded="true"] span:nth-child(2){top:23px;right:14px;transform:rotate(-45deg)}
 
 /* mobile menu: a sunlit sheet, not a black curtain */
-.menu{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:calc(var(--navh) + var(--evh) + 24px) 20px 32px;overflow-y:auto;background:radial-gradient(ellipse 80% 45% at 85% 100%,rgba(240,169,78,.28),transparent 70%),radial-gradient(ellipse 70% 40% at 10% 0%,rgba(255,255,255,.9),transparent 70%),var(--cream);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s cubic-bezier(.7,0,.2,1),visibility 0s .6s}
+.menu{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:calc(var(--navh) + var(--evh) + 24px) 20px 32px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:radial-gradient(ellipse 80% 45% at 85% 100%,rgba(240,169,78,.28),transparent 70%),radial-gradient(ellipse 70% 40% at 10% 0%,rgba(255,255,255,.9),transparent 70%),var(--cream);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s cubic-bezier(.7,0,.2,1),visibility 0s .6s}
 .menu.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .6s cubic-bezier(.7,0,.2,1)}
-.menu .ghost-mark{position:absolute;left:-14%;bottom:4%;width:78vw;max-width:440px;opacity:.12;pointer-events:none}
+.menu .ghost-mark{position:absolute;left:0;bottom:4%;width:68vw;max-width:400px;opacity:.12;pointer-events:none}
 .menu ul{position:relative;display:grid}
 .menu li{overflow:hidden;border-bottom:1px solid rgba(201,168,76,.28)}
 .menu li a{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;font-family:var(--display);font-weight:400;font-size:clamp(28px,7.6vw,38px);line-height:1.2;letter-spacing:.005em;color:#2A2119;text-decoration:none;transform:translateY(110%);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
@@ -126,7 +126,6 @@ a{color:inherit}a:hover{color:inherit}
 .menu.open li a{transform:none}
 .menu.open li:nth-child(2) a{transition-delay:.06s}.menu.open li:nth-child(3) a{transition-delay:.12s}.menu.open li:nth-child(4) a{transition-delay:.18s}.menu.open li:nth-child(5) a{transition-delay:.24s}.menu.open li:nth-child(6) a{transition-delay:.3s}
 .menu-foot{position:relative;display:grid;gap:18px}
-.menu-contact{display:flex;flex-wrap:wrap;gap:6px 22px;color:var(--mute);font-size:15px}
 
 /* ===== HERO: sunlight through a window onto a cream wall ===== */
 .hero{position:relative;isolation:isolate;overflow:hidden;padding:calc(var(--navh) + 64px) 0 88px;background:radial-gradient(ellipse 60% 70% at 22% 46%,rgba(255,214,128,.55),transparent 70%),radial-gradient(ellipse 50% 50% at 90% 6%,#fff,transparent 70%),linear-gradient(180deg,#FFF9EF 0%,#FBF1DE 60%,#F6E3BF 100%)}
@@ -595,7 +594,6 @@ a{color:inherit}a:hover{color:inherit}
     </ul>
     <div class="menu-foot">
       <a class="btn gold" href="#contact">קבעו פגישת ייעוץ חינם</a>
-      <div class="menu-contact"><span class="ltr">03-612-3456</span><span class="ltr">hello@liu.co.il</span><span>רוטשילד 45, תל אביב</span></div>
     </div>
   </nav>
 
@@ -1060,7 +1058,17 @@ a{color:inherit}a:hover{color:inherit}
     onScroll();
   };
   burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
-  $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  // close first, then scroll from code: Android Chrome can drop the jump while the page is still locked
+  $$('a', menu).forEach(a => a.addEventListener('click', e => {
+    const target = a.hash && document.querySelector(a.hash);
+    setMenu(false);
+    if (!target) return;
+    e.preventDefault();
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      history.replaceState(null, '', a.hash);
+    }));
+  }));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   window.addEventListener('resize', () => { if (innerWidth > 820) setMenu(false); });
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
