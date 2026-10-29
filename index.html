@@ -188,10 +188,26 @@ a{color:inherit}a:hover{color:inherit}
 .events{position:sticky;top:0;z-index:61;transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;align-items:stretch;height:var(--evh);background:var(--paper);border-bottom:1px solid var(--line);color:var(--ink)}
 .events[hidden]{display:none}
 .lv.ev-off .events{transform:translateY(-100%)}
-.events-tag{flex-shrink:0;display:flex;align-items:center;gap:8px;padding-inline:clamp(12px,1.8vw,22px);background:var(--sand);border-inline-end:1px solid var(--line);color:var(--gold-ink);font-size:13px;font-weight:600;letter-spacing:.08em}
-.events-tag i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.events-tag{flex-shrink:0;display:flex;align-items:center;gap:6px;padding-inline:clamp(8px,1.2vw,14px);background:var(--sand);border-inline-end:1px solid var(--line);color:var(--gold-ink);font-size:12px;font-weight:600;letter-spacing:.04em}
+.events-tag i{width:5px;height:5px;border-radius:50%;background:var(--gold)}
 .events-run{flex:1;min-width:0;direction:ltr;overflow:hidden;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
-.events-run:hover .track{animation-play-state:paused}
+.events .track span{cursor:pointer}
+.events .track span:hover b{color:var(--gold-ink)}
+/* event details popover */
+.ev-pop{position:fixed;z-index:70;top:calc(var(--evh) + 8px);width:min(340px,calc(100vw - 24px));padding:20px 22px 22px;border:1px solid var(--line);border-radius:14px;background:var(--paper);box-shadow:0 18px 50px rgba(20,14,6,.18);color:var(--ink);animation:ev-pop .22s cubic-bezier(.2,.8,.2,1)}
+.ev-pop[hidden]{display:none}
+@keyframes ev-pop{from{opacity:0;transform:translateY(-6px)}}
+.ev-pop-x{position:absolute;top:10px;left:10px;width:30px;height:30px;border:0;border-radius:50%;background:none;color:var(--mute);font-size:20px;line-height:1;cursor:pointer}
+.ev-pop-x:hover{background:var(--sand);color:var(--ink)}
+.ev-pop small{display:inline-flex;align-items:center;min-height:22px;padding:0 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:500;color:var(--gold-ink)}
+.ev-pop h3{margin:10px 0 14px;padding-left:24px;font-family:var(--display);font-size:22px;font-weight:500;line-height:1.25}
+.ev-pop p{margin:-6px 0 14px;color:var(--mute);font-size:15px}
+.ev-pop p[hidden]{display:none}
+.ev-pop dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;padding-top:14px;border-top:1px solid var(--line);font-size:15px}
+.ev-pop dt{color:var(--mute);font-size:13px;padding-top:1px}
+.ev-pop dd{margin:0;color:var(--ink)}
+.ev-pop .btn{width:100%;margin-top:18px}
+.ev-pop .btn[hidden]{display:none}
 .events .track span{gap:14px;padding-inline:28px;font-family:var(--sans);font-size:15px;font-weight:400}
 .events .track span::before{display:none}
 .events .track span::after{content:"";width:5px;height:5px;margin-inline-start:28px;background:var(--gold);transform:rotate(45deg)}
@@ -483,7 +499,7 @@ a{color:inherit}a:hover{color:inherit}
   .hero-actions{gap:10px;margin-top:22px}
   .hero-actions .btn{flex:1 1 100%}
   .ticker{padding-block:13px}
-  .events-tag{gap:6px;padding-inline:10px;font-size:12px;letter-spacing:.04em}
+  .events-tag{gap:5px;padding-inline:8px;font-size:11px;letter-spacing:0}
   .events .track span{font-size:14px;padding-inline:20px}
   .events .track span::after{margin-inline-start:20px}
   .track span{font-size:17px}
@@ -596,8 +612,20 @@ a{color:inherit}a:hover{color:inherit}
 
   <!-- EVENTS BAR: filled from EVENTS in the script below -->
   <div class="events" aria-label="לוח אירועים">
-    <span class="events-tag"><i aria-hidden="true"></i>אירועים<span class="hide-sm">&nbsp;קרובים</span></span>
+    <span class="events-tag"><i aria-hidden="true"></i>אירועים</span>
     <div class="events-run"><div class="track" id="events-track"></div></div>
+  </div>
+  <div class="ev-pop" id="ev-pop" role="dialog" aria-labelledby="ev-pop-title" hidden>
+    <button class="ev-pop-x" type="button" aria-label="סגירה">×</button>
+    <small id="ev-pop-type"></small>
+    <h3 id="ev-pop-title"></h3>
+    <p id="ev-pop-note" hidden></p>
+    <dl>
+      <dt>תאריך</dt><dd id="ev-pop-date"></dd>
+      <dt>שעה</dt><dd id="ev-pop-time"></dd>
+      <dt>מקום</dt><dd id="ev-pop-place"></dd>
+    </dl>
+    <a class="btn gold" id="ev-pop-link" target="_blank" rel="noopener" hidden>לפרטים וכרטיסים ←</a>
   </div>
 
   <!-- NAV -->
@@ -1013,31 +1041,54 @@ a{color:inherit}a:hover{color:inherit}
   const pad = n => String(n).padStart(2, '0');
 
   // events bar. DEMO content: replace with the real schedule. Past dates hide themselves.
-  // type: הקרנה | הרצאה | פסטיבל | סטנדאפ
+  // type: הקרנה | הרצאה | פסטיבל | סטנדאפ · time: 'HH:MM' · venue + city: shown in the popup · note, link: optional (a short line, a tickets/details page)
   const EVENTS = [
-    { date: '2026-11-05', type: 'הקרנה', title: '״האגר – ארץ״', place: 'סינמטק תל אביב · הקרנה ושיחה עם הבמאי' },
-    { date: '2026-11-12', type: 'הרצאה', title: 'שמואל ברו: מאתיופיה אל המסך', place: 'כנס מנהלים, ירושלים' },
-    { date: '2026-11-19', type: 'פסטיבל', title: '״האגר – ארץ״', place: 'פסטיבל קולנוע בינלאומי, אירופה' },
-    { date: '2026-11-26', type: 'סטנדאפ', title: 'שמואל ברו · ערב סטנדאפ', place: 'תל אביב' },
-    { date: '2026-12-03', type: 'הקרנה', title: '״האגר – ארץ״', place: 'סינמטק חיפה' },
-    { date: '2026-12-10', type: 'הרצאה', title: 'סיפור אישי, קולנוע והרבה הומור', place: 'מכללה אקדמית, באר שבע' },
-    { date: '2027-01-07', type: 'הקרנה', title: '״האגר – ארץ״', place: 'סינמטק ירושלים' },
-    { date: '2027-01-21', type: 'סטנדאפ', title: 'שמואל ברו · מופע חדש', place: 'חיפה' },
+    { date: '2026-11-05', time: '20:00', type: 'הקרנה', title: '״האגר – ארץ״', venue: 'סינמטק תל אביב', city: 'תל אביב', note: 'הקרנה ושיחה עם הבמאי' },
+    { date: '2026-11-12', time: '09:30', type: 'הרצאה', title: 'שמואל ברו: מאתיופיה אל המסך', venue: 'כנס מנהלים', city: 'ירושלים' },
+    { date: '2026-11-19', time: '19:00', type: 'פסטיבל', title: '״האגר – ארץ״', venue: 'פסטיבל קולנוע בינלאומי', city: 'אירופה' },
+    { date: '2026-11-26', time: '21:30', type: 'סטנדאפ', title: 'שמואל ברו · ערב סטנדאפ', venue: 'מועדון הסטנדאפ', city: 'תל אביב' },
+    { date: '2026-12-03', time: '20:30', type: 'הקרנה', title: '״האגר – ארץ״', venue: 'סינמטק חיפה', city: 'חיפה' },
+    { date: '2026-12-10', time: '12:00', type: 'הרצאה', title: 'סיפור אישי, קולנוע והרבה הומור', venue: 'מכללה אקדמית', city: 'באר שבע' },
+    { date: '2027-01-07', time: '20:00', type: 'הקרנה', title: '״האגר – ארץ״', venue: 'סינמטק ירושלים', city: 'ירושלים' },
+    { date: '2027-01-21', time: '21:00', type: 'סטנדאפ', title: 'שמואל ברו · מופע חדש', venue: 'אודיטוריום חיפה', city: 'חיפה' },
   ];
   const evTrack = $('#events-track'), today = new Date(); today.setHours(0, 0, 0, 0);
   const days = ['א׳', 'ב׳', 'ג׳', 'ד׳', 'ה׳', 'ו׳', 'ש׳'];
   const upcoming = EVENTS.map(e => ({ ...e, d: new Date(`${e.date}T00:00:00`) })).filter(e => e.d >= today).sort((a, b) => a.d - b.d);
   if (!upcoming.length) { evTrack.closest('.events').hidden = true; $('.lv').classList.add('ev-none'); }
-  const evItems = upcoming.map(e => {
-    const el = document.createElement('span');
+  const evItems = upcoming.map((e, i) => {
+    const el = document.createElement('span'); el.dataset.ev = i;
     const t = document.createElement('time'); t.dateTime = e.date; t.textContent = `${pad(e.d.getDate())}.${pad(e.d.getMonth() + 1)} · ${days[e.d.getDay()]}`;
     const k = document.createElement('small'); k.textContent = e.type;
     const b = document.createElement('b'); b.textContent = e.title;
-    const m = document.createElement('em'); m.textContent = e.place;
+    const m = document.createElement('em'); m.textContent = e.city;
     el.append(t, k, b, m); return el;
   });
   // the marquee below expects four copies of the base items
   evTrack.append(...[0, 1, 2, 3].flatMap(k => evItems.map(n => { const c = n.cloneNode(true); if (k) c.setAttribute('aria-hidden', 'true'); return c; })));
+
+  // event details: a small popover; the marquee keeps running
+  const pop = $('#ev-pop'), months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+  const closePop = () => { pop.hidden = true; };
+  evTrack.addEventListener('click', ev => {
+    const it = ev.target.closest('[data-ev]'); if (!it) return;
+    const e = upcoming[it.dataset.ev];
+    $('#ev-pop-type').textContent = e.type;
+    $('#ev-pop-title').textContent = e.title;
+    const note = $('#ev-pop-note'); note.hidden = !e.note; note.textContent = e.note || '';
+    $('#ev-pop-date').textContent = `יום ${days[e.d.getDay()]}, ${e.d.getDate()} ב${months[e.d.getMonth()]} ${e.d.getFullYear()}`;
+    $('#ev-pop-time').textContent = e.time || 'יפורסם בהמשך';
+    $('#ev-pop-place').textContent = e.city && !e.venue.includes(e.city) ? `${e.venue}, ${e.city}` : e.venue;
+    const link = $('#ev-pop-link'); link.hidden = !e.link; if (e.link) link.href = e.link;
+    pop.hidden = false;
+    // sit under the clicked item, kept inside the screen
+    const r = it.getBoundingClientRect(), w = pop.offsetWidth;
+    pop.style.left = `${innerWidth < 520 ? (innerWidth - w) / 2 : Math.min(Math.max(12, r.left + r.width / 2 - w / 2), innerWidth - w - 12)}px`;
+    ev.stopPropagation();
+  });
+  $('.ev-pop-x').addEventListener('click', closePop);
+  document.addEventListener('click', ev => { if (!pop.hidden && !pop.contains(ev.target)) closePop(); });
+  document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closePop(); });
 
   // marquees: keep each half wider than the screen and move at one steady speed
   const pace = () => $$('.track').forEach(t => {
@@ -1061,6 +1112,7 @@ a{color:inherit}a:hover{color:inherit}
     nav.classList.toggle('scrolled', window.scrollY > 30 || menu.classList.contains('open'));
     // events bar stays for the first stretch of scrolling, then slides away
     lv.classList.toggle('ev-off', window.scrollY > Math.min(320, innerHeight * .4) && !menu.classList.contains('open'));
+    if (lv.classList.contains('ev-off')) closePop();
     const pastHero = hero.getBoundingClientRect().bottom < 80;
     const cr = contact.getBoundingClientRect();
     mbar.classList.toggle('show', pastHero && !(cr.top < innerHeight * .75 && cr.bottom > 0));
