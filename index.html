@@ -201,13 +201,9 @@ a{color:inherit}a:hover{color:inherit}
 .ev-pop-x:hover{background:var(--sand);color:var(--ink)}
 .ev-pop small{display:inline-flex;align-items:center;min-height:22px;padding:0 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:500;color:var(--gold-ink)}
 .ev-pop h3{margin:10px 0 14px;padding-left:24px;font-family:var(--display);font-size:22px;font-weight:500;line-height:1.25}
-.ev-pop p{margin:-6px 0 14px;color:var(--mute);font-size:15px}
-.ev-pop p[hidden]{display:none}
 .ev-pop dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;padding-top:14px;border-top:1px solid var(--line);font-size:15px}
 .ev-pop dt{color:var(--mute);font-size:13px;padding-top:1px}
 .ev-pop dd{margin:0;color:var(--ink)}
-.ev-pop .btn{width:100%;margin-top:18px}
-.ev-pop .btn[hidden]{display:none}
 .events .track span{gap:14px;padding-inline:28px;font-family:var(--sans);font-size:15px;font-weight:400}
 .events .track span::before{display:none}
 .events .track span::after{content:"";width:5px;height:5px;margin-inline-start:28px;background:var(--gold);transform:rotate(45deg)}
@@ -619,13 +615,11 @@ a{color:inherit}a:hover{color:inherit}
     <button class="ev-pop-x" type="button" aria-label="סגירה">×</button>
     <small id="ev-pop-type"></small>
     <h3 id="ev-pop-title"></h3>
-    <p id="ev-pop-note" hidden></p>
     <dl>
       <dt>תאריך</dt><dd id="ev-pop-date"></dd>
       <dt>שעה</dt><dd id="ev-pop-time"></dd>
       <dt>מקום</dt><dd id="ev-pop-place"></dd>
     </dl>
-    <a class="btn gold" id="ev-pop-link" target="_blank" rel="noopener" hidden>לפרטים וכרטיסים ←</a>
   </div>
 
   <!-- NAV -->
@@ -1041,9 +1035,9 @@ a{color:inherit}a:hover{color:inherit}
   const pad = n => String(n).padStart(2, '0');
 
   // events bar. DEMO content: replace with the real schedule. Past dates hide themselves.
-  // type: הקרנה | הרצאה | פסטיבל | סטנדאפ · time: 'HH:MM' · venue + city: shown in the popup · note, link: optional (a short line, a tickets/details page)
+  // type: הקרנה | הרצאה | פסטיבל | סטנדאפ · time: 'HH:MM' · venue + city: shown in the popup
   const EVENTS = [
-    { date: '2026-11-05', time: '20:00', type: 'הקרנה', title: '״האגר – ארץ״', venue: 'סינמטק תל אביב', city: 'תל אביב', note: 'הקרנה ושיחה עם הבמאי' },
+    { date: '2026-11-05', time: '20:00', type: 'הקרנה', title: '״האגר – ארץ״', venue: 'סינמטק תל אביב', city: 'תל אביב' },
     { date: '2026-11-12', time: '09:30', type: 'הרצאה', title: 'שמואל ברו: מאתיופיה אל המסך', venue: 'כנס מנהלים', city: 'ירושלים' },
     { date: '2026-11-19', time: '19:00', type: 'פסטיבל', title: '״האגר – ארץ״', venue: 'פסטיבל קולנוע בינלאומי', city: 'אירופה' },
     { date: '2026-11-26', time: '21:30', type: 'סטנדאפ', title: 'שמואל ברו · ערב סטנדאפ', venue: 'מועדון הסטנדאפ', city: 'תל אביב' },
@@ -1075,11 +1069,9 @@ a{color:inherit}a:hover{color:inherit}
     const e = upcoming[it.dataset.ev];
     $('#ev-pop-type').textContent = e.type;
     $('#ev-pop-title').textContent = e.title;
-    const note = $('#ev-pop-note'); note.hidden = !e.note; note.textContent = e.note || '';
     $('#ev-pop-date').textContent = `יום ${days[e.d.getDay()]}, ${e.d.getDate()} ב${months[e.d.getMonth()]} ${e.d.getFullYear()}`;
     $('#ev-pop-time').textContent = e.time || 'יפורסם בהמשך';
     $('#ev-pop-place').textContent = e.city && !e.venue.includes(e.city) ? `${e.venue}, ${e.city}` : e.venue;
-    const link = $('#ev-pop-link'); link.hidden = !e.link; if (e.link) link.href = e.link;
     pop.hidden = false;
     // sit under the clicked item, kept inside the screen
     const r = it.getBoundingClientRect(), w = pop.offsetWidth;
