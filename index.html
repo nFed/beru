@@ -164,14 +164,13 @@ a{color:inherit}a:hover{color:inherit}
 .menu-foot{position:relative;display:grid;gap:18px}
 
 /* ===== HERO: sunlight through a window onto a cream wall ===== */
-.hero{position:relative;isolation:isolate;overflow:hidden;padding:calc(var(--navh) + 64px) 0 88px;background:radial-gradient(ellipse 60% 70% at 22% 46%,rgba(255,214,128,.55),transparent 70%),radial-gradient(ellipse 50% 50% at 90% 6%,#fff,transparent 70%),linear-gradient(180deg,#FFF9EF 0%,#FBF1DE 60%,#F6E3BF 100%)}
-.beams{position:absolute;inset:-20% -10%;z-index:-1;pointer-events:none;background:repeating-linear-gradient(116deg,rgba(255,240,200,0) 0 140px,rgba(255,238,190,.75) 140px 230px,rgba(255,240,200,0) 230px 340px,rgba(120,84,36,.07) 340px 372px,rgba(255,240,200,0) 372px 560px);filter:blur(26px);animation:beam 26s ease-in-out infinite alternate}
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:calc(var(--navh) + 72px) 0 104px;background:radial-gradient(ellipse 50% 60% at 10% 20%,rgba(255,230,160,.38),transparent 70%),var(--cream)}
+.beams{position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(116deg,transparent 0 220px,rgba(255,244,214,.55) 220px 300px,transparent 300px 520px);filter:blur(30px);opacity:.9}
 .lv.no-beams .beams{display:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.12fr) 1px minmax(0,.88fr);gap:clamp(32px,5vw,72px);align-items:center}
-.hero .vrule{align-self:stretch;background:linear-gradient(to bottom,transparent,var(--gold) 18%,var(--gold) 82%,transparent)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:500;letter-spacing:.22em;color:var(--gold-ink);margin-bottom:24px}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
-.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(60px,8.4vw,132px);line-height:.98;letter-spacing:-.02em}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(56px,7.4vw,112px);line-height:1;letter-spacing:-.02em}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}
 .hero h1 .ln > span{display:inline-block;animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
 .hero h1 .ln:nth-child(2) > span{animation-delay:.12s}
@@ -180,31 +179,26 @@ a{color:inherit}a:hover{color:inherit}
 .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:40px}
 .fade{animation:fadeUp 1s both}.d1{animation-delay:.05s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}.d4{animation-delay:.6s}
 
-.hero-art{position:relative;aspect-ratio:1;width:100%;max-width:560px;margin-inline:auto;display:grid;place-items:center}
-.hero-art .sun{position:absolute;left:-2%;bottom:8%;width:74%;aspect-ratio:1;border-radius:50%;z-index:-1;background:radial-gradient(circle,#FFF8E4 0 26%,#FCE3A0 42%,#F4B860 58%,rgba(234,140,58,.55) 66%,rgba(234,140,58,0) 72%);animation:sunrise 2.2s cubic-bezier(.2,.8,.2,1) both,glow 7s ease-in-out 2.2s infinite}
-.hero-art .bloom{position:absolute;inset:-6%;z-index:-2;border-radius:50%;background:radial-gradient(circle at 38% 62%,rgba(255,210,120,.55),transparent 60%);filter:blur(30px)}
-.hero-art .horizon{position:absolute;left:-12%;right:-4%;bottom:23%;height:1px;z-index:-1;background:linear-gradient(to left,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
-.hero-art .mk{position:relative;width:84%;height:auto;filter:drop-shadow(0 34px 44px rgba(90,58,20,.28));animation:breathe 9s ease-in-out infinite}
-.hero-art .badge{position:absolute;top:0;right:0;width:132px;height:132px;animation:spin 48s linear infinite}
-.hero-art .badge text{font-family:var(--sans);font-weight:500;font-size:13.5px;letter-spacing:3px;fill:var(--ink)}
-.hero-art .badge .dot{fill:var(--gold)}
-.hero-art .tag{position:absolute;bottom:-4px;left:0;font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.3em;color:var(--gold-ink);direction:ltr}
+/* the mark on a softly lit wall: one pale halo, nothing else */
+.hero-art{position:relative;aspect-ratio:1;width:100%;max-width:440px;margin-inline:auto;display:grid;place-items:center}
+.hero-art .sun{position:absolute;inset:4%;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(255,248,228,.95) 0 34%,rgba(252,227,160,.45) 54%,rgba(252,227,160,0) 70%);animation:fadeUp 1.4s both}
+.hero-art .mk{position:relative;width:70%;height:auto;filter:drop-shadow(0 24px 30px rgba(90,58,20,.16))}
 
 /* ===== EVENTS BAR (top of page) ===== */
-.events{position:sticky;top:0;z-index:61;transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;align-items:stretch;height:var(--evh);background:linear-gradient(90deg,#1A130D,var(--ink) 30%,var(--ink) 70%,#1A130D);border-bottom:1px solid rgba(217,184,96,.35);color:var(--on-dark)}
+.events{position:sticky;top:0;z-index:61;transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;align-items:stretch;height:var(--evh);background:var(--paper);border-bottom:1px solid var(--line);color:var(--ink)}
 .events[hidden]{display:none}
 .lv.ev-off .events{transform:translateY(-100%)}
-.events-tag{flex-shrink:0;display:flex;align-items:center;gap:8px;padding-inline:clamp(12px,1.8vw,22px);background:var(--metal-lite);background-size:220% 100%;color:var(--ink);font-size:13px;font-weight:600;letter-spacing:.08em;animation:shimmer 9s ease-in-out infinite}
-.events-tag i{width:7px;height:7px;border-radius:50%;background:#B8401E;box-shadow:0 0 0 3px rgba(184,64,30,.25)}
+.events-tag{flex-shrink:0;display:flex;align-items:center;gap:8px;padding-inline:clamp(12px,1.8vw,22px);background:var(--sand);border-inline-end:1px solid var(--line);color:var(--gold-ink);font-size:13px;font-weight:600;letter-spacing:.08em}
+.events-tag i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .events-run{flex:1;min-width:0;direction:ltr;overflow:hidden;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
 .events-run:hover .track{animation-play-state:paused}
 .events .track span{gap:14px;padding-inline:28px;font-family:var(--sans);font-size:15px;font-weight:400}
 .events .track span::before{display:none}
 .events .track span::after{content:"";width:5px;height:5px;margin-inline-start:28px;background:var(--gold);transform:rotate(45deg)}
-.events time{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--gold-lite);direction:ltr;font-variant-numeric:tabular-nums}
-.events small{display:inline-flex;align-items:center;min-height:22px;padding:0 10px;border-radius:999px;border:1px solid rgba(217,184,96,.5);font-size:12px;font-weight:500;color:#F1DFA9}
-.events b{font-weight:600;color:#fff}
-.events em{font-style:normal;color:var(--soft)}
+.events time{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--gold-ink);direction:ltr;font-variant-numeric:tabular-nums}
+.events small{display:inline-flex;align-items:center;min-height:22px;padding:0 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:500;color:var(--mute)}
+.events b{font-weight:500;color:var(--ink)}
+.events em{font-style:normal;color:var(--mute)}
 
 /* ===== DARK CINEMA ZONE: ticker + showreel ===== */
 .dark{background:var(--ink);color:var(--on-dark)}
@@ -447,11 +441,6 @@ a{color:inherit}a:hover{color:inherit}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
 @keyframes shimmer{0%,100%{background-position:100% 0}50%{background-position:0 0}}
-@keyframes beam{from{transform:translateX(0)}to{transform:translateX(90px)}}
-@keyframes sunrise{from{transform:translateY(18%) scale(.9);opacity:0}to{transform:none;opacity:1}}
-@keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.06) saturate(1.1)}}
-@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes blink{50%{opacity:.25}}
 @keyframes pulse{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.35);opacity:0}}
 @keyframes nudge{0%,100%{transform:none}45%{transform:translateX(-5px)}}
@@ -461,8 +450,7 @@ a{color:inherit}a:hover{color:inherit}
 /* ===== responsive ===== */
 @media (max-width:1020px){
   .hero .wrap{grid-template-columns:minmax(0,1fr);gap:36px}
-  .hero .vrule{display:none}
-  .hero-art{order:-1;max-width:420px}
+  .hero-art{order:-1;max-width:340px}
   .about-grid,.contact-grid,.lec-grid{grid-template-columns:minmax(0,1fr);gap:48px}
   .services{grid-template-columns:repeat(2,minmax(0,1fr))}
   .work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -487,9 +475,7 @@ a{color:inherit}a:hover{color:inherit}
   .nav-cta{display:none}
   .hero{padding:calc(var(--navh) + 8px) 0 56px}
   .hero-art{width:min(42vw,25vh);max-width:none;margin-bottom:0}
-  .hero-art .badge{display:none}
-  .hero-art .mk{width:88%}
-  .hero-art .tag{display:none}
+  .hero-art .mk{width:80%}
   .eyebrow{justify-content:center;font-size:12px;letter-spacing:.16em;margin-bottom:12px}
   .eyebrow::after{content:"";width:34px;height:1px;background:var(--gold)}
   .hero h1{font-size:clamp(48px,13.4vw,68px);text-align:center}
@@ -667,18 +653,9 @@ a{color:inherit}a:hover{color:inherit}
             <a class="btn" href="#contact">בואו נדבר <span class="arr">←</span></a>
           </div>
         </div>
-        <span class="vrule" aria-hidden="true"></span>
         <div class="hero-art fade d2" aria-hidden="true">
-          <span class="bloom"></span>
           <span class="sun"></span>
-          <span class="horizon"></span>
           <img class="mk" src="logo.svg" alt="">
-          <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
-            <defs><path id="lv-circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"></path></defs>
-            <circle class="dot" cx="100" cy="100" r="4"></circle>
-            <text><textPath href="#lv-circ" startOffset="100%">ליו הפקות · מבית היוצר של שמואל ברו · מאז 2010 ·</textPath></text>
-          </svg>
-          <span class="tag">LEEU · EST. 2010</span>
         </div>
       </div>
     </section>
