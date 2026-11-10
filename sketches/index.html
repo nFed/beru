@@ -62,6 +62,7 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,40px);l
 .grp{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.2em;color:var(--gold-ink);margin:clamp(14px,3vw,26px) 0 0;display:flex;align-items:center;gap:14px}
 .grp::after{content:"";flex:1;height:1px;background:var(--line)}
 main>.grp:first-child{margin-top:0}
+.sk:first-of-type{border-color:var(--ink)}
 footer{border-top:1px solid var(--line);padding-block:22px 40px;font-size:13px;color:var(--mute)}
 footer a{text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -71,7 +72,7 @@ footer a{text-underline-offset:3px}
 <div class="wrap">
   <header>
     <div class="brand"><i aria-hidden="true"></i><div><b>ליו</b><br><span>הפקות</span></div></div>
-    <h1>תשע סקיצות לאתר</h1>
+    <h1>גרסה סופית ותשע סקיצות</h1>
     <p class="intro">תשעה כיוונים שונים לאותו תוכן: חמשת הראשונים, שניים נוספים ושניים ניטרליים. הטקסטים זהים לאתר הקיים, התמונות הן דוגמאות להמחשה בלבד. כדאי לפתוח כל סקיצה בטלפון, לגלול עד הסוף, ולבחור כיוון אחד או שניים לדיוק.</p>
     <ul class="notes" aria-label="מה השתנה בכל הסקיצות">
       <li>בלי לוח האירועים הרץ</li>
@@ -83,6 +84,23 @@ footer a{text-underline-offset:3px}
   </header>
 
   <main>
+    <h3 class="grp">גרסה סופית</h3>
+
+    <a class="sk" href="final.html">
+      <div class="shots"><img class="d" src="previews/final-desktop.jpg" alt="הגרסה הסופית במחשב" width="1440" height="900"><img class="m" src="previews/final-mobile.jpg" alt="הגרסה הסופית בטלפון" width="390" height="844"></div>
+      <div class="txt">
+        <span class="no">גרסה סופית</span>
+        <h2>נייר, עם סרטים בראש</h2>
+        <p>הבסיס הניטרלי של סקיצה 8, עם הפריימים המתחלפים בתוך הצללית מסקיצה 2. סדר התוכן והניסוחים עודכנו לפי שתי הביקורות: המסר קודם, העבודות מיד אחריו.</p>
+        <dl class="meta">
+          <div><dt>פונטים</dt><dd>Heebo</dd></div>
+          <div><dt>צללית</dt><dd>חלון שדרכו רואים את הצילומים</dd></div>
+          <div><dt>סדר</dt><dd>פתיחה, עבודות, לקוחות, שירותים, תהליך, אודות, קשר</dd></div>
+        </dl>
+        <span class="go">לצפייה בגרסה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
     <h3 class="grp">חמשת הכיוונים הראשונים</h3>
     <a class="sk" href="1.html">
       <div class="shots"><img class="d" src="previews/1-desktop.jpg" alt="סקיצה 1 במחשב" width="1440" height="900"><img class="m" src="previews/1-mobile.jpg" alt="סקיצה 1 בטלפון" width="390" height="844"></div>
