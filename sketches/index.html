@@ -59,6 +59,9 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,40px);l
   .txt{padding:clamp(28px,3.4vw,44px);justify-content:center}
   .go{margin-top:8px}
 }
+.grp{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.2em;color:var(--gold-ink);margin:clamp(14px,3vw,26px) 0 0;display:flex;align-items:center;gap:14px}
+.grp::after{content:"";flex:1;height:1px;background:var(--line)}
+main>.grp:first-child{margin-top:0}
 footer{border-top:1px solid var(--line);padding-block:22px 40px;font-size:13px;color:var(--mute)}
 footer a{text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -68,17 +71,19 @@ footer a{text-underline-offset:3px}
 <div class="wrap">
   <header>
     <div class="brand"><i aria-hidden="true"></i><div><b>ליו</b><br><span>הפקות</span></div></div>
-    <h1>חמש סקיצות לאתר</h1>
-    <p class="intro">חמישה כיוונים שונים לאותו תוכן. הטקסטים זהים לאתר הקיים, התמונות הן דוגמאות להמחשה בלבד. כדאי לפתוח כל סקיצה בטלפון, לגלול עד הסוף, ולבחור כיוון אחד או שניים לדיוק.</p>
+    <h1>תשע סקיצות לאתר</h1>
+    <p class="intro">תשעה כיוונים שונים לאותו תוכן: חמשת הראשונים, שניים נוספים ושניים ניטרליים. הטקסטים זהים לאתר הקיים, התמונות הן דוגמאות להמחשה בלבד. כדאי לפתוח כל סקיצה בטלפון, לגלול עד הסוף, ולבחור כיוון אחד או שניים לדיוק.</p>
     <ul class="notes" aria-label="מה השתנה בכל הסקיצות">
       <li>בלי לוח האירועים הרץ</li>
       <li>בלי הקטע של ״האגר – ארץ״</li>
+      <li>בלי קטע ההרצאות</li>
       <li>בלי טופס, רק טלפון ומייל</li>
       <li>הצללית מופיעה פעם אחת במסך הפתיחה</li>
     </ul>
   </header>
 
   <main>
+    <h3 class="grp">חמשת הכיוונים הראשונים</h3>
     <a class="sk" href="1.html">
       <div class="shots"><img class="d" src="previews/1-desktop.jpg" alt="סקיצה 1 במחשב" width="1440" height="900"><img class="m" src="previews/1-mobile.jpg" alt="סקיצה 1 בטלפון" width="390" height="844"></div>
       <div class="txt">
@@ -149,6 +154,67 @@ footer a{text-underline-offset:3px}
           <div><dt>פונטים</dt><dd>Suez One · Rubik</dd></div>
           <div><dt>צללית</dt><dd>חום טרקוטה, על קו האופק</dd></div>
           <div><dt>תנועה</dt><dd>שמש שנעה עם הגלילה</dd></div>
+        </dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>    <h3 class="grp">שני כיוונים נוספים</h3>
+
+    <a class="sk" href="6.html">
+      <div class="shots"><img class="d" src="previews/6-desktop.jpg" alt="סקיצה 6 במחשב" width="1440" height="900"><img class="m" src="previews/6-mobile.jpg" alt="סקיצה 6 בטלפון" width="390" height="844"></div>
+      <div class="txt">
+        <span class="no">סקיצה 6</span>
+        <h2>מוזאיקה</h2>
+        <p>כל האתר בנוי מאריחים מעוגלים, כמו מסך של אפליקציה: כותרת, צללית, פריימים חיים ועובדות, כולם במסך אחד.</p>
+        <dl class="meta">
+          <div><dt>פונטים</dt><dd>@F6@</dd></div>
+          <div><dt>צללית</dt><dd>@S6@</dd></div>
+          <div><dt>תנועה</dt><dd>אריחים שמתחברים בטעינה, פריימים חיים</dd></div>
+        </dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="7.html">
+      <div class="shots"><img class="d" src="previews/7-desktop.jpg" alt="סקיצה 7 במחשב" width="1440" height="900"><img class="m" src="previews/7-mobile.jpg" alt="סקיצה 7 בטלפון" width="390" height="844"></div>
+      <div class="txt">
+        <span class="no">סקיצה 7</span>
+        <h2>גיליון קונטקט</h2>
+        <p>בשפה של המקצוע: רצועות פריימים על נייר, מספרי פריים, וסימון בעיפרון שמקיף את הפריים הנבחר.</p>
+        <dl class="meta">
+          <div><dt>פונטים</dt><dd>@F7@</dd></div>
+          <div><dt>צללית</dt><dd>@S7@</dd></div>
+          <div><dt>תנועה</dt><dd>סימוני עיפרון שמציירים את עצמם, רצועה נעה</dd></div>
+        </dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+    <h3 class="grp">שני כיוונים ניטרליים</h3>
+
+    <a class="sk" href="8.html">
+      <div class="shots"><img class="d" src="previews/8-desktop.jpg" alt="סקיצה 8 במחשב" width="1440" height="900"><img class="m" src="previews/8-mobile.jpg" alt="סקיצה 8 בטלפון" width="390" height="844"></div>
+      <div class="txt">
+        <span class="no">סקיצה 8</span>
+        <h2>נייר</h2>
+        <p>ניטרלי ומודרני: לבן שבור, פחם, בלי צהוב וחום. הצבע היחיד בעמוד מגיע מהצילומים עצמם.</p>
+        <dl class="meta">
+          <div><dt>פונטים</dt><dd>@F8@</dd></div>
+          <div><dt>צללית</dt><dd>@S8@</dd></div>
+          <div><dt>תנועה</dt><dd>מהירה ומדויקת: כותרות עולות, קווים נמתחים</dd></div>
+        </dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="9.html">
+      <div class="shots"><img class="d" src="previews/9-desktop.jpg" alt="סקיצה 9 במחשב" width="1440" height="900"><img class="m" src="previews/9-mobile.jpg" alt="סקיצה 9 בטלפון" width="390" height="844"></div>
+      <div class="txt">
+        <span class="no">סקיצה 9</span>
+        <h2>אבן</h2>
+        <p>ניטרלי ורך בגווני אבן. הצללית היא תבליט באותו צבע של הקיר, ורואים אותה רק בזכות האור שנע עליה.</p>
+        <dl class="meta">
+          <div><dt>פונטים</dt><dd>@F9@</dd></div>
+          <div><dt>צללית</dt><dd>@S9@</dd></div>
+          <div><dt>תנועה</dt><dd>אור שנע על התבליט, צבע שנכנס לצילומים</dd></div>
         </dl>
         <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
       </div>
