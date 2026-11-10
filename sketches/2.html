@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ליו הפקות | סקיצה 2 · הראש מלא סרטים</title>
+<meta name="theme-color" content="#FFFBF3">
+<link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* Layout: asymmetric 12-col feel; the silhouette is a screen, everything else is quiet type on warm paper. */
+:root{
+  --bg:#FFFBF3; --paper:#FFFEFA; --sand:#F7EDDA; --sand-2:#F1E2C6; --line:#E6D7BB;
+  --ink:#2A1C11; --ink-2:#4A3826; --mute:#73604B;
+  --amber:#DE8A2E; --amber-ink:#A35B10; --glow:#F8D48A;
+  --sans:'IBM Plex Sans Hebrew','Heebo','Arial Hebrew',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --navh:64px; --gut:clamp(20px,4.4vw,56px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--navh)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:clip}
+h1,h2,h3,h4,p,ul,ol,dl,dd,dt,blockquote,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--amber-ink);outline-offset:3px;border-radius:2px}
+::selection{background:var(--glow);color:var(--ink)}
+.wrap{max-width:1280px;margin-inline:auto;padding-inline:var(--gut)}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.04em;font-weight:400}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;height:var(--navh);transition:background .4s,box-shadow .4s}
+.nav.stuck{background:rgba(255,251,243,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.word{display:inline-flex;align-items:baseline;gap:.34em;font-size:22px;line-height:1;letter-spacing:-.02em}
+.word b{font-weight:700}
+.word span{font-weight:300;color:var(--ink-2)}
+.nav-links{display:none;gap:clamp(18px,2.4vw,36px);font-size:15px}
+.nav-links a{position:relative;padding-block:6px;color:var(--ink-2);transition:color .25s}
+.nav-links a::after{content:"";position:absolute;inset:auto 0 0;height:1.5px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-tel{display:none;color:var(--ink-2);font-size:13px}
+.nav-tel:hover{color:var(--amber-ink)}
+.burger{width:44px;height:44px;margin-inline-end:-10px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-content:center;gap:7px;color:var(--ink)}
+.burger span{display:block;width:24px;height:1.5px;background:currentColor;transition:transform .35s var(--ease)}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(4.25px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-4.25px) rotate(-45deg)}
+@media(min-width:900px){
+  :root{--navh:76px}
+  .nav-links{display:flex}.nav-tel{display:block}.burger{display:none}
+  .word{font-size:25px}
+}
+
+/* ---------- mobile menu ---------- */
+.menu{position:fixed;inset:0;z-index:40;background:var(--bg);padding:calc(var(--navh) + 20px) var(--gut) 28px;display:flex;flex-direction:column;justify-content:space-between;visibility:hidden;clip-path:inset(0 0 100% 0);transition:clip-path .55s var(--ease),visibility 0s .55s}
+.menu.open{visibility:visible;clip-path:inset(0);transition:clip-path .55s var(--ease)}
+.menu li{border-bottom:1px solid var(--line)}
+.menu li a{display:flex;justify-content:space-between;align-items:center;padding-block:13px;font-size:28px;font-weight:500;letter-spacing:-.02em}
+.menu li a small{font-family:var(--mono);font-size:12px;color:var(--amber-ink);font-weight:400}
+.menu-foot{display:grid;gap:6px;font-size:18px}
+.menu-foot a{font-family:var(--mono);direction:ltr;text-align:right}
+body.locked{overflow:hidden}
+
+/* ---------- buttons, labels ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;height:52px;padding-inline:26px;border-radius:999px;background:var(--ink);color:var(--paper);font-weight:500;font-size:16px;transition:background .3s,transform .3s var(--ease)}
+.btn .arr{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover{background:var(--amber-ink)}
+.btn:hover .arr{transform:translateX(-5px)}
+.link{display:inline-flex;gap:8px;font-weight:500;border-bottom:1.5px solid var(--amber);padding-bottom:2px;transition:color .25s,gap .3s}
+.link:hover{color:var(--amber-ink);gap:14px}
+.label{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:var(--amber-ink);margin-bottom:16px}
+.label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.title{font-size:clamp(34px,5.4vw,68px);line-height:1.04;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
+.title em{font-style:normal;color:var(--amber-ink)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;padding-top:var(--navh);display:flex;flex-direction:column;overflow:clip;background:radial-gradient(120% 70% at 22% 30%,#FFF3D6 0%,rgba(255,243,214,0) 60%),var(--bg)}
+.hero .wrap{flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;gap:clamp(10px,2svh,22px);padding-bottom:clamp(18px,3svh,32px)}
+.screen{position:relative;align-self:center;width:min(80vw,38vh);width:min(80vw,38svh);aspect-ratio:100/99.19;flex:none}
+.head-shadow{position:absolute;inset:0;filter:drop-shadow(0 14px 26px rgba(150,92,22,.26)) drop-shadow(0 0 1px rgba(90,52,10,.6))}
+.head{position:absolute;inset:0;background:var(--sand-2);-webkit-clip-path:url(#head-clip);clip-path:url(#head-clip)}
+.head img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.3s ease;will-change:opacity,transform}
+.head img.on{opacity:1;animation:kb 6.5s linear forwards}
+.head::after{content:"";position:absolute;inset:0;background:radial-gradient(75% 75% at 50% 50%,rgba(90,45,5,0) 55%,rgba(90,45,5,.34) 100%),linear-gradient(180deg,rgba(150,80,10,.26),rgba(60,30,6,.1) 45%)}
+@keyframes kb{from{transform:scale(1.06) translate3d(1.5%,0,0)}to{transform:scale(1.2) translate3d(-1.5%,-1%,0)}}
+.slate{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--mute);min-height:20px;white-space:nowrap}
+.slate .n{color:var(--amber-ink)}
+.slate .t{font-family:var(--sans);font-size:13px;letter-spacing:0;overflow:hidden;text-overflow:ellipsis;transition:opacity .4s}
+.slate .tc{direction:ltr;font-variant-numeric:tabular-nums}
+.slate i{width:18px;height:1px;background:var(--line);flex:none}
+@media(max-width:899px){.slate{gap:10px;justify-content:space-between;width:100%;max-width:340px;align-self:center}.slate i{display:none}.slate .t{font-size:12.5px}}
+.hero-text{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(8px,1.6svh,16px)}
+.eyebrow{font-size:14px;font-weight:500;color:var(--amber-ink);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:var(--amber)}
+.hero h1{font-size:clamp(40px,12.6vw,56px);line-height:1;font-weight:700;letter-spacing:-.045em}
+.hero h1 .ln{display:block;overflow:hidden;padding-block:.06em;margin-block:-.02em}
+.hero h1 .ln>span{display:block}
+.hero h1 em{font-style:normal;color:var(--amber-ink)}
+.hero-sub{font-size:15px;line-height:1.55;color:var(--ink-2);max-width:34em;text-wrap:pretty}
+.hero-cta{margin-top:4px}
+.hero-foot{display:none}
+
+/* load sequence */
+.js .hero h1 .ln>span{transform:translateY(105%);animation:up .9s var(--ease) forwards}
+.js .hero h1 .ln:nth-child(2)>span{animation-delay:.12s}
+.js .screen{opacity:0;transform:scale(.94);animation:pop 1.1s var(--ease) .1s forwards}
+.js .hero .fd{opacity:0;transform:translateY(10px);animation:fd .8s var(--ease) forwards}
+.js .hero .d1{animation-delay:.05s}.js .hero .d2{animation-delay:.42s}.js .hero .d3{animation-delay:.56s}.js .hero .d4{animation-delay:.75s}
+@keyframes up{to{transform:none}}
+@keyframes pop{to{opacity:1;transform:none}}
+@keyframes fd{to{opacity:1;transform:none}}
+
+@media(min-width:900px){
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);grid-template-rows:1fr auto;align-items:center;column-gap:clamp(24px,4vw,72px);row-gap:0;padding-bottom:28px}
+  .hero-text{grid-column:1;grid-row:1;gap:clamp(14px,2.4vh,26px)}
+  .screen{grid-column:2;grid-row:1;justify-self:end;align-self:center;width:min(48vw,74vh);margin-inline-end:calc(-1 * clamp(10px,3vw,60px))}
+  .slate{grid-column:2;grid-row:2;justify-content:flex-start;gap:16px}
+  .slate .t{font-size:14px}.slate{width:auto}
+  .hero-foot{display:flex;grid-column:1;grid-row:2;gap:14px;align-items:center;color:var(--mute)}
+  .hero-foot i{width:28px;height:1px;background:var(--line)}
+  .eyebrow{font-size:15px}
+  .hero h1{font-size:clamp(64px,min(8vw,15.5vh),124px);line-height:.98}
+  .hero-sub{font-size:clamp(17px,1.4vw,20px);line-height:1.65;max-width:27em}
+  .btn{height:58px;padding-inline:32px;font-size:17px}
+}
+
+/* ---------- sections ---------- */
+.sec{padding-block:clamp(64px,10vw,136px)}
+.sec.sand{background:var(--sand)}
+.head-row{display:grid;gap:18px;margin-bottom:clamp(32px,5vw,64px)}
+.head-row>p{color:var(--ink-2);max-width:30em;font-size:17px}
+@media(min-width:900px){.head-row{grid-template-columns:1.2fr 1fr;align-items:end;gap:48px}.head-row>p{justify-self:end;font-size:18px}}
+
+/* reveals */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .wipe{clip-path:inset(0 0 0 100%);transition:clip-path 1s var(--ease)}
+.js .wipe img{transform:scale(1.16);transition:transform 1.5s var(--ease)}
+.js .in>.wipe{clip-path:inset(0)}
+.js .in>.wipe img{transform:none}
+
+/* about */
+.about{display:grid;gap:40px}
+.about-text{display:grid;gap:18px;justify-items:start}
+.about-text .lead{font-size:clamp(20px,2.3vw,27px);line-height:1.5;font-weight:400;letter-spacing:-.01em}
+.about-text .lead strong{font-weight:600;background:linear-gradient(transparent 62%,var(--glow) 62%)}
+.about-text p{color:var(--ink-2);max-width:36em}
+.about-text .lead{color:var(--ink)}
+.stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.stat{padding:22px 0 20px;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.stat:nth-child(odd){padding-inline-end:16px;border-inline-end:1px solid var(--line)}
+.stat:nth-child(even){padding-inline-start:20px}
+.stat .n{font-size:clamp(46px,7vw,84px);line-height:1;font-weight:300;letter-spacing:-.05em;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+.stat .n sup{font-size:.45em;color:var(--amber-ink);font-weight:500;vertical-align:top;position:relative;top:.2em}
+.stat .l{font-size:14px;color:var(--mute)}
+@media(min-width:900px){.about{grid-template-columns:1.15fr 1fr;gap:clamp(48px,7vw,110px);align-items:start}}
+
+/* work */
+.works{display:grid;gap:40px}
+.work figure{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:4px;background:var(--sand-2)}
+.work img{width:100%;height:100%;object-fit:cover}
+.work .tag{position:absolute;inset:auto auto 10px 10px;z-index:2;background:rgba(255,251,243,.88);color:var(--ink);padding:3px 8px;border-radius:3px;font-size:11px;direction:ltr}
+.work .meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:14px}
+.work h3{font-size:clamp(19px,2vw,24px);font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.work p{font-size:14.5px;color:var(--mute)}
+.work .yr{color:var(--amber-ink);font-size:13px;flex:none}
+.work figure::after{content:"";position:absolute;inset:0;background:rgba(222,138,46,.0);transition:background .4s}
+@media(hover:hover){.work:hover figure img{transform:scale(1.05)!important;transition:transform 1.2s var(--ease)}}
+@media(min-width:760px){
+  .works{grid-template-columns:1fr 1fr;column-gap:clamp(28px,4vw,64px);row-gap:clamp(40px,5vw,72px)}
+  .work:nth-child(even){margin-top:clamp(48px,8vw,112px)}
+}
+
+/* clients */
+.clients{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-inline-start:1px solid var(--line)}
+.clients li{display:grid;place-items:center;min-height:92px;border-bottom:1px solid var(--line);border-inline-end:1px solid var(--line);font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.02em;color:var(--ink-2);transition:color .3s,background .3s}
+.clients li:hover{color:var(--amber-ink);background:var(--paper)}
+@media(min-width:760px){.clients{grid-template-columns:repeat(5,1fr)}.clients li{min-height:128px}}
+
+/* services */
+.services{border-top:1px solid var(--ink)}
+.service{position:relative;display:grid;gap:8px;padding-block:24px;border-bottom:1px solid var(--line)}
+.service::after{content:"";position:absolute;inset:auto 0 -1px;height:1.5px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.service:hover::after{transform:scaleX(1)}
+.service .num{color:var(--amber-ink)}
+.service h3{font-size:clamp(24px,3vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.15}
+.service p{color:var(--ink-2);font-size:16px;max-width:34em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tags span{font-size:12.5px;padding:3px 11px;border:1px solid var(--line);border-radius:999px;color:var(--mute);background:rgba(255,254,250,.6)}
+.tags .ltr{font-family:var(--mono);font-size:11.5px}
+@media(min-width:900px){
+  .service{grid-template-columns:64px minmax(0,1fr) minmax(0,1.35fr) minmax(0,.9fr);align-items:start;gap:32px;padding-block:34px;transition:padding .4s var(--ease)}
+  .service:hover{padding-inline-start:10px}
+  .service .num{padding-top:14px}
+  .service p{padding-top:8px}
+  .service .tags{margin-top:10px;justify-content:flex-end}
+}
+
+/* lectures */
+.lec{display:grid;gap:32px}
+.lec-who{display:flex;align-items:center;gap:18px}
+.lec-who img{width:92px;height:92px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 4px var(--paper),0 0 0 5.5px var(--amber)}
+.lec-who b{display:block;font-size:18px;font-weight:600}
+.lec-who span{font-size:14.5px;color:var(--mute)}
+.lec-main{display:grid;gap:18px;justify-items:start}
+.lec-main h3{font-size:clamp(22px,2.6vw,32px);line-height:1.3;font-weight:500;letter-spacing:-.02em;text-wrap:balance}
+.lec-main>p{color:var(--ink-2);max-width:38em}
+.facts{width:100%;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:58px 1fr;gap:14px;padding-block:14px;border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--mono);font-size:12.5px;color:var(--amber-ink);padding-top:4px}
+.facts dd{font-size:15.5px;color:var(--ink-2);line-height:1.55}
+.facts dd b{color:var(--ink);font-weight:600}
+.lec-actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:8px}
+@media(min-width:900px){.lec{grid-template-columns:.8fr 1.4fr;gap:clamp(48px,7vw,110px)}.lec-side{position:sticky;top:calc(var(--navh) + 32px);align-self:start;display:grid;gap:22px}.lec-who img{width:128px;height:128px}}
+.lec-side{display:grid;gap:20px}
+
+/* process */
+.steps{position:relative;display:grid;gap:0;counter-reset:s}
+.steps::before{content:"";position:absolute;inset:0 0 auto;height:1.5px;background:var(--ink);transform-origin:right;transition:transform 1.6s var(--ease)}
+.js .steps::before{transform:scaleX(0)}
+.js .steps.in::before{transform:scaleX(1)}
+.step{padding-block:22px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:52px 1fr;column-gap:8px;row-gap:4px}
+.step .dot{grid-row:span 2;color:var(--amber-ink);padding-top:7px}
+.step h3{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.step p{color:var(--ink-2);font-size:16px}
+@media(min-width:900px){
+  .steps{grid-template-columns:repeat(4,1fr);gap:32px}
+  .step{display:block;border-bottom:0;padding-block:26px 0;position:relative}
+  .step::before{content:"";position:absolute;top:-5px;inset-inline-start:0;width:9px;height:9px;border-radius:50%;background:var(--amber)}
+  .step .dot{display:block;padding:0;margin-bottom:26px}
+  .step h3{font-size:25px;margin-bottom:8px}
+}
+
+/* quote */
+.quote{text-align:center}
+.quote .qm{display:block;font-size:84px;line-height:.6;color:var(--amber);font-weight:700;height:44px}
+.quote blockquote{max-width:20em;margin-inline:auto;font-size:clamp(25px,4vw,48px);line-height:1.32;font-weight:400;letter-spacing:-.025em;text-wrap:balance}
+.quote em{font-style:normal;font-weight:600;background:linear-gradient(transparent 62%,var(--glow) 62%)}
+
+/* ticker */
+.ticker{overflow:hidden;border-block:1px solid var(--line);padding-block:16px;background:var(--paper)}
+.ticker .track{display:flex;gap:0;width:max-content;animation:tick 46s linear infinite}
+.ticker span{font-size:clamp(20px,2.4vw,30px);font-weight:500;letter-spacing:-.02em;white-space:nowrap;padding-inline:22px;display:flex;align-items:center;gap:44px;color:var(--ink-2)}
+.ticker span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
+@keyframes tick{to{transform:translateX(50%)}}
+
+/* contact */
+.contact{background:radial-gradient(90% 80% at 80% 0%,#FFEFC9 0%,rgba(255,239,201,0) 60%),var(--sand)}
+.contact h2{font-size:clamp(42px,8.4vw,116px);line-height:1;font-weight:700;letter-spacing:-.045em}
+.contact h2 b{display:block;color:var(--amber-ink);font-weight:700}
+.contact-grid{display:grid;gap:32px;margin-top:clamp(28px,4vw,56px)}
+.contact-grid>p{font-size:18px;color:var(--ink-2);max-width:28em}
+.ways{display:grid;border-top:1px solid var(--ink)}
+.ways a{display:grid;gap:2px;padding-block:20px;border-bottom:1px solid var(--line);transition:color .3s,padding .4s var(--ease)}
+.ways a:hover{color:var(--amber-ink);padding-inline-start:8px}
+.ways small{font-size:14px;color:var(--mute)}
+.ways .v{font-size:clamp(30px,5.2vw,58px);line-height:1.1;font-weight:500;letter-spacing:-.035em;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+.details{display:grid;gap:14px;margin-top:22px}
+@media(min-width:520px){.details{grid-template-columns:1fr 1fr;gap:20px}}
+.details dt{font-size:13px;color:var(--mute)}
+.details dd{font-size:16px;font-weight:500}
+@media(min-width:900px){.contact-grid{grid-template-columns:.8fr 1.3fr;gap:clamp(48px,7vw,110px);align-items:start}}
+
+/* footer */
+.foot{padding-block:48px 84px;border-top:1px solid var(--line);background:var(--bg);font-size:15px}
+.foot-top{display:grid;gap:32px}
+.foot-brand{display:grid;gap:14px;justify-items:start}
+.foot-brand .lock{display:flex;align-items:center;gap:14px}
+.foot-mark{width:46px;height:auto;fill:var(--amber-ink)}
+.foot-brand p{color:var(--mute);max-width:26em}
+.foot h4{font-size:13px;font-weight:500;color:var(--amber-ink);margin-bottom:10px}
+.foot ul{display:grid;gap:6px;color:var(--ink-2)}
+.foot ul a:hover{color:var(--amber-ink)}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media(min-width:900px){.foot-top{grid-template-columns:1.4fr 1fr}.foot{padding-bottom:56px}}
+
+.sk-back{position:fixed;left:12px;bottom:12px;z-index:999;font-size:12px;line-height:1;padding:8px 12px;border-radius:999px;background:rgba(255,254,250,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(42,28,17,.12);color:var(--ink-2)}
+.sk-back:hover{color:var(--amber-ink)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv,.js .screen,.js .hero .fd,.js .hero h1 .ln>span{opacity:1;transform:none}
+  .js .wipe{clip-path:none}.js .wipe img{transform:none}
+  .js .steps::before{transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><clipPath id="head-clip" clipPathUnits="objectBoundingBox" transform="scale(.01 .010082)"><path id="mk" d="M39.47,99.16Q38.97,99.13 38.79,99.03Q38.61,98.94 38.29,98.52Q37.97,98.10 37.83,97.65Q37.69,97.19 37.70,95.31Q37.71,93.43 37.85,93.05Q37.98,92.68 38.48,92.02Q38.97,91.36 38.99,90.98Q39.01,90.59 37.68,88.42Q36.34,86.25 35.82,85.57Q35.30,84.89 34.93,84.70Q34.55,84.52 33.88,84.41Q33.21,84.29 31.46,84.38Q29.71,84.47 28.71,84.66Q27.71,84.86 25.70,85.03Q23.70,85.21 23.07,85.20Q22.45,85.19 21.61,84.99Q20.78,84.79 19.40,83.86Q18.02,82.94 17.47,82.34Q16.91,81.75 16.41,80.79Q15.90,79.83 15.62,78.91Q15.35,77.99 14.75,76.91Q14.16,75.82 14.00,75.75Q13.85,75.67 13.10,75.70Q12.35,75.72 11.89,75.55Q11.43,75.38 11.19,75.14Q10.95,74.90 10.92,74.61Q10.90,74.32 11.01,73.90Q11.12,73.48 11.57,72.61Q12.02,71.73 11.14,70.51Q10.26,69.28 10.21,68.96Q10.16,68.64 10.39,68.06Q10.62,67.47 11.07,66.93Q11.52,66.39 12.09,65.39Q12.66,64.39 12.55,64.20Q12.43,64.02 11.97,63.63Q11.51,63.25 11.25,62.86Q10.98,62.47 10.81,62.05Q10.64,61.63 10.61,61.13Q10.59,60.63 10.76,60.13Q10.93,59.63 11.25,59.17Q11.57,58.71 12.56,57.79Q13.56,56.87 14.06,56.21Q14.55,55.54 14.92,54.33Q15.28,53.12 15.29,52.58Q15.30,52.03 15.19,51.49Q15.07,50.95 14.67,50.16Q14.28,49.36 13.76,48.61Q13.25,47.86 13.01,47.15Q12.77,46.44 12.69,45.44Q12.61,44.44 12.30,43.56Q11.99,42.69 12.02,42.06Q12.05,41.43 11.97,40.93Q11.89,40.43 11.94,39.68Q11.98,38.93 11.83,38.55Q11.68,38.16 11.56,38.08Q11.43,38.00 11.18,37.99Q10.93,37.97 10.70,38.08Q10.47,38.18 10.43,38.76Q10.40,39.35 10.59,40.02Q10.78,40.68 10.78,40.93Q10.78,41.18 10.60,41.45Q10.43,41.72 10.05,41.99Q9.68,42.27 9.47,42.28Q9.26,42.28 9.14,42.21Q9.01,42.14 8.88,41.75Q8.74,41.35 8.63,41.27Q8.51,41.18 8.01,41.51Q7.51,41.84 7.18,41.84Q6.84,41.84 5.88,41.22Q4.92,40.60 4.80,40.44Q4.67,40.28 4.73,40.02Q4.79,39.77 5.36,38.89Q5.92,38.02 6.34,38.27Q6.76,38.52 6.88,38.51Q7.01,38.49 7.09,38.38Q7.18,38.26 6.87,37.47Q6.57,36.68 6.95,36.34Q7.33,36.01 7.33,35.59Q7.34,35.18 7.59,34.84Q7.84,34.51 7.88,34.22Q7.91,33.92 8.15,33.26Q8.39,32.59 8.41,32.25Q8.43,31.92 8.78,31.13Q9.13,30.33 9.08,30.13Q9.03,29.92 8.64,29.37Q8.24,28.83 8.08,28.29Q7.93,27.75 7.68,27.72Q7.43,27.69 7.16,27.93Q6.90,28.16 6.81,28.46Q6.73,28.75 6.88,29.12Q7.03,29.50 7.00,29.71Q6.97,29.92 6.42,30.42Q5.86,30.92 5.73,31.14Q5.59,31.37 5.59,31.57Q5.59,31.78 5.87,32.10Q6.15,32.42 6.30,32.84Q6.46,33.26 6.13,34.01Q5.81,34.76 5.62,35.01Q5.44,35.26 5.18,35.40Q4.92,35.55 4.49,35.65Q4.07,35.76 3.20,36.81Q2.33,37.85 2.13,37.82Q1.92,37.78 1.42,37.42Q0.92,37.06 0.58,36.93Q0.25,36.81 0.12,36.62Q0.00,36.43 0.09,36.05Q0.18,35.68 0.56,35.13Q0.93,34.59 1.62,34.47Q2.31,34.34 2.27,33.84Q2.22,33.34 2.33,32.92Q2.45,32.50 2.60,32.28Q2.75,32.05 3.24,31.61Q3.73,31.17 3.73,31.04Q3.73,30.92 3.41,30.54Q3.09,30.17 3.00,29.88Q2.90,29.58 3.26,28.92Q3.61,28.25 3.93,27.88Q4.25,27.50 4.35,27.29Q4.44,27.08 4.42,26.91Q4.40,26.75 4.15,26.33Q3.91,25.91 3.95,25.80Q4.00,25.69 4.21,25.63Q4.42,25.56 4.51,25.44Q4.60,25.33 4.46,24.74Q4.33,24.16 4.42,23.28Q4.50,22.40 4.63,22.32Q4.75,22.23 5.55,22.37Q6.34,22.51 6.51,22.42Q6.69,22.32 6.80,22.11Q6.91,21.91 6.87,21.47Q6.84,21.04 6.42,20.65Q6.01,20.26 5.88,20.00Q5.76,19.74 5.85,19.15Q5.95,18.57 5.86,18.27Q5.76,17.98 5.79,17.86Q5.82,17.73 6.04,17.36Q6.25,16.98 6.54,16.81Q6.82,16.65 7.01,16.15Q7.19,15.65 7.31,15.51Q7.43,15.37 7.93,15.13Q8.43,14.89 8.89,14.91Q9.35,14.93 9.60,14.87Q9.85,14.80 10.18,14.52Q10.51,14.23 10.66,13.85Q10.80,13.48 10.66,12.70Q10.51,11.93 9.68,11.62Q8.84,11.31 8.63,11.06Q8.41,10.80 8.28,10.39Q8.16,9.97 8.15,9.64Q8.14,9.30 8.36,8.89Q8.58,8.47 9.01,8.29Q9.43,8.11 10.43,8.30Q11.43,8.49 12.06,8.50Q12.68,8.51 13.06,8.22Q13.43,7.92 13.77,7.90Q14.10,7.87 15.65,8.67Q17.19,9.46 17.48,9.51Q17.77,9.55 18.15,9.47Q18.52,9.39 18.60,9.30Q18.68,9.22 18.47,8.55Q18.27,7.88 18.31,7.70Q18.36,7.51 18.66,8.03Q18.95,8.55 19.03,8.84Q19.10,9.14 19.06,9.30Q19.03,9.47 19.11,9.55Q19.19,9.63 19.40,9.47Q19.61,9.31 19.74,9.45Q19.86,9.60 20.11,9.49Q20.36,9.38 20.61,9.56Q20.86,9.74 21.07,9.64Q21.28,9.54 21.61,9.51Q21.95,9.48 22.20,9.32Q22.45,9.16 22.66,9.31Q22.87,9.45 23.20,9.44Q23.53,9.42 23.69,9.65Q23.85,9.89 23.98,9.92Q24.12,9.95 24.95,9.62Q25.79,9.28 26.37,9.28Q26.96,9.27 27.09,9.16Q27.23,9.05 27.04,8.76Q26.85,8.47 26.95,8.28Q27.04,8.08 27.21,8.00Q27.37,7.92 27.66,7.99Q27.95,8.05 27.92,7.88Q27.89,7.72 28.05,7.54Q28.21,7.36 28.54,7.37Q28.87,7.38 29.30,7.13Q29.72,6.88 29.79,6.63Q29.86,6.38 29.79,6.21Q29.71,6.03 29.58,5.97Q29.46,5.91 28.79,5.93Q28.12,5.95 26.79,6.56Q25.45,7.17 24.70,7.20Q23.95,7.23 23.16,7.07Q22.36,6.91 21.74,6.42Q21.11,5.93 20.70,5.94Q20.28,5.94 19.65,6.13Q19.03,6.31 18.97,6.26Q18.92,6.21 19.27,6.01Q19.62,5.80 20.20,5.70Q20.78,5.61 21.22,5.79Q21.67,5.96 22.31,6.40Q22.95,6.84 23.99,6.89Q25.04,6.93 26.54,6.27Q28.04,5.62 28.62,5.61Q29.21,5.61 29.96,5.71Q30.71,5.82 31.01,5.60Q31.31,5.38 32.34,4.16Q33.38,2.93 33.80,3.12Q34.22,3.32 34.59,3.34Q34.97,3.37 35.22,3.08Q35.47,2.79 35.64,2.45Q35.80,2.10 36.09,1.89Q36.39,1.68 37.72,2.04Q39.06,2.40 39.34,2.39Q39.62,2.38 39.73,2.29Q39.84,2.21 40.03,1.73Q40.23,1.25 40.35,1.21Q40.48,1.17 40.81,1.25Q41.14,1.32 41.60,0.75Q42.06,0.18 42.44,0.09Q42.81,0.00 43.51,0.31Q44.21,0.62 44.51,1.11Q44.82,1.60 45.44,1.65Q46.07,1.70 46.50,1.91Q46.93,2.12 47.14,2.38Q47.35,2.63 47.62,3.21Q47.89,3.79 48.52,4.13Q49.16,4.47 49.91,4.52Q50.66,4.58 51.08,4.50Q51.49,4.42 51.91,3.63Q52.33,2.83 52.49,2.75Q52.66,2.67 52.91,2.81Q53.16,2.96 53.37,3.20Q53.58,3.44 54.32,3.58Q55.06,3.71 55.32,4.25Q55.58,4.79 55.96,4.62Q56.33,4.45 56.71,4.55Q57.08,4.66 57.50,4.59Q57.92,4.51 58.96,4.84Q60.01,5.17 60.26,5.82Q60.51,6.47 60.97,7.04Q61.42,7.61 61.67,7.75Q61.92,7.89 62.18,7.94Q62.43,7.98 63.22,7.82Q64.01,7.66 64.72,7.28Q65.43,6.91 65.72,6.84Q66.01,6.77 66.35,6.78Q66.68,6.79 67.52,7.08Q68.35,7.38 68.73,7.63Q69.11,7.88 69.94,9.21Q70.77,10.54 71.52,10.72Q72.27,10.89 72.52,11.06Q72.77,11.24 73.45,12.02Q74.13,12.81 74.29,13.25Q74.44,13.69 74.57,13.70Q74.69,13.72 75.07,13.50Q75.45,13.27 75.86,13.19Q76.28,13.11 76.91,12.76Q77.53,12.41 77.95,12.46Q78.37,12.50 78.47,12.78Q78.57,13.06 78.46,13.89Q78.35,14.73 78.48,14.91Q78.62,15.09 78.87,15.04Q79.12,14.99 79.79,14.46Q80.45,13.93 81.08,13.82Q81.70,13.71 82.08,13.47Q82.46,13.23 82.83,13.22Q83.21,13.20 83.58,13.34Q83.96,13.47 84.23,13.72Q84.50,13.98 84.58,14.27Q84.66,14.56 84.52,14.86Q84.38,15.15 84.00,15.48Q83.62,15.81 83.62,16.07Q83.62,16.34 84.79,17.12Q85.96,17.90 86.30,18.23Q86.63,18.57 86.80,18.62Q86.96,18.66 87.34,18.53Q87.71,18.41 88.07,18.74Q88.42,19.07 88.39,19.74Q88.36,20.40 88.89,21.11Q89.42,21.82 89.50,22.28Q89.59,22.74 89.87,23.24Q90.15,23.74 90.16,24.03Q90.16,24.33 90.00,24.87Q89.85,25.41 89.91,25.74Q89.97,26.08 90.09,26.26Q90.22,26.44 90.76,26.71Q91.30,26.98 91.43,27.15Q91.56,27.33 91.54,27.50Q91.52,27.66 91.28,28.00Q91.05,28.33 91.11,28.54Q91.17,28.75 91.44,28.94Q91.72,29.14 92.39,29.28Q93.06,29.42 93.31,29.57Q93.56,29.72 93.97,30.28Q94.39,30.84 94.46,31.80Q94.53,32.75 94.61,32.96Q94.70,33.17 95.42,33.76Q96.14,34.34 96.70,34.51Q97.25,34.67 97.29,34.92Q97.33,35.18 97.01,35.68Q96.69,36.18 96.71,36.32Q96.73,36.46 96.94,36.48Q97.15,36.51 97.65,36.26Q98.15,36.01 98.40,35.99Q98.65,35.98 99.23,36.26Q99.82,36.54 99.91,36.69Q100.00,36.84 99.90,37.05Q99.81,37.26 99.23,37.72Q98.65,38.18 97.56,38.69Q96.48,39.19 96.06,39.94Q95.64,40.68 94.85,41.00Q94.06,41.32 93.71,41.88Q93.37,42.44 93.24,42.98Q93.11,43.52 93.25,43.94Q93.38,44.36 93.72,44.76Q94.06,45.16 94.32,45.63Q94.58,46.11 94.55,46.36Q94.52,46.61 94.16,47.07Q93.81,47.53 93.86,47.82Q93.92,48.11 94.32,48.16Q94.72,48.20 95.27,47.94Q95.81,47.67 96.60,47.82Q97.40,47.98 97.59,48.13Q97.78,48.28 97.79,48.57Q97.80,48.86 97.50,49.49Q97.20,50.11 96.73,50.62Q96.26,51.12 96.65,51.70Q97.04,52.28 97.12,53.08Q97.19,53.87 97.33,53.90Q97.48,53.93 97.85,53.65Q98.23,53.36 98.44,53.29Q98.65,53.22 98.74,53.34Q98.84,53.45 98.77,53.83Q98.70,54.20 98.51,54.57Q98.31,54.94 98.06,55.14Q97.81,55.34 97.44,55.37Q97.06,55.39 96.77,55.26Q96.48,55.13 96.34,55.00Q96.21,54.87 96.16,54.70Q96.11,54.54 96.22,53.58Q96.33,52.62 96.24,52.45Q96.14,52.28 95.93,52.23Q95.73,52.19 95.48,52.37Q95.23,52.56 94.93,53.02Q94.64,53.48 94.27,53.88Q93.89,54.29 93.31,54.55Q92.72,54.81 92.52,55.09Q92.31,55.37 92.17,55.96Q92.03,56.54 92.05,56.79Q92.08,57.04 92.58,57.33Q93.08,57.63 93.32,57.98Q93.56,58.32 94.03,58.77Q94.50,59.21 94.75,59.63Q94.99,60.05 95.00,60.25Q95.00,60.46 94.74,60.66Q94.47,60.86 93.76,61.05Q93.06,61.24 92.55,61.23Q92.05,61.23 91.95,61.30Q91.84,61.38 91.78,62.22Q91.72,63.05 91.57,63.43Q91.42,63.80 91.06,64.34Q90.70,64.89 90.55,65.39Q90.39,65.89 90.44,66.93Q90.49,67.97 90.26,68.73Q90.02,69.48 90.19,69.98Q90.35,70.48 90.76,71.10Q91.18,71.73 90.50,72.90Q89.82,74.07 89.32,74.44Q88.82,74.82 88.97,76.32Q89.12,77.82 88.88,78.13Q88.63,78.44 88.15,78.76Q87.66,79.08 87.60,79.66Q87.55,80.24 87.19,80.70Q86.83,81.16 86.48,82.03Q86.13,82.91 85.29,83.27Q84.46,83.63 83.71,83.56Q82.96,83.49 82.85,83.54Q82.75,83.58 82.73,83.75Q82.71,83.92 82.88,84.33Q83.06,84.75 83.00,85.00Q82.95,85.25 81.70,86.70Q80.45,88.15 79.95,88.62Q79.45,89.09 79.36,89.42Q79.27,89.76 79.42,90.55Q79.57,91.34 79.43,91.93Q79.30,92.51 79.35,92.97Q79.40,93.43 79.18,94.24Q78.95,95.04 78.74,95.12Q78.53,95.21 77.95,95.24Q77.36,95.27 76.95,95.11Q76.53,94.95 76.15,94.56Q75.78,94.17 75.07,94.23Q74.36,94.30 73.65,94.03Q72.94,93.76 72.63,93.51Q72.32,93.26 72.10,92.97Q71.89,92.68 71.86,92.47Q71.82,92.26 71.92,91.89Q72.01,91.51 71.85,91.39Q71.69,91.26 71.48,91.33Q71.27,91.41 70.94,91.70Q70.60,92.00 69.73,92.43Q68.85,92.86 68.43,92.78Q68.02,92.69 67.72,92.23Q67.43,91.76 67.22,91.67Q67.02,91.58 66.18,91.88Q65.35,92.18 64.76,92.22Q64.18,92.26 63.84,92.59Q63.51,92.91 62.93,93.21Q62.34,93.51 61.67,93.39Q61.01,93.27 60.30,93.03Q59.59,92.79 59.38,92.57Q59.17,92.35 58.85,91.80Q58.54,91.26 57.73,90.85Q56.92,90.44 56.37,89.69Q55.83,88.94 55.71,88.87Q55.58,88.81 53.98,89.87Q52.38,90.93 49.95,93.43Q47.53,95.93 46.63,96.60Q45.73,97.28 45.15,97.64Q44.57,98.01 43.98,98.24Q43.40,98.48 42.35,98.76Q41.31,99.05 40.64,99.12Q39.97,99.19 39.47,99.16Z"/></clipPath></defs></svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="word" href="#top" aria-label="ליו הפקות, לראש העמוד"><b>ליו</b><span>הפקות</span></a>
+    <nav aria-label="ניווט ראשי">
+      <ul class="nav-links">
+        <li><a href="#about">אודות</a></li>
+        <li><a href="#work">עבודות</a></li>
+        <li><a href="#services">שירותים</a></li>
+        <li><a href="#lectures">הרצאות</a></li>
+        <li><a href="#process">תהליך</a></li>
+        <li><a href="#contact">צור קשר</a></li>
+      </ul>
+    </nav>
+    <a class="nav-tel mono ltr" href="tel:+97236123456">03-612-3456</a>
+    <button class="burger" type="button" id="burger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-label="תפריט ראשי">
+  <ul>
+    <li><a href="#top">בית</a></li>
+    <li><a href="#about">אודות <small>01</small></a></li>
+    <li><a href="#work">עבודות <small>02</small></a></li>
+    <li><a href="#services">שירותים <small>03</small></a></li>
+    <li><a href="#lectures">הרצאות <small>04</small></a></li>
+    <li><a href="#process">תהליך <small>05</small></a></li>
+    <li><a href="#contact">צור קשר <small>06</small></a></li>
+  </ul>
+  <div class="menu-foot">
+    <a href="tel:+97236123456">03-612-3456</a>
+    <a href="mailto:hello@liu.co.il">hello@liu.co.il</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="פתיח">
+    <div class="wrap">
+      <div class="screen" aria-hidden="true">
+        <div class="head-shadow">
+          <div class="head" id="head">
+            <img class="on" src="media/05-city.jpg" alt="" data-t="מסע בישראל · משרד התיירות">
+            <img src="media/03-road.jpg" alt="" data-t="״גבולות״">
+            <img src="media/01-street.jpg" alt="" data-t="קמפיין לאומי · בנק לאומי">
+            <img src="media/04-crowd.jpg" alt="" data-t="הרצאות TED · תל אביב">
+            <img src="media/02-light.jpg" alt="" data-t="סדרת תוכן · סופר-פארם">
+            <img src="media/06-cameras.jpg" alt="" data-t="פודקאסט מצולם · Walla!">
+          </div>
+        </div>
+      </div>
+      <div class="slate mono fd d4" aria-hidden="true">
+        <span class="n" id="s-n">01/06</span><i></i>
+        <span class="t" id="s-t">מסע בישראל · משרד התיירות</span><i></i>
+        <span class="tc" id="s-tc">00:00:00:00</span>
+      </div>
+      <div class="hero-text">
+        <div class="eyebrow fd d1">מבית היוצר של שמואל ברו</div>
+        <h1><span class="ln"><span>כל פרויקט</span></span><span class="ln"><span>הוא <em>יצירה.</em></span></span></h1>
+        <p class="hero-sub fd d2">פרסומות, סדרות תוכן וסרטים שאנשים זוכרים. אנחנו לוקחים את הרעיון שלכם ומביאים אותו עד הפריים האחרון.</p>
+        <div class="hero-cta fd d3"><a class="btn" href="#contact">בואו נדבר <span class="arr">←</span></a></div>
+      </div>
+      <div class="hero-foot mono fd d4"><span>תל אביב</span><i></i><span>מאז 2010</span></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <div class="label">אודות ליו הפקות</div>
+          <h2 class="title">אמנות ההפקה<br><em>ברמה אחרת.</em></h2>
+        </div>
+      </div>
+      <div class="about">
+        <div class="about-text rv">
+          <p class="lead">ליו הפקות, מבית היוצר של הבמאי והמפיק שמואל ברו, נוסדה ב-2010 מתוך אמונה אחת: <strong>סרט טוב יכול לשנות</strong> את הדרך שבה אנשים חושבים, מרגישים ומחליטים.</p>
+          <p>מאז הפקנו מאות פרויקטים עבור המותגים הגדולים בישראל, חברות בינלאומיות וגופי תקשורת מובילים.</p>
+          <p>לצד שמואל פועלים צוותי הפקה מקצועיים של במאים, מפיקים, צלמים ועורכים, שמורכבים לפי מה שכל פרויקט צריך. כל פרויקט מקבל מפיק אחד שמלווה אותו מההתחלה ועד המסירה.</p>
+          <a class="link" href="#process">מהרעיון ועד המסירה <span>←</span></a>
+        </div>
+        <div class="stats rv" style="--d:.12s">
+          <div class="stat"><span class="n" data-n="16">16</span><span class="l">שנות פעילות</span></div>
+          <div class="stat"><span class="n"><sup>+</sup><span data-n="300">300</span></span><span class="l">פרויקטים שהופקו</span></div>
+          <div class="stat"><span class="n"><sup>+</sup><span data-n="80">80</span></span><span class="l">לקוחות</span></div>
+          <div class="stat"><span class="n" data-n="12">12</span><span class="l">פרסים מקצועיים</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="sec sand" id="work">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <div class="label">פרויקטים נבחרים</div>
+          <h2 class="title">סיפורים<br><em>שהפכו למציאות.</em></h2>
+        </div>
+        <p class="rv" style="--d:.1s">רגע אחד מתוך כל הפקה.</p>
+      </div>
+      <div class="works">
+        <article class="work">
+          <figure class="wipe"><img src="media/01-street.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <div class="meta"><div><h3>קמפיין לאומי · בנק לאומי</h3><p>פרסומת · טלוויזיה ודיגיטל</p></div><span class="yr mono">2024</span></div>
+        </article>
+        <article class="work">
+          <figure class="wipe"><img src="media/02-light.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <div class="meta"><div><h3>סדרת תוכן · סופר-פארם</h3><p>תוכן ממותג · 6 פרקים</p></div><span class="yr mono">2024</span></div>
+        </article>
+        <article class="work">
+          <figure class="wipe"><img src="media/03-road.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <div class="meta"><div><h3>״גבולות״</h3><p>סרט קצר · זוכה פסטיבל חיפה</p></div><span class="yr mono">2023</span></div>
+        </article>
+        <article class="work">
+          <figure class="wipe"><img src="media/04-crowd.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <div class="meta"><div><h3>הרצאות <span class="ltr">TED</span> · תל אביב</h3><p>תיעוד אירועים</p></div><span class="yr mono">2023</span></div>
+        </article>
+        <article class="work">
+          <figure class="wipe"><img src="media/05-city.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <div class="meta"><div><h3>מסע בישראל · משרד התיירות</h3><p>סרט תדמית · דיגיטל</p></div><span class="yr mono">2022</span></div>
+        </article>
+        <article class="work">
+          <figure class="wipe"><img src="media/06-cameras.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr mono">2022</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="sec" aria-labelledby="clients-t">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <div class="label">לקוחות</div>
+          <h2 class="title" id="clients-t">שותפים <em>לדרך.</em></h2>
+        </div>
+        <p class="rv" style="--d:.1s">מותגים, ערוצים וגופים ציבוריים שבחרו לעבוד איתנו שוב ושוב.</p>
+      </div>
+      <ul class="clients rv" aria-label="רשימת לקוחות">
+        <li>לאומי</li><li><span class="ltr">HOT</span></li><li>שטראוס</li><li><span class="ltr">Walla!</span></li><li><span class="ltr">yes</span></li>
+        <li>אסם</li><li>קשת</li><li>טבע</li><li>אורקם</li><li>גלובס</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="sec sand" id="services">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <div class="label">מה אנחנו עושים</div>
+          <h2 class="title">שירותי<br><em>הפקה מלאים.</em></h2>
+        </div>
+        <p class="rv" style="--d:.1s">צוות אחד שמלווה אתכם מהבריף ועד המסירה, בלי להעביר את הפרויקט מיד ליד.</p>
+      </div>
+      <div class="services">
+        <article class="service rv"><span class="num mono">01</span><h3>הפקת פרסומות</h3><p>קמפיינים לטלוויזיה, לדיגיטל ולחוצות, מהבריף ועד הסרט הסופי. אנחנו יודעים מה הופך פרסומת לכזו שנשארת בזיכרון.</p><div class="tags"><span>טלוויזיה</span><span>דיגיטל</span><span>חוצות</span></div></article>
+        <article class="service rv"><span class="num mono">02</span><h3>סדרות תוכן</h3><p>תוכן ממותג, פודקאסטים מצולמים וסדרות רשת. אנחנו בונים עולמות תוכן שמחזקים את הקשר עם הקהל שלכם.</p><div class="tags"><span>תוכן ממותג</span><span>פודקאסט</span><span>רשתות</span></div></article>
+        <article class="service rv"><span class="num mono">03</span><h3>סרטים קצרים</h3><p>מדרמה ועד דוקומנטרי. הצוות האמנותי שלנו מלווה פרויקטים קולנועיים מגיבוש הרעיון ועד מסך הקולנוע.</p><div class="tags"><span>דרמה</span><span>דוקומנטרי</span><span>פסטיבלים</span></div></article>
+        <article class="service rv"><span class="num mono">04</span><h3>פוסט-פרודקשן</h3><p>עריכה, תיקוני צבע, עיצוב סאונד ואפקטים. סטודיו פוסט מלא עם ציוד מהמתקדמים בתעשייה.</p><div class="tags"><span>עריכה</span><span class="ltr">Color</span><span class="ltr">Sound</span><span class="ltr">VFX</span></div></article>
+        <article class="service rv"><span class="num mono">05</span><h3>הפקות קורפורייט</h3><p>סרטי חברה, הרצאות, כנסים ואירועים מצולמים. נציג את הארגון שלכם בצורה המקצועית ביותר.</p><div class="tags"><span>סרטי תדמית</span><span>כנסים</span><span>הדרכה</span></div></article>
+        <article class="service rv"><span class="num mono">06</span><h3>קאסטינג ולוקיישן</h3><p>מחלקת קאסטינג פנימית ומאגר לוקיישנים מגוון. אנחנו מוצאים את הפנים הנכונות ואת המקום המושלם.</p><div class="tags"><span>שחקנים</span><span>ניצבים</span><span>לוקיישנים</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LECTURES -->
+  <section class="sec" id="lectures">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <div class="label">הרצאות</div>
+          <h2 class="title">על הבמה<br><em>עם שמואל ברו.</em></h2>
+        </div>
+        <p class="rv" style="--d:.1s">הרצאות לכנסים, ארגונים, מוסדות חינוך ואירועים, עם אחד היוצרים המגוונים בקולנוע הישראלי.</p>
+      </div>
+      <div class="lec">
+        <div class="lec-side rv">
+          <div class="lec-who"><img src="media/shmuel.jpg" alt="שמואל ברו" width="128" height="128" loading="lazy"><div><b>מייסד ליו הפקות</b><span>במאי, מפיק, שחקן וסטנדאפיסט</span></div></div>
+          <div class="tags"><span>כנסים</span><span>ארגונים</span><span>מוסדות חינוך</span><span>אירועים</span></div>
+        </div>
+        <div class="lec-main rv" style="--d:.1s">
+          <h3>סיפור אישי, קולנוע והרבה הומור, מהבמה ישר אל הקהל שלכם.</h3>
+          <p>יליד אתיופיה שעלה לישראל בגיל שמונה, ואחד משלושה במאים בלבד בתולדות הקולנוע הישראלי שסרטיהם זכו פעמיים בפרס הסרט הטוב ביותר בפסטיבל בינלאומי בישראל.</p>
+          <dl class="facts">
+            <div><dt>2026</dt><dd><b>״האגר – ארץ״</b> · הסרט הישראלי הטוב ביותר ופרס הצילום, פסטיבל חיפה</dd></div>
+            <div><dt>2007</dt><dd><b>״זרובבל״</b> · סרט הביכורים: הסרט הטוב ביותר בחיפה ופרס חבר השופטים בטאורמינה</dd></div>
+            <div><dt>דוקו</dt><dd><b>״שכחו אותי בטוסטר״</b> · שמואל ויוסי בדרך לקריירת משחק וקלטת מערכונים משלהם</dd></div>
+          </dl>
+          <div class="lec-actions">
+            <a class="btn" href="#contact">להזמנת הרצאה <span class="arr">←</span></a>
+            <a class="link" href="#services">לכל השירותים <span>←</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="sec sand" id="process">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <div class="label">איך עובדים איתנו</div>
+          <h2 class="title">תהליך<br><em>שקוף ומדויק.</em></h2>
+        </div>
+        <p class="rv" style="--d:.1s">ארבעה שלבים ברורים, ובכל אחד מהם אתם יודעים בדיוק מה קורה ומה הצעד הבא.</p>
+      </div>
+      <ol class="steps" id="steps">
+        <li class="step rv"><div class="dot mono">01</div><h3>שיחת היכרות</h3><p>מבינים את הצרכים, הקהל ומטרות הפרויקט. בלי עלות ובלי התחייבות.</p></li>
+        <li class="step rv" style="--d:.12s"><div class="dot mono">02</div><h3>קונספט ותכנון</h3><p>מציגים קונספט יצירתי, תקציב ולוח זמנים מפורט לאישורכם.</p></li>
+        <li class="step rv" style="--d:.24s"><div class="dot mono">03</div><h3>צילום והפקה</h3><p>צוות מקצועי, ציוד מתקדם וניהול הפקה מדויק. ביום הצילום הכול מתחבר.</p></li>
+        <li class="step rv" style="--d:.36s"><div class="dot mono">04</div><h3>פוסט ומסירה</h3><p>עריכה, סאונד וצבע. מסירה בכל הפורמטים שצריך, עם ליווי מלא.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="sec quote" aria-label="המלצה">
+    <div class="wrap rv">
+      <span class="qm" aria-hidden="true">״</span>
+      <blockquote>עבדנו עם הרבה חברות הפקה לאורך השנים. ליו הם הראשונים שגרמו לנו להרגיש <em>שהסרט שלנו</em>, לא שלהם.</blockquote>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-label="תחומי פעילות">
+    <div class="track" id="ticker">
+      <span>הפקת פרסומות</span><span>סדרות תוכן</span><span>סרטים קצרים</span><span>פוסט-פרודקשן</span><span>הפקות קורפורייט</span><span>קאסטינג ולוקיישן</span><span>הרצאות</span>
+    </div>
+  </div>
+
+  <!-- CTA + CONTACT -->
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <div class="rv">
+        <div class="label">יצירת קשר</div>
+        <h2>יש לכם רעיון?<b>בואו נצלם אותו.</b></h2>
+      </div>
+      <div class="contact-grid">
+        <p class="rv">בין אם זו פרסומת ראשונה ובין אם הפקה גדולה, מתחילים בשיחה קצרה וללא עלות. אנחנו חוזרים לכל פנייה תוך יום עבודה.</p>
+        <div class="rv" style="--d:.1s">
+          <div class="ways">
+            <a href="tel:+97236123456"><small>התקשרו</small><span class="v">03-612-3456</span></a>
+            <a href="mailto:hello@liu.co.il"><small>כתבו לנו</small><span class="v">hello@liu.co.il</span></a>
+          </div>
+          <dl class="details">
+            <div><dt>כתובת</dt><dd>רוטשילד 45, תל אביב</dd></div>
+            <div><dt>שעות פעילות</dt><dd>ראשון עד חמישי, 9:00–18:00</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="lock" href="#top" aria-label="ליו הפקות, לראש העמוד"><svg class="foot-mark" viewBox="0 0 100 99.19" aria-hidden="true"><use href="#mk"/></svg><span class="word"><b>ליו</b><span>הפקות</span></span></a>
+        <p>חברת הפקות מתל אביב, מבית היוצר של הבמאי והמפיק שמואל ברו. פרסומות, תוכן וקולנוע מאז 2010.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h4>ניווט</h4>
+          <ul><li><a href="#top">בית</a></li><li><a href="#about">אודות</a></li><li><a href="#work">עבודות</a></li><li><a href="#services">שירותים</a></li><li><a href="#lectures">הרצאות</a></li><li><a href="#process">תהליך</a></li><li><a href="#contact">צור קשר</a></li></ul>
+        </div>
+        <div>
+          <h4>עקבו אחרינו</h4>
+          <ul><li><a href="#top">אינסטגרם</a></li><li><a href="#top">לינקדאין</a></li><li><a href="#top">פייסבוק</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 ליו הפקות בע״מ · כל הזכויות שמורות</span><span>יוצרים רגעים שנשארים</span></div>
+  </div>
+</footer>
+
+<a class="sk-back" href="index.html">סקיצה 2 · כל הסקיצות</a>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const pad = n => String(n).padStart(2, '0');
+
+  // nav
+  const nav = $('#nav');
+  const onScroll = () => nav.classList.toggle('stuck', scrollY > 12);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // mobile menu
+  const burger = $('#burger'), menu = $('#menu');
+  const setMenu = open => {
+    menu.classList.toggle('open', open); document.body.classList.toggle('locked', open);
+    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
+  };
+  burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  // hero: footage inside the silhouette, with a slate that follows the cut
+  const frames = $$('#head img'), sn = $('#s-n'), st = $('#s-t'), tc = $('#s-tc');
+  const HOLD = 4200, FPS = 25; let cur = 0, t0 = performance.now();
+  const show = i => {
+    frames[cur].classList.remove('on'); cur = i; frames[cur].classList.add('on');
+    sn.textContent = `${pad(cur + 1)}/${pad(frames.length)}`;
+    st.style.opacity = 0; setTimeout(() => { st.textContent = frames[cur].dataset.t; st.style.opacity = 1; }, 380);
+  };
+  if (!reduce) {
+    setInterval(() => { if (!document.hidden) show((cur + 1) % frames.length); }, HOLD);
+    const tick = now => {
+      const ms = (now - t0) % (HOLD * frames.length), s = Math.floor(ms / 1000), f = Math.floor((ms % 1000) / (1000 / FPS));
+      tc.textContent = `00:${pad(Math.floor(s / 60))}:${pad(s % 60)}:${pad(f)}`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // ticker: duplicate the run so the loop is seamless
+  const tk = $('#ticker');
+  tk.innerHTML += tk.innerHTML.replace(/<span>/g, '<span aria-hidden="true">');
+
+  // reveals, wipes, counters
+  const countUp = el => {
+    const end = +el.dataset.n, t = performance.now(), dur = 1300;
+    const step = now => { const p = Math.min((now - t) / dur, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  const targets = $$('.rv, .work, .steps');
+  if (!('IntersectionObserver' in window)) { targets.forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in'); io.unobserve(e.target);
+    if (!reduce) $$('[data-n]', e.target).forEach(countUp);
+  }), { threshold: .14, rootMargin: '0px 0px -6% 0px' });
+  targets.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
