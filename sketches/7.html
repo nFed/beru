@@ -41,6 +41,7 @@ a{color:inherit;text-decoration:none}
 .pm svg{display:block;width:100%;height:100%;overflow:visible}
 .pm path{fill:none;stroke:var(--pencil);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:.92}
 .pm.thin path{stroke-width:2.4}
+.wk .pm path{stroke-width:2.2;opacity:.85}
 .pm.on path{stroke-dashoffset:0;transition:stroke-dashoffset var(--pd,1.1s) cubic-bezier(.5,.1,.3,1) var(--pw,0s)}
 .ul{position:relative;display:inline-block;white-space:nowrap}
 .ul .pm{inset:auto -3% -.16em -3%;height:.2em}
@@ -87,7 +88,7 @@ body.lock{overflow:hidden}
 /* HERO */
 .hero{position:relative;min-height:100vh;min-height:100svh;padding-top:var(--navh);display:flex;flex-direction:column}
 .hero-in{flex:1;display:flex;flex-direction:column;min-height:0}
-.hero-sheet{--fh:clamp(76px,13.4vh,126px);--fh:clamp(76px,13.4svh,126px);display:grid;grid-template-columns:minmax(0,1fr);gap:8px;overflow-x:clip;padding-top:6px}
+.hero-sheet{--fh:clamp(76px,calc(19vh - 38px),150px);--fh:clamp(76px,calc(19svh - 38px),150px);display:grid;grid-template-columns:minmax(0,1fr);gap:8px;overflow-x:clip;padding-top:6px}
 .hero-sheet .strip:nth-child(3){display:none}
 .sway{animation:sway 22s ease-in-out infinite alternate}
 .strip:nth-child(2) .sway{animation-direction:alternate-reverse}
@@ -96,7 +97,7 @@ body.lock{overflow:hidden}
 .fr.pick svg.mk{height:86%;width:auto;fill:#3A2413}
 .fr.pick .pm.ring{inset:-17% -9% -19% -9%}
 .fr.pick .pm.tick{width:26px;height:22px;top:-24%;right:-15%}
-.hero-txt{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(14px,3vh,34px) var(--gut) clamp(60px,9vh,84px)}
+.hero-txt{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(14px,3vh,34px) var(--gut) clamp(20px,6vh,64px)}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:12.5px;font-weight:500;letter-spacing:.2em;color:var(--mute)}
 .eyebrow::before{content:"";width:26px;height:2px;background:var(--pencil);border-radius:2px}
 .hide-sm{display:none}
@@ -155,7 +156,7 @@ h1 .ln>span{display:inline-block}
 .wk:hover .neg img{transform:scale(1.05)}
 .neg .n{position:absolute;bottom:9px;left:6px;font:400 9px/1 var(--mono);letter-spacing:.06em;color:#7A6340;direction:ltr}
 .neg .n::after{content:" ▸";opacity:.6}
-.wk .pm.ring{inset:6px 2.5% 12px 2.5%}
+.wk .pm.ring{inset:4px 1.5% 11px 1.5%}
 .wk:nth-child(even) .pm.ring{transform:rotate(-2deg)}
 .wk:nth-child(3n) .pm.ring{transform:rotate(1.5deg) scale(.98)}
 .cap{padding:12px 12px 0;display:grid;gap:2px}
@@ -205,7 +206,7 @@ h1 .ln>span{display:inline-block}
 .quick small{font-size:12.5px;font-weight:500;letter-spacing:.18em;color:var(--mute)}
 .quick .v{font-family:var(--display);font-weight:800;font-size:clamp(30px,8.6vw,54px);line-height:1.15;justify-self:start;text-align:left;position:relative;transition:color .3s}
 .quick a:hover .v{color:var(--pencil)}
-.details{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
+.details{display:flex;flex-wrap:wrap;gap:16px 40px;margin-top:22px}
 .details dt{font-size:12.5px;font-weight:500;letter-spacing:.18em;color:var(--mute)}
 .details dd{font-weight:400}
 
