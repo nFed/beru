@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ליו הפקות | פתיחה 3 · וידאו בתוך הצללית</title>
+<title>ליו הפקות | פתיחה 3 · קולאז׳</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F6F5F2">
 <link rel="icon" href="mark.svg" type="image/svg+xml">
@@ -294,9 +294,35 @@ html:not(.js) .more{display:none}
 .js.ready .fig .hw{clip-path:inset(0);transition:clip-path 1s .15s var(--ease)}
 @media (prefers-reduced-motion:reduce){.js .fig .hw{clip-path:none}.head img.on{animation:none}}
 
+/* ---------- real photography ---------- */
+[data-rot] img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;will-change:opacity,transform}
+[data-rot] img.on{opacity:1;animation:kb 6.5s linear forwards}
+.gal{display:grid;gap:clamp(10px,1.4vw,20px)}
+.gi figure{position:relative;overflow:hidden;aspect-ratio:16/10;background:var(--surface)}
+.gi.wide figure{aspect-ratio:2000/838}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.gi:hover .wipe.in img{transform:scale(1.03)}
+@media (min-width:760px){.gal{grid-template-columns:1fr 1fr}.gi.wide{grid-column:1/-1}}
+.band figure{height:clamp(220px,44vw,620px);overflow:hidden;background:var(--surface)}
+.band img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.about-side{display:grid;gap:clamp(20px,3vw,32px)}
+.about-side .about-ph{aspect-ratio:16/10}
+@media (prefers-reduced-motion:reduce){[data-rot] img.on{animation:none}}
+
 /* ---------- opening variant 3 ---------- */
-.head video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-@media (min-width:900px){.fig{width:min(100%,70vh,640px)}}
+.nav .brand svg{width:26px;opacity:1;margin-inline-end:10px}
+.v3 .col{position:relative;aspect-ratio:1.18;width:min(100%,320px);width:min(100cqw,118cqh,460px)}
+.v3 .col figure{position:absolute;overflow:hidden;background:var(--surface);box-shadow:0 18px 40px -22px rgba(25,25,24,.45)}
+.v3 .col img{width:100%;height:100%;object-fit:cover}
+.v3 .c1{left:0;top:9%;width:44%;aspect-ratio:5/6;animation:fl 9s ease-in-out infinite}
+.v3 .c2{right:0;top:0;width:60%;aspect-ratio:16/10;animation:fl 11s ease-in-out -3s infinite}
+.v3 .c3{right:9%;bottom:0;width:39%;aspect-ratio:1;animation:fl 8s ease-in-out -5s infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media (min-width:900px){.v3 .col{width:min(100%,82vh,720px)}}
+.js .v3 .col figure{opacity:0;scale:.94}
+.js.ready .v3 .col figure{opacity:1;scale:1;transition:opacity .8s .2s,scale 1s .2s var(--ease)}
+.js.ready .v3 .c2{transition-delay:.35s}.js.ready .v3 .c3{transition-delay:.5s}
+@media (prefers-reduced-motion:reduce){.js .v3 .col figure{opacity:1;scale:1;animation:none}}
 </style>
 </head>
 <body id="top">
@@ -332,7 +358,7 @@ html:not(.js) .more{display:none}
 </nav>
 
 <main>
-  <section class="hero" aria-label="פתיח">
+  <section class="hero v3" aria-label="פתיח">
     <div class="wrap">
       <div class="hero-text">
         <div class="label fade">חברת הפקות וידאו · תל אביב · מאז 2010</div>
@@ -341,7 +367,11 @@ html:not(.js) .more{display:none}
         <div class="hero-cta fade d2"><a class="btn" href="#contact">בואו נדבר <span class="arr" aria-hidden="true">←</span></a><a class="btn ghost" href="#work">לצפייה בעבודות</a></div>
       </div>
       <div class="hero-art" aria-hidden="true">
-        <div class="fig"><div class="hw"><div class="head" id="head"><video autoplay muted loop playsinline preload="metadata" poster="media/hero-demo.jpg"><source src="media/hero-demo.mp4" type="video/mp4"><source src="media/hero-demo.webm" type="video/webm"></video></div></div></div>
+        <div class="col">
+          <figure class="c1"><img src="media/tall-camera.jpg" alt=""></figure>
+          <figure class="c2"><img src="media/01-street.jpg" alt=""></figure>
+          <figure class="c3"><img src="media/sq-monitor.jpg" alt=""></figure>
+        </div>
       </div>
     </div>
   </section>
@@ -352,15 +382,13 @@ html:not(.js) .more{display:none}
         <h2><span class="rise"><span>עבודות נבחרות<span class="acc">.</span></span></span></h2>
         <p class="rv">רגע אחד מתוך כל הפקה.</p>
       </div>
-      <div class="works" id="works">
-        <article class="work"><figure class="wipe"><img src="media/01-street.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true">צפייה</span></figure><div class="cap"><h3>קמפיין לאומי · בנק לאומי</h3><span class="yr">2024</span><p>פרסומת · טלוויזיה ודיגיטל</p></div></article>
-        <article class="work"><figure class="wipe"><img src="media/02-light.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true">צפייה</span></figure><div class="cap"><h3>סדרת תוכן · סופר-פארם</h3><span class="yr">2024</span><p>תוכן ממותג · 6 פרקים</p></div></article>
-        <article class="work"><figure class="wipe"><img src="media/03-road.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true">צפייה</span></figure><div class="cap"><h3>״גבולות״</h3><span class="yr">2023</span><p>סרט קצר · זוכה פסטיבל חיפה</p></div></article>
-        <article class="work"><figure class="wipe"><img src="media/05-city.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true">צפייה</span></figure><div class="cap"><h3>מסע בישראל · משרד התיירות</h3><span class="yr">2022</span><p>סרט תדמית · דיגיטל</p></div></article>
-        <article class="work extra"><figure class="wipe"><img src="media/04-crowd.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true">צפייה</span></figure><div class="cap"><h3>הרצאות <span class="ltr">TED</span> · תל אביב</h3><span class="yr">2023</span><p>תיעוד אירועים</p></div></article>
-        <article class="work extra"><figure class="wipe"><img src="media/06-cameras.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true">צפייה</span></figure><div class="cap"><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><span class="yr">2022</span><p>תוכן דיגיטלי · עונה 2</p></div></article>
+      <div class="gal">
+        <div class="gi wide"><figure class="wipe"><img src="media/wide-still.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="media/02-light.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="media/03-road.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="media/05-city.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="media/04-crowd.jpg" alt="" loading="lazy"></figure></div>
       </div>
-      <div class="more"><button class="btn ghost" type="button" id="more">לכל העבודות</button></div>
     </div>
   </section>
 
@@ -405,6 +433,8 @@ html:not(.js) .more{display:none}
     </div>
   </section>
 
+  <div class="band"><figure class="wipe"><img src="media/wide-set.jpg" alt="" loading="lazy"></figure></div>
+
   <section class="sec" id="process">
     <div class="wrap">
       <div class="head">
@@ -431,11 +461,14 @@ html:not(.js) .more{display:none}
           <p>מבית היוצר של הבמאי והמפיק שמואל ברו. מאז הפקנו מאות פרויקטים עבור המותגים הגדולים בישראל, חברות בינלאומיות וגופי תקשורת מובילים.</p>
           <p>אצלנו פועלים צוותי הפקה מקצועיים של במאים, מפיקים, צלמים ועורכים, שמורכבים לפי מה שכל פרויקט צריך.</p>
         </div>
+        <div class="about-side">
+        <div class="gi"><figure class="wipe about-ph"><img src="media/11-field.jpg" alt="" loading="lazy"></figure></div>
         <div class="stats rv">
           <div class="stat"><span class="n">2010</span><span class="l">פועלים מאז</span></div>
           <div class="stat"><span class="n"><span data-n="300">300</span><sup>+</sup></span><span class="l">פרויקטים שהופקו</span></div>
           <div class="stat"><span class="n"><span data-n="80">80</span><sup>+</sup></span><span class="l">לקוחות</span></div>
           <div class="stat"><span class="n" data-n="12">12</span><span class="l">פרסים מקצועיים</span></div>
+        </div>
         </div>
       </div>
     </div>
@@ -507,22 +540,13 @@ html:not(.js) .more{display:none}
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
 
-  // hero: frames inside the silhouette, with the work's name in the meta row
-  const frames = $$('#head img'), cnt = $('#cnt'), cap = $('#cap'); let cur = 0;
-  const pad2 = n => String(n).padStart(2, '0');
-  if (!reduce && frames.length > 1) setInterval(() => {
-    if (document.hidden) return;
-    frames[cur].classList.remove('on'); cur = (cur + 1) % frames.length; frames[cur].classList.add('on');
-    cnt.textContent = `${pad2(cur + 1)}/${pad2(frames.length)}`;
-    cap.style.opacity = 0; setTimeout(() => { cap.textContent = frames[cur].dataset.t; cap.style.opacity = 1; }, 350);
-  }, 4200);
+  // any stack of frames marked data-rot crossfades slowly
+  $$('[data-rot]').forEach(box => {
+    const fr = $$('img', box); let c = 0;
+    if (reduce || fr.length < 2) return;
+    setInterval(() => { if (document.hidden) return; fr[c].classList.remove('on'); c = (c + 1) % fr.length; fr[c].classList.add('on'); }, 4200);
+  });
 
-
-  if (reduce) $$('video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
-
-  // works: show the rest on demand
-  const more = $('#more'), worksEl = $('#works');
-  more.addEventListener('click', () => { worksEl.classList.add('all'); more.parentElement.hidden = true; $$('.extra .wipe', worksEl).forEach(w => requestAnimationFrame(() => w.classList.add('in'))); });
 
   // reveals
   const targets = $$('.rv,.rise,.wipe,.draw');
