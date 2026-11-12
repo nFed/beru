@@ -1,4 +1,4 @@
-// Leeu Production — site behaviour
+// Leeu Productions — site behaviour
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];

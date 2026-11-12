@@ -1,4 +1,4 @@
-/* Leeu Production — site styles */
+/* Leeu Productions — site styles */
 :root{--bg:#FFFBF3; --paper:#FFFEFA; --sand:#F7EDDA; --sand-2:#F1E2C6; --line:#E6D7BB; --ink:#2A1C11; --ink-2:#4A3826; --mute:#73604B; --amber:#DE8A2E; --amber-ink:#A35B10; --glow:#F8D48A; --sans:'IBM Plex Sans Hebrew','Heebo','Arial Hebrew',Arial,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace; --navh:64px; --gut:clamp(20px,4.4vw,56px); --ease:cubic-bezier(.2,.7,.1,1);}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--navh)}
@@ -339,7 +339,7 @@ body.locked{overflow:hidden}
 .film .e1,.film .e3{top:calc(var(--perf) * .7)}
 .film .e2,.film .e4{bottom:calc(var(--perf) * .7)}
 
-/* ---------- Leeu Production wordmark ---------- */
+/* ---------- Leeu Productions wordmark ---------- */
 .word{direction:ltr;letter-spacing:-.01em}
 .word span{letter-spacing:0}
 

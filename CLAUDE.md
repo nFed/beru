@@ -9,7 +9,7 @@
   (GitHub Pages serves `main`). No need to ask first.
 - The site is Hebrew and right-to-left: galleries, sliders, progress bars and arrows follow
   Hebrew reading direction (start on the right, advance to the left).
-- Brand: **Leeu Production** (title case in the logo and in text). The silhouette mark sits to the
+- Brand: **Leeu Productions** (title case in the logo and in text). The silhouette mark sits to the
   right of the name.
 - Keep the existing copy; only light adaptations unless the owner asks otherwise.
 - The current site is `site/` (`index.html`, `assets/css/style.css`, `assets/js/main.js`,
