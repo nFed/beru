@@ -298,7 +298,7 @@ body.locked{overflow:hidden}
 
 /* ---------- set photo inside the silhouette, toned amber and softened so the shape leads ---------- */
 .head{background:#3A2412}
-.head .ph{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;object-position:50% 40%;opacity:1;transition:none;filter:grayscale(1) contrast(1.12) brightness(.72) blur(var(--soft,.7px));animation:drift 22s ease-in-out infinite alternate}
+.head .ph{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;object-position:50% 40%;opacity:1;transition:none;filter:grayscale(1) contrast(1.12) brightness(.72) blur(var(--soft,0px));animation:drift 22s ease-in-out infinite alternate}
 @keyframes drift{from{transform:scale(1) translate3d(1.2%,.6%,0)}to{transform:scale(1.07) translate3d(-1.2%,-.8%,0)}}
 /* duotone: the grey photo is coloured from deep brown in the shadows to warm amber in the light */
 .head .tone{position:absolute;inset:0;background:linear-gradient(180deg,#4A2A10 0%,#A65A16 60%,#C9782A 100%);mix-blend-mode:color}
@@ -320,21 +320,28 @@ body.locked{overflow:hidden}
   .works{display:flex;gap:10px;align-items:stretch;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut);scroll-padding-inline:var(--gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .works::-webkit-scrollbar{display:none}
   .work{flex:none;scroll-snap-align:start}
-  .work figure{height:min(63vw,300px);aspect-ratio:4/3}
+  .work{--h:min(63vw,300px);width:calc(var(--h) * 4 / 3)}
+  .work.tall{width:calc(var(--h) * 3 / 4)}
+  .work.sq{width:var(--h)}
+  .work figure{width:100%;height:var(--h);aspect-ratio:auto}
+  .work img{position:absolute;inset:0}
   .work .tag{display:none}
-  .work.tall figure{aspect-ratio:3/4}
-  .work.sq figure{aspect-ratio:1}
+  .works{touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch;direction:ltr}
+  .work{direction:rtl}
+  .wnav{direction:ltr}
   .js .works .wipe{transition-delay:calc(var(--k,0) * .12s)}
+  .js .works .work:nth-child(n+4) .wipe{clip-path:inset(0)}
+  .js .works .work:nth-child(n+4) .wipe img{transform:none}
   .js .works.in .wipe{clip-path:inset(0)}
   .js .works.in .wipe img{transform:none}
   .work:nth-child(2){--k:1}.work:nth-child(3){--k:2}
   .wnav{display:flex;align-items:center;gap:14px;margin-top:20px;color:var(--mute);font-size:12.5px}
   .wnav #wcnt{color:var(--amber-ink);direction:ltr}
   .wbar{position:relative;flex:1;height:2px;background:var(--line);overflow:hidden}
-  .wbar i{position:absolute;inset:0;background:var(--amber);transform-origin:right;transform:scaleX(calc(.16 + .84 * var(--q,0)))}
+  .wbar i{position:absolute;inset:0;background:var(--amber);transform-origin:left;transform:scaleX(calc(.16 + .84 * var(--q,0)))}
   .wnav .arr{animation:nudge 1.8s ease-in-out infinite}
 }
-@keyframes nudge{50%{transform:translateX(-5px)}}
+@keyframes nudge{50%{transform:translateX(5px)}}
 @media(prefers-reduced-motion:reduce){.word .ico{transition:none}.wnav .arr,.slate .rec b{animation:none}}
 
 /* ---------- desktop composition: the head stays inside its column, with air between image and type ---------- */
@@ -455,31 +462,31 @@ body.locked{overflow:hidden}
       </div>
       <div class="works" id="works">
         <article class="work">
-          <figure class="wipe"><img src="media/01-street.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><img src="media/01-street.jpg" alt=""><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>קמפיין לאומי · בנק לאומי</h3><p>פרסומת · טלוויזיה ודיגיטל</p></div><span class="yr mono">2024</span></div>
         </article>
         <article class="work tall">
-          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-camera.jpg"><img src="media/02-light.jpg" alt="" loading="lazy"></picture><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-camera.jpg"><img src="media/02-light.jpg" alt=""></picture><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>סדרת תוכן · סופר-פארם</h3><p>תוכן ממותג · 6 פרקים</p></div><span class="yr mono">2024</span></div>
         </article>
         <article class="work">
-          <figure class="wipe"><img src="media/03-road.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><img src="media/03-road.jpg" alt=""><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>״גבולות״</h3><p>סרט קצר · זוכה פסטיבל חיפה</p></div><span class="yr mono">2023</span></div>
         </article>
         <article class="work sq">
-          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/sq-monitor.jpg"><img src="media/04-crowd.jpg" alt="" loading="lazy"></picture><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/sq-monitor.jpg"><img src="media/04-crowd.jpg" alt=""></picture><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>הרצאות <span class="ltr">TED</span> · תל אביב</h3><p>תיעוד אירועים</p></div><span class="yr mono">2023</span></div>
         </article>
         <article class="work tall">
-          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-crew.jpg"><img src="media/05-city.jpg" alt="" loading="lazy"></picture><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-crew.jpg"><img src="media/05-city.jpg" alt=""></picture><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>מסע בישראל · משרד התיירות</h3><p>סרט תדמית · דיגיטל</p></div><span class="yr mono">2022</span></div>
         </article>
         <article class="work">
-          <figure class="wipe"><img src="media/06-cameras.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><img src="media/06-cameras.jpg" alt=""><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr mono">2022</span></div>
         </article>
       </div>
-      <div class="wnav mono" aria-hidden="true"><span id="wcnt">01/06</span><span class="wbar" id="wbar"><i></i></span><span class="arr">←</span></div>
+      <div class="wnav mono" aria-hidden="true"><span id="wcnt">01/06</span><span class="wbar" id="wbar"><i></i></span><span class="arr">→</span></div>
     </div>
   </section>
 
