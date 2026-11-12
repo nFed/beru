@@ -385,7 +385,7 @@ body.locked{overflow:hidden}
   -webkit-mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
 .film .strip{--fw:84cqw;--gap:3.2cqw;--perf:8.5cqw;position:relative;left:50%;width:calc(var(--fw) * 3 + var(--gap) * 2);margin-left:calc(var(--fw) * -1.5 - var(--gap));
   display:flex;gap:var(--gap);padding:var(--perf) 0;background:#1B140E;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Crect x='11' y='8' width='18' height='14' rx='3' fill='%23FFFBF3'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Crect x='11' y='8' width='18' height='14' rx='3' fill='%23FFFBF3'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Crect x='11' y='7' width='18' height='12' rx='3' fill='%23FFFBF3'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 30'%3E%3Crect x='11' y='7' width='18' height='12' rx='3' fill='%23FFFBF3'/%3E%3C/svg%3E");
   background-repeat:repeat-x;background-size:calc(var(--perf) * 1.25) var(--perf);background-position:0 0,0 100%;
   animation:pull 1.3s cubic-bezier(.6,0,.2,1) .25s both}
 [dir="rtl"] .film .strip{left:auto;right:50%;margin-left:0;margin-right:calc(var(--fw) * -1.5 - var(--gap))}
@@ -413,6 +413,19 @@ body.locked{overflow:hidden}
 /* the nav icon is now the only silhouette: it is there from the start, with a small entrance */
 .nav .word .ico{width:30px;margin-inline-end:.08em;opacity:1;transform:none;animation:icoIn .9s .45s cubic-bezier(.3,1.5,.5,1) both}
 @keyframes icoIn{from{opacity:0;transform:translateY(8px) scale(.7)}to{opacity:1;transform:none}}
+
+/* ---------- a quieter strip: smaller, thinner perforations, softer base ---------- */
+.screen.film{width:min(86%,360px);align-self:center}
+.film .strip{--fw:80cqw;--perf:6.6cqw;background-color:#2B2018}
+.film .side img{filter:brightness(.7) saturate(.75);opacity:.75}
+@media(min-width:900px){
+  .screen.film{width:min(86%,560px);justify-self:center}
+  .film .strip{--fw:80cqw}
+}
+
+.film .edge{font-size:max(7px,1.45cqw);letter-spacing:.12em}
+.film .e1,.film .e3{top:calc(var(--perf) * .7)}
+.film .e2,.film .e4{bottom:calc(var(--perf) * .7)}
 </style>
 </head>
 <body>
