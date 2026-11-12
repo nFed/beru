@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>הדף לא נמצא · Leeu Productions</title>
+<script>
+// old addresses from before the site moved to the root: send them to their new place
+(function () {
+  var p = location.pathname, m = p.match(/^(.*?\/)(sketches\/archive\/|sketches\/|site\/)(.*)$/);
+  if (!m) return;
+  var to = m[2] === 'sketches/archive/' ? m[1] + 'archive/sketches/' + m[3] : m[1];
+  location.replace(to + location.hash);
+})();
+</script>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FFFBF3;color:#2A1C11;font-family:'IBM Plex Sans Hebrew','Heebo',Arial,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
+h1{font-size:clamp(28px,6vw,44px);margin:0 0 12px;letter-spacing:-.02em}
+p{margin:0 0 28px;color:#73604B}
+a{display:inline-block;padding:14px 28px;border-radius:999px;background:#2A1C11;color:#FFFEFA;text-decoration:none}
+</style>
+</head>
+<body>
+<main>
+  <h1>הדף לא נמצא.</h1>
+  <p>ייתכן שהקישור ישן או שהדף הועבר.</p>
+  <a id="home" href="/">לדף הבית של Leeu Productions</a>
+</main>
+<script>
+// on GitHub Pages the site lives under /<repository>/
+if (/github\.io$/.test(location.hostname)) document.getElementById('home').href = '/' + location.pathname.split('/')[1] + '/';
+</script>
+</body>
+</html>
