@@ -332,6 +332,14 @@ body.locked{overflow:hidden}
 }
 @keyframes nudge{50%{transform:translateX(-5px)}}
 @media(prefers-reduced-motion:reduce){.word .ico{transition:none}.wnav .arr,.slate .rec b{animation:none}}
+
+/* ---------- desktop composition: the head stays inside its column, with air between image and type ---------- */
+@media(min-width:900px){
+  .hero .wrap{max-width:1440px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(48px,6vw,120px)}
+  .screen{justify-self:center;width:min(100%,66vh);margin-inline-end:0}
+  .slate{justify-self:center}
+  .hero-sub{max-width:30em}
+}
 </style>
 </head>
 <body>
@@ -607,7 +615,7 @@ body.locked{overflow:hidden}
     const cx = cv.getContext('2d'); let W = 0, H = 0;
     const rnd = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
     const COL = ['248,212,138', '222,138,46', '255,236,196', '236,160,70', '250,190,110'];
-    const B = Array.from({ length: 17 }, (_, i) => ({ x: rnd(i, 1), y: rnd(i, 2), r: .05 + rnd(i, 3) * .1, a: .1 + rnd(i, 4) * .2, sp: .25 + rnd(i, 5) * .5, ph: rnd(i, 6) * 6.28, c: COL[i % COL.length] }));
+    const B = Array.from({ length: 11 }, (_, i) => ({ x: .18 + rnd(i, 1) * .64, y: rnd(i, 2), r: .035 + rnd(i, 3) * .06, a: .07 + rnd(i, 4) * .13, sp: .25 + rnd(i, 5) * .5, ph: rnd(i, 6) * 6.28, c: COL[i % COL.length] }));
     const hex = (x, y, r, rot) => { cx.beginPath(); for (let i = 0; i < 6; i++) { const a = rot + i * Math.PI / 3; cx[i ? 'lineTo' : 'moveTo'](x + Math.cos(a) * r, y + Math.sin(a) * r); } cx.closePath(); };
     const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = cv.width = Math.round(cv.clientWidth * d); H = cv.height = Math.round(cv.clientHeight * d); };
     const draw = t => {
