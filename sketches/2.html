@@ -362,6 +362,13 @@ body.locked{overflow:hidden}
 .head .grain{animation:flick 3.2s steps(8) infinite}
 @keyframes flick{0%,100%{opacity:1}20%{opacity:.82}35%{opacity:1}55%{opacity:.9}70%{opacity:1}85%{opacity:.86}}
 @media(prefers-reduced-motion:reduce){.head .noise,.head .grain{animation:none}}
+
+/* ---------- lighter grade: the photo keeps its own colours and light, with a warm film tint and fine grain ---------- */
+.head .ph{filter:saturate(.82) contrast(1.06) brightness(.92) sepia(.18)}
+.head .tone{opacity:.32}
+.head .grain{opacity:.7}
+.head .noise{opacity:.85}
+.head::after{background:radial-gradient(70% 70% at 50% 55%,rgba(40,20,4,0) 55%,rgba(40,20,4,.6) 100%),linear-gradient(180deg,rgba(46,24,6,.34),rgba(46,24,6,0) 38%)}
 </style>
 </head>
 <body>
