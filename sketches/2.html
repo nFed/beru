@@ -468,6 +468,20 @@ body.locked{overflow:hidden}
 
 /* the nav shares the hero's width on large screens, so the logo lines up with the headline */
 @media(min-width:900px){.nav .wrap{max-width:1440px}}
+
+/* ---------- copy from the final version: second hero button, in-house list, quote attribution ---------- */
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost:hover{background:transparent;color:var(--amber-ink);box-shadow:inset 0 0 0 1.5px var(--amber)}
+.quote figure,.quote .wrap{margin-inline:auto}
+.quote .by{margin-top:22px;font-size:14px;color:var(--mute)}
+.inhouse{margin-top:clamp(36px,5vw,56px);padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line);display:grid;gap:18px}
+.inhouse-t{font-size:14px;font-weight:500;color:var(--amber-ink);display:flex;align-items:center;gap:10px}
+.inhouse-t::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--amber)}
+.inhouse dl{display:grid;gap:16px}
+.inhouse dt{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.inhouse dd{margin:2px 0 0;color:var(--mute);font-size:15.5px}
+@media(min-width:900px){.inhouse{grid-template-columns:200px minmax(0,1fr);align-items:start}.inhouse dl{grid-template-columns:1fr 1fr;gap:32px}}
 </style>
 </head>
 <body>
@@ -478,10 +492,10 @@ body.locked{overflow:hidden}
     <a class="word" dir="ltr" href="#top" aria-label="Leeu Vision, לראש העמוד"><i class="ico" id="ico" aria-hidden="true"><svg viewBox="0 0 100 99.19"><use href="#mk"/></svg></i><b>Leeu</b><span>Vision</span></a>
     <nav aria-label="ניווט ראשי">
       <ul class="nav-links">
-        <li><a href="#about">אודות</a></li>
         <li><a href="#work">עבודות</a></li>
         <li><a href="#services">שירותים</a></li>
         <li><a href="#process">תהליך</a></li>
+        <li><a href="#about">אודות</a></li>
         <li><a href="#contact">צור קשר</a></li>
       </ul>
     </nav>
@@ -493,10 +507,10 @@ body.locked{overflow:hidden}
 <nav class="menu" id="menu" aria-label="תפריט ראשי">
   <ul>
     <li><a href="#top">בית</a></li>
-    <li><a href="#about">אודות <small>01</small></a></li>
-    <li><a href="#work">עבודות <small>02</small></a></li>
-    <li><a href="#services">שירותים <small>03</small></a></li>
-    <li><a href="#process">תהליך <small>04</small></a></li>
+    <li><a href="#work">עבודות <small>01</small></a></li>
+    <li><a href="#services">שירותים <small>02</small></a></li>
+    <li><a href="#process">תהליך <small>03</small></a></li>
+    <li><a href="#about">אודות <small>04</small></a></li>
     <li><a href="#contact">צור קשר <small>05</small></a></li>
   </ul>
   <div class="menu-foot">
@@ -524,37 +538,10 @@ body.locked{overflow:hidden}
         <span class="tc" id="s-tc">00:00:00:00</span>
       </div>
       <div class="hero-text">
-        <div class="eyebrow fd d1">מבית היוצר של שמואל ברו</div>
+        <div class="eyebrow fd d1">חברת הפקות וידאו · תל אביב · מאז 2010</div>
         <h1><span class="ln"><span>כל פרויקט</span></span><span class="ln"><span>הוא <em>יצירה.</em></span></span></h1>
-        <p class="hero-sub fd d2">פרסומות, סדרות תוכן וסרטים שאנשים זוכרים. אנחנו לוקחים את הרעיון שלכם ומביאים אותו עד הפריים האחרון.</p>
-        <div class="hero-cta fd d3"><a class="btn" href="#contact">בואו נדבר <span class="arr">←</span></a></div>
-      </div>
-      <div class="hero-foot mono fd d4"><span>תל אביב</span><i></i><span>מאז 2010</span></div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="sec" id="about">
-    <div class="wrap">
-      <div class="head-row">
-        <div class="rv">
-          <div class="label">אודות Leeu Vision</div>
-          <h2 class="title">אמנות ההפקה<br><em>ברמה אחרת.</em></h2>
-        </div>
-      </div>
-      <div class="about">
-        <div class="about-text rv">
-          <p class="lead">Leeu Vision נוסדה ב-2010 מתוך אמונה אחת: <strong>סרט טוב יכול לשנות</strong> את הדרך שבה אנשים חושבים, מרגישים ומחליטים.</p>
-          <p>מאז הפקנו מאות פרויקטים עבור המותגים הגדולים בישראל, חברות בינלאומיות וגופי תקשורת מובילים.</p>
-          <p>אצלנו פועלים צוותי הפקה מקצועיים של במאים, מפיקים, צלמים ועורכים, שמורכבים לפי מה שכל פרויקט צריך. כל פרויקט מקבל מפיק אחד שמלווה אותו מההתחלה ועד המסירה.</p>
-          <a class="link" href="#process">מהרעיון ועד המסירה <span>←</span></a>
-        </div>
-        <div class="stats rv" style="--d:.12s">
-          <div class="stat"><span class="n" data-n="16">16</span><span class="l">שנות פעילות</span></div>
-          <div class="stat"><span class="n"><sup>+</sup><span data-n="300">300</span></span><span class="l">פרויקטים שהופקו</span></div>
-          <div class="stat"><span class="n"><sup>+</sup><span data-n="80">80</span></span><span class="l">לקוחות</span></div>
-          <div class="stat"><span class="n" data-n="12">12</span><span class="l">פרסים מקצועיים</span></div>
-        </div>
+        <p class="hero-sub fd d2">פרסומות, סדרות תוכן וסרטים למותגים, לחברות ולגופי תקשורת. מפיק אחד מלווה אתכם מהרעיון ועד הפריים האחרון.</p>
+        <div class="hero-cta fd d3"><a class="btn" href="#contact">בואו נדבר <span class="arr">←</span></a><a class="btn ghost" href="#work">לצפייה בעבודות</a></div>
       </div>
     </div>
   </section>
@@ -564,38 +551,33 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="head-row">
         <div class="rv">
-          <div class="label">פרויקטים נבחרים</div>
-          <h2 class="title">סיפורים<br><em>שהפכו למציאות.</em></h2>
+          <h2 class="title">עבודות נבחרות<em>.</em></h2>
         </div>
         <p class="rv" style="--d:.1s">רגע אחד מתוך כל הפקה.</p>
       </div>
       <div class="works" id="works">
         <article class="work">
-          <figure class="wipe"><img src="media/01-street.jpg" alt=""><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><img src="media/01-street.jpg" alt=""></figure>
           <div class="meta"><div><h3>קמפיין לאומי · בנק לאומי</h3><p>פרסומת · טלוויזיה ודיגיטל</p></div><span class="yr mono">2024</span></div>
         </article>
         <article class="work tall">
-          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-camera.jpg"><img src="media/02-light.jpg" alt=""></picture><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-camera.jpg"><img src="media/02-light.jpg" alt=""></picture></figure>
           <div class="meta"><div><h3>סדרת תוכן · סופר-פארם</h3><p>תוכן ממותג · 6 פרקים</p></div><span class="yr mono">2024</span></div>
         </article>
         <article class="work">
-          <figure class="wipe"><img src="media/03-road.jpg" alt=""><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><img src="media/03-road.jpg" alt=""></figure>
           <div class="meta"><div><h3>״גבולות״</h3><p>סרט קצר · זוכה פסטיבל חיפה</p></div><span class="yr mono">2023</span></div>
         </article>
         <article class="work sq">
-          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/sq-monitor.jpg"><img src="media/04-crowd.jpg" alt=""></picture><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/sq-monitor.jpg"><img src="media/04-crowd.jpg" alt=""></picture></figure>
           <div class="meta"><div><h3>הרצאות <span class="ltr">TED</span> · תל אביב</h3><p>תיעוד אירועים</p></div><span class="yr mono">2023</span></div>
         </article>
         <article class="work tall">
-          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-crew.jpg"><img src="media/05-city.jpg" alt=""></picture><span class="tag mono">16:9</span></figure>
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-crew.jpg"><img src="media/05-city.jpg" alt=""></picture></figure>
           <div class="meta"><div><h3>מסע בישראל · משרד התיירות</h3><p>סרט תדמית · דיגיטל</p></div><span class="yr mono">2022</span></div>
         </article>
-        <article class="work">
-          <figure class="wipe"><img src="media/06-cameras.jpg" alt=""><span class="tag mono">16:9</span></figure>
-          <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr mono">2022</span></div>
-        </article>
       </div>
-      <div class="wnav mono" aria-hidden="true"><span id="wcnt">01/06</span><span class="wbar" id="wbar"><i></i></span><span class="arr">←</span></div>
+      <div class="wnav mono" aria-hidden="true"><span id="wcnt">01/05</span><span class="wbar" id="wbar"><i></i></span><span class="arr">←</span></div>
     </div>
   </section>
 
@@ -604,8 +586,7 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="head-row">
         <div class="rv">
-          <div class="label">לקוחות</div>
-          <h2 class="title" id="clients-t">שותפים <em>לדרך.</em></h2>
+          <h2 class="title" id="clients-t">לקוחות<em>.</em></h2>
         </div>
         <p class="rv" style="--d:.1s">מותגים, ערוצים וגופים ציבוריים שבחרו לעבוד איתנו שוב ושוב.</p>
       </div>
@@ -616,34 +597,46 @@ body.locked{overflow:hidden}
     </div>
   </section>
 
+  <!-- QUOTE -->
+  <section class="sec sand quote" aria-label="המלצה">
+    <figure class="wrap rv">
+      <span class="qm" aria-hidden="true">״</span>
+      <blockquote>עבדנו עם הרבה חברות הפקה לאורך השנים. Leeu Vision הם הראשונים שגרמו לנו להרגיש <em>שהסרט שלנו</em>, לא שלהם.</blockquote>
+      <figcaption class="by">שם הממליץ, תפקיד וחברה יתווספו כאן</figcaption>
+    </figure>
+  </section>
+
   <!-- SERVICES -->
-  <section class="sec sand" id="services">
+  <section class="sec" id="services">
     <div class="wrap">
       <div class="head-row">
         <div class="rv">
-          <div class="label">מה אנחנו עושים</div>
-          <h2 class="title">שירותי<br><em>הפקה מלאים.</em></h2>
+          <h2 class="title">שירותים<em>.</em></h2>
         </div>
         <p class="rv" style="--d:.1s">צוות אחד שמלווה אתכם מהבריף ועד המסירה, בלי להעביר את הפרויקט מיד ליד.</p>
       </div>
       <div class="services">
-        <article class="service rv"><span class="num mono">01</span><h3>הפקת פרסומות</h3><p>קמפיינים לטלוויזיה, לדיגיטל ולחוצות, מהבריף ועד הסרט הסופי. אנחנו יודעים מה הופך פרסומת לכזו שנשארת בזיכרון.</p><div class="tags"><span>טלוויזיה</span><span>דיגיטל</span><span>חוצות</span></div></article>
+        <article class="service rv"><span class="num mono">01</span><h3>הפקת פרסומות</h3><p>קמפיינים לטלוויזיה, לדיגיטל ולחוצות, מהבריף ועד הסרט הסופי.</p><div class="tags"><span>טלוויזיה</span><span>דיגיטל</span><span>חוצות</span></div></article>
         <article class="service rv"><span class="num mono">02</span><h3>סדרות תוכן</h3><p>תוכן ממותג, פודקאסטים מצולמים וסדרות רשת. אנחנו בונים עולמות תוכן שמחזקים את הקשר עם הקהל שלכם.</p><div class="tags"><span>תוכן ממותג</span><span>פודקאסט</span><span>רשתות</span></div></article>
         <article class="service rv"><span class="num mono">03</span><h3>סרטים קצרים</h3><p>מדרמה ועד דוקומנטרי. הצוות האמנותי שלנו מלווה פרויקטים קולנועיים מגיבוש הרעיון ועד מסך הקולנוע.</p><div class="tags"><span>דרמה</span><span>דוקומנטרי</span><span>פסטיבלים</span></div></article>
-        <article class="service rv"><span class="num mono">04</span><h3>פוסט-פרודקשן</h3><p>עריכה, תיקוני צבע, עיצוב סאונד ואפקטים. סטודיו פוסט מלא עם ציוד מהמתקדמים בתעשייה.</p><div class="tags"><span>עריכה</span><span class="ltr">Color</span><span class="ltr">Sound</span><span class="ltr">VFX</span></div></article>
-        <article class="service rv"><span class="num mono">05</span><h3>הפקות קורפורייט</h3><p>סרטי חברה, הרצאות, כנסים ואירועים מצולמים. נציג את הארגון שלכם בצורה המקצועית ביותר.</p><div class="tags"><span>סרטי תדמית</span><span>כנסים</span><span>הדרכה</span></div></article>
-        <article class="service rv"><span class="num mono">06</span><h3>קאסטינג ולוקיישן</h3><p>מחלקת קאסטינג פנימית ומאגר לוקיישנים מגוון. אנחנו מוצאים את הפנים הנכונות ואת המקום המושלם.</p><div class="tags"><span>שחקנים</span><span>ניצבים</span><span>לוקיישנים</span></div></article>
+        <article class="service rv"><span class="num mono">04</span><h3>סרטים לחברות ולארגונים</h3><p>סרטי חברה, הרצאות, כנסים ואירועים מצולמים.</p><div class="tags"><span>סרטי תדמית</span><span>כנסים</span><span>הדרכה</span></div></article>
+      </div>
+      <div class="inhouse rv">
+        <h3 class="inhouse-t">בתוך הבית</h3>
+        <dl>
+          <div><dt>פוסט-פרודקשן</dt><dd>עריכה, תיקוני צבע, עיצוב סאונד ואפקטים.</dd></div>
+          <div><dt>ליהוק ואיתור לוקיישנים</dt><dd>מחלקת קאסטינג פנימית ומאגר לוקיישנים מגוון.</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
-    <!-- PROCESS -->
-  <section class="sec" id="process">
+  <!-- PROCESS -->
+  <section class="sec sand" id="process">
     <div class="wrap">
       <div class="head-row">
         <div class="rv">
-          <div class="label">איך עובדים איתנו</div>
-          <h2 class="title">תהליך<br><em>שקוף ומדויק.</em></h2>
+          <h2 class="title">איך עובדים איתנו<em>.</em></h2>
         </div>
         <p class="rv" style="--d:.1s">ארבעה שלבים ברורים, ובכל אחד מהם אתם יודעים בדיוק מה קורה ומה הצעד הבא.</p>
       </div>
@@ -656,18 +649,35 @@ body.locked{overflow:hidden}
     </div>
   </section>
 
-  <!-- QUOTE -->
-  <section class="sec sand quote" aria-label="המלצה">
-    <div class="wrap rv">
-      <span class="qm" aria-hidden="true">״</span>
-      <blockquote>עבדנו עם הרבה חברות הפקה לאורך השנים. Leeu Vision הם הראשונים שגרמו לנו להרגיש <em>שהסרט שלנו</em>, לא שלהם.</blockquote>
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="head-row">
+        <div class="rv">
+          <h2 class="title">אודות Leeu Vision<em>.</em></h2>
+        </div>
+      </div>
+      <div class="about">
+        <div class="about-text rv">
+          <p class="lead">Leeu Vision נוסדה ב-2010 מתוך אמונה אחת: <strong>סרט טוב יכול לשנות</strong> את הדרך שבה אנשים חושבים, מרגישים ומחליטים.</p>
+          <p>מבית היוצר של הבמאי והמפיק שמואל ברו. מאז הפקנו מאות פרויקטים עבור המותגים הגדולים בישראל, חברות בינלאומיות וגופי תקשורת מובילים.</p>
+          <p>אצלנו פועלים צוותי הפקה מקצועיים של במאים, מפיקים, צלמים ועורכים, שמורכבים לפי מה שכל פרויקט צריך.</p>
+          <a class="link" href="#contact">בואו נדבר <span>←</span></a>
+        </div>
+        <div class="stats rv" style="--d:.12s">
+          <div class="stat"><span class="n">2010</span><span class="l">פועלים מאז</span></div>
+          <div class="stat"><span class="n"><sup>+</sup><span data-n="300">300</span></span><span class="l">פרויקטים שהופקו</span></div>
+          <div class="stat"><span class="n"><sup>+</sup><span data-n="80">80</span></span><span class="l">לקוחות</span></div>
+          <div class="stat"><span class="n" data-n="12">12</span><span class="l">פרסים מקצועיים</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- TICKER -->
   <div class="ticker" aria-label="תחומי פעילות">
     <div class="track" id="ticker">
-      <span>הפקת פרסומות</span><span>סדרות תוכן</span><span>סרטים קצרים</span><span>פוסט-פרודקשן</span><span>הפקות קורפורייט</span><span>קאסטינג ולוקיישן</span>
+      <span>הפקת פרסומות</span><span>סדרות תוכן</span><span>סרטים קצרים</span><span>סרטים לחברות ולארגונים</span><span>פוסט-פרודקשן</span><span>ליהוק ואיתור לוקיישנים</span>
     </div>
   </div>
 
@@ -705,7 +715,7 @@ body.locked{overflow:hidden}
       <div class="foot-cols">
         <div>
           <h4>ניווט</h4>
-          <ul><li><a href="#top">בית</a></li><li><a href="#about">אודות</a></li><li><a href="#work">עבודות</a></li><li><a href="#services">שירותים</a></li><li><a href="#process">תהליך</a></li><li><a href="#contact">צור קשר</a></li></ul>
+          <ul><li><a href="#top">בית</a></li><li><a href="#work">עבודות</a></li><li><a href="#services">שירותים</a></li><li><a href="#process">תהליך</a></li><li><a href="#about">אודות</a></li><li><a href="#contact">צור קשר</a></li></ul>
         </div>
         <div>
           <h4>עקבו אחרינו</h4>
