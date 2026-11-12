@@ -369,6 +369,16 @@ body.locked{overflow:hidden}
 .head .grain{opacity:.7}
 .head .noise{opacity:.85}
 .head::after{background:radial-gradient(70% 70% at 50% 55%,rgba(40,20,4,0) 55%,rgba(40,20,4,.6) 100%),linear-gradient(180deg,rgba(46,24,6,.34),rgba(46,24,6,0) 38%)}
+
+/* ---------- true colours: no tint, light grain, dark edges keep the silhouette crisp ---------- */
+.head .ph{filter:contrast(1.05) brightness(.98)}
+.head .tone{display:none}
+.head .grain{opacity:.35}
+.head .noise{opacity:.32}
+.head::after{background:radial-gradient(70% 70% at 50% 55%,rgba(28,16,6,0) 55%,rgba(28,16,6,.35) 100%),linear-gradient(180deg,rgba(28,16,6,.3),rgba(28,16,6,0) 32%)}
+
+/* dark rim that follows the silhouette's own outline */
+.head .rim{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#1C1006;stroke-width:9;stroke-linejoin:round;opacity:.78;filter:blur(7px);pointer-events:none}
 </style>
 </head>
 <body>
@@ -413,7 +423,7 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="screen" aria-hidden="true">
         <div class="head-shadow">
-          <div class="head" id="head"><img class="ph" src="media/hero-set.jpg" alt=""><i class="tone"></i><i class="grain"></i><i class="noise"></i></div>
+          <div class="head" id="head"><img class="ph" src="media/hero-set.jpg" alt=""><i class="tone"></i><i class="grain"></i><i class="noise"></i><svg class="rim" viewBox="0 0 100 99.19" preserveAspectRatio="none" aria-hidden="true"><use href="#mk"/></svg></div>
         </div>
       </div>
       <div class="slate mono fd d4" aria-hidden="true">
