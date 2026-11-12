@@ -64,6 +64,18 @@
     strip.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
   }
 
+  // back to top: shows after the first screen; the ring shows how far down the page you are
+  const toTop = $('#totop');
+  if (toTop) {
+    const updTop = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      toTop.classList.toggle('show', scrollY > innerHeight * .9);
+      toTop.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(3) : 0);
+    };
+    addEventListener('scroll', updTop, { passive: true }); addEventListener('resize', updTop); updTop();
+    toTop.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); toTop.blur(); });
+  }
+
   // ticker: duplicate the run so the loop is seamless
   const tk = $('#ticker');
   tk.innerHTML += tk.innerHTML.replace(/<span>/g, '<span aria-hidden="true">');

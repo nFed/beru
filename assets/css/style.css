@@ -403,3 +403,20 @@ body.locked{overflow:hidden}
   .inhouse{grid-template-columns:200px minmax(0,1fr);align-items:start}
   .inhouse dl{grid-template-columns:1fr 1fr;gap:32px}
 }
+
+/* ---------- back to top: appears after the first screen; the ring fills as the page is read ---------- */
+.totop{position:fixed;z-index:45;inset-inline-end:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:rgba(255,251,243,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 8px 22px -10px rgba(90,52,10,.45);opacity:0;transform:translateY(14px) scale(.9);pointer-events:none;transition:opacity .35s,transform .45s var(--ease),background .25s,color .25s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.locked .totop{opacity:0;pointer-events:none}
+.totop .ring{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.totop circle{fill:none;stroke-width:1.5}
+.totop .trk{stroke:var(--line)}
+.totop .bar{stroke:var(--amber);stroke-linecap:round;stroke-dasharray:141.4;stroke-dashoffset:calc(141.4 * (1 - var(--p,0)))}
+.totop .up{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
+.totop:hover{background:var(--ink);color:var(--paper)}
+.totop:hover .up{transform:translateY(-2px)}
+.totop:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+@media(min-width:900px){.totop{inset-inline-end:24px;bottom:24px;width:52px;height:52px}}
+@media(prefers-reduced-motion:reduce){.totop,.totop .up{transition:none}}
+/* the email address is long: on phones it scales with the screen and keeps clear of the back-to-top button */
+@media(max-width:899px){.ways a[href^="mailto"] .v{font-size:min(30px,6.6vw)}}
