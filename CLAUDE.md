@@ -12,4 +12,8 @@
 - Brand: **Leeu Vision** (title case in the logo and in text). The silhouette mark sits to the
   right of the name.
 - Keep the existing copy; only light adaptations unless the owner asks otherwise.
-- The current direction is `sketches/2.html`; earlier sketches live in `sketches/archive/`.
+- The current site is `site/` (`index.html`, `assets/css/style.css`, `assets/js/main.js`,
+  `assets/img/`). Images are WebP in two widths with `srcset`; keep that when adding images.
+  `sketches/2.html` and `sketches/index.html` only redirect to it. Earlier sketches, with their
+  own images, live in `sketches/archive/`. The root `index.html` is the old live site — do not
+  replace it unless the owner asks.
