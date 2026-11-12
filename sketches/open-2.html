@@ -309,6 +309,23 @@ html:not(.js) .more{display:none}
 .about-side .about-ph{aspect-ratio:16/10}
 @media (prefers-reduced-motion:reduce){[data-rot] img.on{animation:none}}
 
+/* ---------- photos inside the silhouette: sharp centre, soft and darker towards the edge ---------- */
+.fig .hw{position:absolute;inset:0;overflow:hidden}
+.fig .head{position:absolute;inset:0;background:var(--ink);-webkit-clip-path:url(#head-clip);clip-path:url(#head-clip)}
+.head .fr{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.head .fr.on{opacity:1}
+.head .fr::before,.head .fr::after{content:"";position:absolute;inset:-7%;background:var(--i) center/cover no-repeat}
+.head .fr::before{filter:blur(10px) saturate(.85) brightness(.82)}
+.head .fr::after{-webkit-mask:radial-gradient(circle at 50% 47%,#000 20%,rgba(0,0,0,.55) 38%,transparent 60%);mask:radial-gradient(circle at 50% 47%,#000 20%,rgba(0,0,0,.55) 38%,transparent 60%)}
+.head .fr.on::before,.head .fr.on::after{animation:kbz 7s linear forwards}
+@keyframes kbz{from{transform:scale(1.02)}to{transform:scale(1.1)}}
+.fig .head::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 47%,rgba(25,25,24,0) 34%,rgba(25,25,24,.5) 100%);pointer-events:none}
+.js .fig .hw{clip-path:inset(100% 0 0 0)}
+.js.ready .fig .hw{clip-path:inset(0);transition:clip-path 1s .15s var(--ease)}
+@media (prefers-reduced-motion:reduce){.js .fig .hw{clip-path:none}.head .fr.on::before,.head .fr.on::after{animation:none}}
+/* the headline never outgrows its column on very wide screens */
+@media (min-width:900px){.hero h1{font-size:clamp(80px,min(9.7vw,17.5vh),150px)}}
+
 /* ---------- opening variant 2 ---------- */
 .nav .brand svg{width:26px;opacity:1;margin-inline-end:10px}
 .hero.v2 .wrap{justify-content:center;gap:clamp(14px,2.6svh,30px);padding-block:clamp(10px,2svh,24px) clamp(56px,9svh,72px)}
@@ -319,7 +336,7 @@ html:not(.js) .more{display:none}
 @media (max-height:700px) and (max-width:899px){.hero .kt{font-size:clamp(60px,19.6vw,100px)}}
 @media (min-width:900px){
   .hero.v2 .wrap{display:flex;flex-direction:column;padding-bottom:clamp(40px,7vh,72px)}
-  .hero .kt{font-size:clamp(150px,min(20.5vw,33vh),360px);line-height:.86}
+  .hero .kt{font-size:clamp(150px,min(20.5vw,33vh),286px);line-height:.86}
   .v2-foot{grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:48px}
   .v2 .hero-sub{max-width:44ch}
 }
@@ -535,7 +552,7 @@ html:not(.js) .more{display:none}
 
   // any stack of frames marked data-rot crossfades slowly
   $$('[data-rot]').forEach(box => {
-    const fr = $$('img', box); let c = 0;
+    const fr = [...box.children]; let c = 0;
     if (reduce || fr.length < 2) return;
     setInterval(() => { if (document.hidden) return; fr[c].classList.remove('on'); c = (c + 1) % fr.length; fr[c].classList.add('on'); }, 4200);
   });
