@@ -298,7 +298,7 @@ body.locked{overflow:hidden}
 
 /* ---------- set photo inside the silhouette, toned amber and softened so the shape leads ---------- */
 .head{background:#3A2412}
-.head .ph{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;object-position:50% 40%;opacity:1;transition:none;filter:grayscale(1) contrast(.95) brightness(.74) blur(var(--soft,2.6px));animation:drift 22s ease-in-out infinite alternate}
+.head .ph{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;object-position:50% 40%;opacity:1;transition:none;filter:grayscale(1) contrast(1.12) brightness(.72) blur(var(--soft,.7px));animation:drift 22s ease-in-out infinite alternate}
 @keyframes drift{from{transform:scale(1) translate3d(1.2%,.6%,0)}to{transform:scale(1.07) translate3d(-1.2%,-.8%,0)}}
 /* duotone: the grey photo is coloured from deep brown in the shadows to warm amber in the light */
 .head .tone{position:absolute;inset:0;background:linear-gradient(180deg,#4A2A10 0%,#A65A16 60%,#C9782A 100%);mix-blend-mode:color}
@@ -348,6 +348,13 @@ body.locked{overflow:hidden}
 /* ---------- nav icon: a soft sun travels behind the head as the page is read ---------- */
 .word .ico .sunl{position:absolute;left:var(--sx,88%);top:var(--sy,78%);width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:radial-gradient(circle,#FFE2A6 0%,rgba(236,150,50,.9) 34%,rgba(222,138,46,0) 70%);transition:left .25s linear,top .25s linear}
 @media(prefers-reduced-motion:reduce){.word .ico .sunl{transition:none}}
+
+/* ---------- film look: moving grain, a faint gate weave and light flicker instead of blur ---------- */
+.head .noise{position:absolute;inset:-60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/180px 180px;mix-blend-mode:overlay;opacity:.9;animation:grain .5s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}12%{transform:translate(-23px,14px)}25%{transform:translate(17px,-31px)}37%{transform:translate(-41px,-9px)}50%{transform:translate(29px,37px)}62%{transform:translate(-11px,-43px)}75%{transform:translate(43px,7px)}87%{transform:translate(-33px,27px)}}
+.head .grain{animation:flick 3.2s steps(8) infinite}
+@keyframes flick{0%,100%{opacity:1}20%{opacity:.82}35%{opacity:1}55%{opacity:.9}70%{opacity:1}85%{opacity:.86}}
+@media(prefers-reduced-motion:reduce){.head .noise,.head .grain{animation:none}}
 </style>
 </head>
 <body>
@@ -392,7 +399,7 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="screen" aria-hidden="true">
         <div class="head-shadow">
-          <div class="head" id="head"><img class="ph" src="media/hero-set.jpg" alt=""><i class="tone"></i><i class="grain"></i></div>
+          <div class="head" id="head"><img class="ph" src="media/hero-set.jpg" alt=""><i class="tone"></i><i class="grain"></i><i class="noise"></i></div>
         </div>
       </div>
       <div class="slate mono fd d4" aria-hidden="true">
