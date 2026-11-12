@@ -295,6 +295,43 @@ body.locked{overflow:hidden}
 
 /* real photos: no per-photo titles */
 .work .meta,#s-t,#s-t+i{display:none!important}
+
+/* ---------- abstract lens inside the silhouette ---------- */
+.head{background:#3A2412}
+.head canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.head::after{background:radial-gradient(75% 75% at 50% 50%,rgba(40,20,4,0) 50%,rgba(40,20,4,.42) 100%)}
+.slate .rec{display:inline-flex;align-items:center;gap:7px;letter-spacing:.08em}
+.slate .rec b{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:rec 1.6s steps(1) infinite}
+@keyframes rec{50%{opacity:.15}}
+/* ---------- nav icon ---------- */
+.word{align-items:center}
+.word .ico{position:relative;flex:none;height:30px;width:0;margin-inline-end:-.34em;opacity:0;transform:translateY(8px) scale(.7);transform-origin:50% 100%;transition:width .5s var(--ease),margin .5s var(--ease),opacity .4s,transform .6s cubic-bezier(.3,1.5,.5,1)}
+.nav.past .word .ico{width:30px;margin-inline-end:.08em;opacity:1;transform:none}
+.word .ico svg{position:absolute;inset:0;width:30px;height:30px;fill:var(--ink)}
+.word .ico .f{fill:var(--amber);clip-path:inset(calc((1 - var(--p,0)) * 100%) 0 0 0)}
+/* ---------- works: a sideways strip on phones ---------- */
+.wnav{display:none}
+.work picture{display:contents}
+@media(max-width:899px){
+  .works{display:flex;gap:10px;align-items:stretch;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut);scroll-padding-inline:var(--gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .works::-webkit-scrollbar{display:none}
+  .work{flex:none;scroll-snap-align:start}
+  .work figure{height:min(63vw,300px);aspect-ratio:4/3}
+  .work .tag{display:none}
+  .work.tall figure{aspect-ratio:3/4}
+  .work.sq figure{aspect-ratio:1}
+  .js .works .wipe{transition-delay:calc(var(--k,0) * .12s)}
+  .js .works.in .wipe{clip-path:inset(0)}
+  .js .works.in .wipe img{transform:none}
+  .work:nth-child(2){--k:1}.work:nth-child(3){--k:2}
+  .wnav{display:flex;align-items:center;gap:14px;margin-top:20px;color:var(--mute);font-size:12.5px}
+  .wnav #wcnt{color:var(--amber-ink);direction:ltr}
+  .wbar{position:relative;flex:1;height:2px;background:var(--line);overflow:hidden}
+  .wbar i{position:absolute;inset:0;background:var(--amber);transform-origin:right;transform:scaleX(calc(.16 + .84 * var(--q,0)))}
+  .wnav .arr{animation:nudge 1.8s ease-in-out infinite}
+}
+@keyframes nudge{50%{transform:translateX(-5px)}}
+@media(prefers-reduced-motion:reduce){.word .ico{transition:none}.wnav .arr,.slate .rec b{animation:none}}
 </style>
 </head>
 <body>
@@ -302,7 +339,7 @@ body.locked{overflow:hidden}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="word" href="#top" aria-label="ליו הפקות, לראש העמוד"><b>ליו</b><span>הפקות</span></a>
+    <a class="word" href="#top" aria-label="ליו הפקות, לראש העמוד"><i class="ico" id="ico" aria-hidden="true"><svg viewBox="0 0 100 99.19"><use href="#mk"/></svg><svg class="f" viewBox="0 0 100 99.19"><use href="#mk"/></svg></i><b>ליו</b><span>הפקות</span></a>
     <nav aria-label="ניווט ראשי">
       <ul class="nav-links">
         <li><a href="#about">אודות</a></li>
@@ -339,18 +376,11 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="screen" aria-hidden="true">
         <div class="head-shadow">
-          <div class="head" id="head">
-            <img class="on" src="media/01-street.jpg" alt="" data-t="קמפיין לאומי · בנק לאומי">
-            <img src="media/03-road.jpg" alt="" data-t="״גבולות״">
-            <img src="media/05-city.jpg" alt="" data-t="מסע בישראל · משרד התיירות">
-            <img src="media/04-crowd.jpg" alt="" data-t="הרצאות TED · תל אביב">
-            <img src="media/02-light.jpg" alt="" data-t="סדרת תוכן · סופר-פארם">
-            <img src="media/06-cameras.jpg" alt="" data-t="פודקאסט מצולם · Walla!">
-          </div>
+          <div class="head" id="head"><canvas id="lens"></canvas></div>
         </div>
       </div>
       <div class="slate mono fd d4" aria-hidden="true">
-        <span class="n" id="s-n">01/06</span><i></i>
+        <span class="n rec"><b></b>REC</span><i></i>
         <span class="t" id="s-t">קמפיין לאומי · בנק לאומי</span><i></i>
         <span class="tc" id="s-tc">00:00:00:00</span>
       </div>
@@ -400,25 +430,25 @@ body.locked{overflow:hidden}
         </div>
         <p class="rv" style="--d:.1s">רגע אחד מתוך כל הפקה.</p>
       </div>
-      <div class="works">
+      <div class="works" id="works">
         <article class="work">
           <figure class="wipe"><img src="media/01-street.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>קמפיין לאומי · בנק לאומי</h3><p>פרסומת · טלוויזיה ודיגיטל</p></div><span class="yr mono">2024</span></div>
         </article>
-        <article class="work">
-          <figure class="wipe"><img src="media/02-light.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+        <article class="work tall">
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-camera.jpg"><img src="media/02-light.jpg" alt="" loading="lazy"></picture><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>סדרת תוכן · סופר-פארם</h3><p>תוכן ממותג · 6 פרקים</p></div><span class="yr mono">2024</span></div>
         </article>
         <article class="work">
           <figure class="wipe"><img src="media/03-road.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>״גבולות״</h3><p>סרט קצר · זוכה פסטיבל חיפה</p></div><span class="yr mono">2023</span></div>
         </article>
-        <article class="work">
-          <figure class="wipe"><img src="media/04-crowd.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+        <article class="work sq">
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/sq-monitor.jpg"><img src="media/04-crowd.jpg" alt="" loading="lazy"></picture><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>הרצאות <span class="ltr">TED</span> · תל אביב</h3><p>תיעוד אירועים</p></div><span class="yr mono">2023</span></div>
         </article>
-        <article class="work">
-          <figure class="wipe"><img src="media/05-city.jpg" alt="" loading="lazy"><span class="tag mono">16:9</span></figure>
+        <article class="work tall">
+          <figure class="wipe"><picture><source media="(max-width:899px)" srcset="media/tall-crew.jpg"><img src="media/05-city.jpg" alt="" loading="lazy"></picture><span class="tag mono">16:9</span></figure>
           <div class="meta"><div><h3>מסע בישראל · משרד התיירות</h3><p>סרט תדמית · דיגיטל</p></div><span class="yr mono">2022</span></div>
         </article>
         <article class="work">
@@ -426,6 +456,7 @@ body.locked{overflow:hidden}
           <div class="meta"><div><h3>פודקאסט מצולם · <span class="ltr">Walla!</span></h3><p>תוכן דיגיטלי · עונה 2</p></div><span class="yr mono">2022</span></div>
         </article>
       </div>
+      <div class="wnav mono" aria-hidden="true"><span id="wcnt">01/06</span><span class="wbar" id="wbar"><i></i></span><span class="arr">←</span></div>
     </div>
   </section>
 
@@ -570,22 +601,95 @@ body.locked{overflow:hidden}
   $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-  // hero: footage inside the silhouette, with a slate that follows the cut
-  const frames = $$('#head img'), sn = $('#s-n'), st = $('#s-t'), tc = $('#s-tc');
-  const HOLD = 4200, FPS = 25; let cur = 0, t0 = performance.now();
-  const show = i => {
-    frames[cur].classList.remove('on'); cur = i; frames[cur].classList.add('on');
-    sn.textContent = `${pad(cur + 1)}/${pad(frames.length)}`;
-    st.style.opacity = 0; setTimeout(() => { st.textContent = frames[cur].dataset.t; st.style.opacity = 1; }, 380);
-  };
-  if (!reduce) {
-    setInterval(() => { if (!document.hidden) show((cur + 1) % frames.length); }, HOLD);
-    const tick = now => {
-      const ms = (now - t0) % (HOLD * frames.length), s = Math.floor(ms / 1000), f = Math.floor((ms % 1000) / (1000 / FPS));
-      tc.textContent = `00:${pad(Math.floor(s / 60))}:${pad(s % 60)}:${pad(f)}`;
-      requestAnimationFrame(tick);
+  // hero: an abstract lens inside the silhouette — out-of-focus lights and a breathing iris
+  const cv = $('#lens'), tc = $('#s-tc'), FPS = 25, t0 = performance.now();
+  if (cv) {
+    const cx = cv.getContext('2d'); let W = 0, H = 0;
+    const rnd = (i, k) => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); };
+    const COL = ['248,212,138', '222,138,46', '255,236,196', '236,160,70', '250,190,110'];
+    const B = Array.from({ length: 17 }, (_, i) => ({ x: rnd(i, 1), y: rnd(i, 2), r: .05 + rnd(i, 3) * .1, a: .1 + rnd(i, 4) * .2, sp: .25 + rnd(i, 5) * .5, ph: rnd(i, 6) * 6.28, c: COL[i % COL.length] }));
+    const hex = (x, y, r, rot) => { cx.beginPath(); for (let i = 0; i < 6; i++) { const a = rot + i * Math.PI / 3; cx[i ? 'lineTo' : 'moveTo'](x + Math.cos(a) * r, y + Math.sin(a) * r); } cx.closePath(); };
+    const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = cv.width = Math.round(cv.clientWidth * d); H = cv.height = Math.round(cv.clientHeight * d); };
+    const draw = t => {
+      if (!W) return;
+      cx.globalCompositeOperation = 'source-over';
+      let g = cx.createLinearGradient(0, 0, 0, H);
+      g.addColorStop(0, '#2E1D10'); g.addColorStop(.55, '#55300F'); g.addColorStop(1, '#8A4E14');
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+      // low sun
+      const sx = W * (.36 + Math.sin(t * .11) * .04), sy = H * .66;
+      g = cx.createRadialGradient(sx, sy, 0, sx, sy, W * .6);
+      g.addColorStop(0, 'rgba(255,226,160,.85)'); g.addColorStop(.25, 'rgba(240,160,60,.45)'); g.addColorStop(1, 'rgba(222,138,46,0)');
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+      // out-of-focus lights, shaped by the iris
+      cx.globalCompositeOperation = 'lighter';
+      for (const b of B) {
+        const x = (b.x + Math.sin(t * b.sp * .22 + b.ph) * .06) * W, y = ((b.y - t * b.sp * .012) % 1 + 1) % 1 * H * 1.1 - H * .05;
+        const r = b.r * W * (.92 + .08 * Math.sin(t * b.sp + b.ph)), al = b.a * (.75 + .25 * Math.sin(t * b.sp * 1.3 + b.ph));
+        hex(x, y, r, .26); cx.fillStyle = `rgba(${b.c},${al})`; cx.fill();
+        cx.lineWidth = Math.max(1, W * .003); cx.strokeStyle = `rgba(${b.c},${al * .9})`; cx.stroke();
+      }
+      // the lens: barrel ring, scale ticks and a breathing iris
+      const lx = W * .52, ly = H * .45, R = W * .25, rot = t * .08, open = .5 + .16 * Math.sin(t * .5);
+      cx.strokeStyle = 'rgba(255,240,208,.6)'; cx.lineWidth = Math.max(1, W * .0035);
+      cx.beginPath(); cx.arc(lx, ly, R, 0, 6.2832); cx.stroke();
+      cx.strokeStyle = 'rgba(255,240,208,.28)';
+      cx.beginPath(); cx.arc(lx, ly, R * 1.22, 0, 6.2832); cx.stroke();
+      cx.beginPath();
+      for (let i = 0; i < 48; i++) { const a = -rot * 1.6 + i * 6.2832 / 48, l = i % 4 ? 1.08 : 1.13; cx.moveTo(lx + Math.cos(a) * R * 1.03, ly + Math.sin(a) * R * 1.03); cx.lineTo(lx + Math.cos(a) * R * l, ly + Math.sin(a) * R * l); }
+      cx.stroke();
+      cx.strokeStyle = 'rgba(255,240,208,.55)'; cx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const a = rot + i * Math.PI / 3, n = a + Math.PI / 3, vx = lx + Math.cos(a) * R * open, vy = ly + Math.sin(a) * R * open;
+        const dx = vx - (lx + Math.cos(n) * R * open), dy = vy - (ly + Math.sin(n) * R * open), dl = Math.hypot(dx, dy);
+        const ux = dx / dl, uy = dy / dl, px = vx - lx, py = vy - ly, bq = px * ux + py * uy, k = -bq + Math.sqrt(bq * bq - (px * px + py * py - R * R));
+        cx.moveTo(lx + Math.cos(n) * R * open, ly + Math.sin(n) * R * open); cx.lineTo(vx + ux * k, vy + uy * k);
+      }
+      cx.stroke();
+      hex(lx, ly, R * open, rot); cx.fillStyle = 'rgba(255,214,140,.2)'; cx.fill();
+      // a soft flare line through the lens
+      g = cx.createLinearGradient(0, 0, W, 0);
+      g.addColorStop(0, 'rgba(255,220,150,0)'); g.addColorStop(.5, `rgba(255,230,170,${.34 + .12 * Math.sin(t * .7)})`); g.addColorStop(1, 'rgba(255,220,150,0)');
+      cx.fillStyle = g; cx.fillRect(0, ly - W * .004, W, W * .008);
     };
-    requestAnimationFrame(tick);
+    size(); addEventListener('resize', () => { size(); draw(reduce ? 4 : (performance.now() - t0) / 1000); });
+    if (reduce) draw(4); else {
+      let vis = true;
+      if ('IntersectionObserver' in window) new IntersectionObserver(es => { vis = es[0].isIntersecting; }).observe(cv);
+      const tick = now => {
+        if (vis && !document.hidden) {
+          draw((now - t0) / 1000);
+          const ms = now - t0, sec = Math.floor(ms / 1000), f = Math.floor((ms % 1000) / (1000 / FPS));
+          tc.textContent = `00:${pad(Math.floor(sec / 60) % 60)}:${pad(sec % 60)}:${pad(f)}`;
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+
+  // nav icon: appears once the big silhouette has scrolled away, then fills with amber as the page is read
+  const ico = $('#ico'), hero = $('.hero');
+  const prog = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('past', scrollY > hero.offsetHeight * .45);
+    ico.style.setProperty('--p', max > 0 ? Math.min(1, scrollY / max).toFixed(3) : 0);
+  };
+  addEventListener('scroll', prog, { passive: true }); prog();
+
+  // works: on phones the strip scrolls sideways; the bar and counter follow it
+  const strip = $('#works'), bar = $('#wbar'), cnt = $('#wcnt');
+  if (strip) {
+    const items = $$('.work', strip);
+    const upd = () => {
+      const max = strip.scrollWidth - strip.clientWidth; if (max <= 0) return;
+      const q = Math.min(1, Math.abs(strip.scrollLeft) / max);
+      bar.style.setProperty('--q', q.toFixed(3));
+      const mid = strip.getBoundingClientRect(); let best = 0, bd = 1e9;
+      items.forEach((it, i) => { const r = it.getBoundingClientRect(), d = Math.abs((r.left + r.right) / 2 - (mid.left + mid.right) / 2); if (d < bd) { bd = d; best = i; } });
+      cnt.textContent = `${pad(best + 1)}/${pad(items.length)}`;
+    };
+    strip.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
   }
 
   // ticker: duplicate the run so the loop is seamless
@@ -598,7 +702,7 @@ body.locked{overflow:hidden}
     const step = now => { const p = Math.min((now - t) / dur, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   };
-  const targets = $$('.rv, .work, .steps');
+  const targets = $$('.rv, .work, .works, .steps');
   if (!('IntersectionObserver' in window)) { targets.forEach(el => el.classList.add('in')); return; }
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
