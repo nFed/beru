@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ליו הפקות | סקיצה 2 · הראש מלא סרטים</title>
+<title>Leeu vision | חברת הפקות וידאו · תל אביב</title>
 <meta name="theme-color" content="#FFFBF3">
 <link rel="icon" href="mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -426,6 +426,18 @@ body.locked{overflow:hidden}
 .film .edge{font-size:max(7px,1.45cqw);letter-spacing:.12em}
 .film .e1,.film .e3{top:calc(var(--perf) * .7)}
 .film .e2,.film .e4{bottom:calc(var(--perf) * .7)}
+
+/* ---------- Leeu vision wordmark ---------- */
+.word{direction:ltr;letter-spacing:-.01em}
+.word span{letter-spacing:0}
+/* ---------- nav icon: no extra elements — drawn upward on load, leans with the scroll, nods on hover ---------- */
+.word .ico .sunl{display:none}
+.nav .word .ico{animation:none;margin-inline-end:.18em}
+.nav .word .ico svg{transform-origin:55% 96%;transform:rotate(var(--tilt,0deg));animation:icoDraw 1.2s .35s cubic-bezier(.2,.7,.1,1) both}
+@keyframes icoDraw{from{clip-path:inset(100% 0 0 0);translate:0 4px}to{clip-path:inset(0);translate:0 0}}
+@media(hover:hover){.nav .word:hover .ico svg{animation:icoNod .9s cubic-bezier(.3,.7,.2,1)}}
+@keyframes icoNod{30%{rotate:-10deg}62%{rotate:4deg}100%{rotate:0deg}}
+@media(prefers-reduced-motion:reduce){.nav .word .ico svg{animation:none;transform:none}}
 </style>
 </head>
 <body>
@@ -433,7 +445,7 @@ body.locked{overflow:hidden}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="word" href="#top" aria-label="ליו הפקות, לראש העמוד"><i class="ico" id="ico" aria-hidden="true"><svg viewBox="0 0 100 99.19"><use href="#mk"/></svg></i><b>ליו</b><span>הפקות</span></a>
+    <a class="word" dir="ltr" href="#top" aria-label="Leeu vision, לראש העמוד"><i class="ico" id="ico" aria-hidden="true"><svg viewBox="0 0 100 99.19"><use href="#mk"/></svg></i><b>Leeu</b><span>vision</span></a>
     <nav aria-label="ניווט ראשי">
       <ul class="nav-links">
         <li><a href="#about">אודות</a></li>
@@ -470,7 +482,7 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="screen film" aria-hidden="true">
         <div class="strip">
-          <span class="edge e1">LIU 35 <b>▸</b> 23</span><span class="edge e2">23A</span><span class="edge e3">LIU 35 <b>▸</b> 24</span><span class="edge e4">24A</span>
+          <span class="edge e1">LEEU 35 <b>▸</b> 23</span><span class="edge e2">23A</span><span class="edge e3">LEEU 35 <b>▸</b> 24</span><span class="edge e4">24A</span>
           <figure class="fr side"><img src="media/film-prev.jpg" alt=""></figure>
           <figure class="fr main"><img src="media/film-main.jpg" alt=""><i class="flick"></i><i class="noise"></i></figure>
           <figure class="fr side"><img src="media/film-next.jpg" alt=""></figure>
@@ -496,13 +508,13 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="head-row">
         <div class="rv">
-          <div class="label">אודות ליו הפקות</div>
+          <div class="label">אודות Leeu vision</div>
           <h2 class="title">אמנות ההפקה<br><em>ברמה אחרת.</em></h2>
         </div>
       </div>
       <div class="about">
         <div class="about-text rv">
-          <p class="lead">ליו הפקות נוסדה ב-2010 מתוך אמונה אחת: <strong>סרט טוב יכול לשנות</strong> את הדרך שבה אנשים חושבים, מרגישים ומחליטים.</p>
+          <p class="lead">Leeu vision נוסדה ב-2010 מתוך אמונה אחת: <strong>סרט טוב יכול לשנות</strong> את הדרך שבה אנשים חושבים, מרגישים ומחליטים.</p>
           <p>מאז הפקנו מאות פרויקטים עבור המותגים הגדולים בישראל, חברות בינלאומיות וגופי תקשורת מובילים.</p>
           <p>אצלנו פועלים צוותי הפקה מקצועיים של במאים, מפיקים, צלמים ועורכים, שמורכבים לפי מה שכל פרויקט צריך. כל פרויקט מקבל מפיק אחד שמלווה אותו מההתחלה ועד המסירה.</p>
           <a class="link" href="#process">מהרעיון ועד המסירה <span>←</span></a>
@@ -618,7 +630,7 @@ body.locked{overflow:hidden}
   <section class="sec sand quote" aria-label="המלצה">
     <div class="wrap rv">
       <span class="qm" aria-hidden="true">״</span>
-      <blockquote>עבדנו עם הרבה חברות הפקה לאורך השנים. ליו הם הראשונים שגרמו לנו להרגיש <em>שהסרט שלנו</em>, לא שלהם.</blockquote>
+      <blockquote>עבדנו עם הרבה חברות הפקה לאורך השנים. Leeu vision הם הראשונים שגרמו לנו להרגיש <em>שהסרט שלנו</em>, לא שלהם.</blockquote>
     </div>
   </section>
 
@@ -657,7 +669,7 @@ body.locked{overflow:hidden}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a class="lock" href="#top" aria-label="ליו הפקות, לראש העמוד"><svg class="foot-mark" viewBox="0 0 100 99.19" aria-hidden="true"><use href="#mk"/></svg><span class="word"><b>ליו</b><span>הפקות</span></span></a>
+        <a class="lock" dir="ltr" href="#top" aria-label="Leeu vision, לראש העמוד"><svg class="foot-mark" viewBox="0 0 100 99.19" aria-hidden="true"><use href="#mk"/></svg><span class="word"><b>Leeu</b><span>vision</span></span></a>
         <p>חברת הפקות מתל אביב. פרסומות, תוכן וקולנוע מאז 2010.</p>
       </div>
       <div class="foot-cols">
@@ -671,7 +683,7 @@ body.locked{overflow:hidden}
         </div>
       </div>
     </div>
-    <div class="foot-bottom"><span>© 2026 ליו הפקות בע״מ · כל הזכויות שמורות</span><span>יוצרים רגעים שנשארים</span></div>
+    <div class="foot-bottom"><span>© 2026 Leeu vision · כל הזכויות שמורות</span><span>יוצרים רגעים שנשארים</span></div>
   </div>
 </footer>
 
@@ -710,17 +722,18 @@ body.locked{overflow:hidden}
     requestAnimationFrame(tick);
   }
 
-  // nav icon: appears once the big silhouette has scrolled away; a small sun crosses behind it as the page is read
-  const ico = $('#ico'), hero = $('.hero');
-  const prog = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    nav.classList.toggle('past', scrollY > hero.offsetHeight * .45);
-    const q = max > 0 ? Math.min(1, scrollY / max) : 0;
-    ico.style.setProperty('--sx', (88 - q * 76).toFixed(1) + '%');
-    ico.style.setProperty('--sy', (78 - Math.sin(q * Math.PI) * 62).toFixed(1) + '%');
-  };
-  ico.insertAdjacentHTML('afterbegin', '<b class="sunl"></b>');
-  addEventListener('scroll', prog, { passive: true }); prog();
+  // nav icon: the silhouette leans gently with the speed of the scroll and settles back when you stop
+  const ico = $('#ico');
+  if (ico && !reduce) {
+    let lastY = scrollY, tilt = 0, raf = 0, idle = 0;
+    const settle = () => { tilt *= .86; ico.style.setProperty('--tilt', tilt.toFixed(2) + 'deg'); if (Math.abs(tilt) > .05) raf = requestAnimationFrame(settle); else { ico.style.setProperty('--tilt', '0deg'); raf = 0; } };
+    addEventListener('scroll', () => {
+      const v = scrollY - lastY; lastY = scrollY;
+      tilt = Math.max(-9, Math.min(9, tilt * .6 + v * .12));
+      ico.style.setProperty('--tilt', tilt.toFixed(2) + 'deg');
+      clearTimeout(idle); idle = setTimeout(() => { if (!raf) raf = requestAnimationFrame(settle); }, 90);
+    }, { passive: true });
+  }
 
   // works: on phones the strip scrolls sideways; the bar and counter follow it
   const strip = $('#works'), bar = $('#wbar'), cnt = $('#wcnt');
