@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ליו הפקות | פתיחה 1 · תמונה מלאה</title>
+<title>ליו הפקות | פתיחה 2 · תמונות באותיות</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F6F5F2">
-<link rel="icon" href="mark.svg" type="image/svg+xml">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;800;900&amp;display=swap">
@@ -326,23 +326,20 @@ html:not(.js) .more{display:none}
 /* the headline never outgrows its column on very wide screens */
 @media (min-width:900px){.hero h1{font-size:clamp(80px,min(9.7vw,17.5vh),150px)}}
 
-/* ---------- opening variant 1 ---------- */
+/* ---------- opening variant 2 ---------- */
 .nav .brand svg{width:26px;opacity:1;margin-inline-end:10px}
-.hero.v1{position:relative;display:flex;flex-direction:column;min-height:100vh;min-height:100svh;padding-top:var(--navh)}
-.nav{background:var(--paper)}
-.v1 .vid{position:relative;flex:1 1 0;min-height:150px;overflow:hidden;background:var(--surface)}
-.v1 .vid img{object-position:30% 50%}
-.v1 .panel{position:relative;z-index:1;background:var(--paper);margin-top:-30px;margin-inline-end:28px;padding:22px var(--gut) clamp(52px,8svh,64px);display:flex;flex-direction:column;gap:clamp(10px,1.8svh,16px)}
+.hero.v2 .wrap{justify-content:center;gap:clamp(14px,2.6svh,30px);padding-block:clamp(10px,2svh,24px) clamp(56px,9svh,72px)}
+.knock{position:relative;isolation:isolate;overflow:hidden;margin-inline:calc(-1 * var(--gut))}
+.knock .kv{position:absolute;inset:0;filter:brightness(.86) saturate(1.1)}
+.hero .kt{position:relative;margin:0;padding:.04em var(--gut) .1em;background:var(--paper);color:#000;mix-blend-mode:lighten;font-size:clamp(64px,20.6vw,112px);line-height:.88;letter-spacing:-.05em;white-space:nowrap}
+.v2-foot{display:grid;gap:clamp(14px,2.4svh,22px)}
+@media (max-height:700px) and (max-width:899px){.hero .kt{font-size:clamp(60px,19.6vw,100px)}}
 @media (min-width:900px){
-  .v1 .vid{position:absolute;inset:var(--navh) 0 0 0}
-  .v1 .panel{position:absolute;bottom:0;inset-inline-start:0;margin:0;width:min(58%,860px);padding:clamp(32px,5vh,56px) var(--gut) clamp(40px,6vh,64px) clamp(32px,4vw,64px);gap:clamp(14px,2.2vh,24px)}
-  .v1 h1{font-size:clamp(72px,min(8.4vw,15vh),150px)}
+  .hero.v2 .wrap{display:flex;flex-direction:column;padding-bottom:clamp(40px,7vh,72px)}
+  .hero .kt{font-size:clamp(150px,min(20.5vw,33vh),286px);line-height:.86}
+  .v2-foot{grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:48px}
+  .v2 .hero-sub{max-width:44ch}
 }
-.js .v1 .vid{clip-path:inset(0 0 100% 0)}
-.js.ready .v1 .vid{clip-path:inset(0);transition:clip-path 1.2s var(--ease)}
-.js .v1 .panel{transform:translateY(24px);opacity:0}
-.js.ready .v1 .panel{transform:none;opacity:1;transition:transform .9s .25s var(--ease),opacity .6s .25s}
-@media (prefers-reduced-motion:reduce){.js .v1 .vid{clip-path:none}.js .v1 .panel{transform:none;opacity:1}}
 </style>
 </head>
 <body id="top">
@@ -378,13 +375,14 @@ html:not(.js) .more{display:none}
 </nav>
 
 <main>
-  <section class="hero v1" aria-label="פתיח">
-    <div class="vid" aria-hidden="true" data-rot><img class="on" src="media/wide-still.jpg" alt=""><img src="media/wide-set.jpg" alt=""><img src="media/wide-village.jpg" alt=""></div>
-    <div class="panel">
+  <section class="hero v2" aria-label="פתיח">
+    <div class="wrap">
       <div class="label fade">חברת הפקות וידאו · תל אביב · מאז 2010</div>
-      <h1><span class="ln"><span>כל פרויקט</span></span><span class="ln"><span>הוא יצירה<span class="acc">.</span></span></span></h1>
-      <p class="hero-sub fade">פרסומות, סדרות תוכן וסרטים למותגים, לחברות ולגופי תקשורת. מפיק אחד מלווה אתכם מהרעיון ועד הפריים האחרון.</p>
-      <div class="hero-cta fade d2"><a class="btn" href="#contact">בואו נדבר <span class="arr" aria-hidden="true">←</span></a><a class="btn ghost" href="#work">לצפייה בעבודות</a></div>
+      <div class="knock"><div class="kv" data-rot><img class="on" src="../media/wide-set.jpg" alt=""><img src="../media/wide-village.jpg" alt=""><img src="../media/wide-still.jpg" alt=""></div><h1 class="kt"><span class="ln"><span>כל פרויקט</span></span><span class="ln"><span>הוא יצירה.</span></span></h1></div>
+      <div class="v2-foot">
+        <p class="hero-sub fade">פרסומות, סדרות תוכן וסרטים למותגים, לחברות ולגופי תקשורת. מפיק אחד מלווה אתכם מהרעיון ועד הפריים האחרון.</p>
+        <div class="hero-cta fade d2"><a class="btn" href="#contact">בואו נדבר <span class="arr" aria-hidden="true">←</span></a><a class="btn ghost" href="#work">לצפייה בעבודות</a></div>
+      </div>
     </div>
   </section>
 
@@ -395,11 +393,11 @@ html:not(.js) .more{display:none}
         <p class="rv">רגע אחד מתוך כל הפקה.</p>
       </div>
       <div class="gal">
-        <div class="gi wide"><figure class="wipe"><img src="media/wide-still.jpg" alt="" loading="lazy"></figure></div>
-        <div class="gi"><figure class="wipe"><img src="media/02-light.jpg" alt="" loading="lazy"></figure></div>
-        <div class="gi"><figure class="wipe"><img src="media/03-road.jpg" alt="" loading="lazy"></figure></div>
-        <div class="gi"><figure class="wipe"><img src="media/05-city.jpg" alt="" loading="lazy"></figure></div>
-        <div class="gi"><figure class="wipe"><img src="media/04-crowd.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi wide"><figure class="wipe"><img src="../media/wide-still.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="../media/02-light.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="../media/03-road.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="../media/05-city.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe"><img src="../media/04-crowd.jpg" alt="" loading="lazy"></figure></div>
       </div>
     </div>
   </section>
@@ -445,7 +443,7 @@ html:not(.js) .more{display:none}
     </div>
   </section>
 
-  <div class="band"><figure class="wipe"><img src="media/wide-set.jpg" alt="" loading="lazy"></figure></div>
+  <div class="band"><figure class="wipe"><img src="../media/wide-set.jpg" alt="" loading="lazy"></figure></div>
 
   <section class="sec" id="process">
     <div class="wrap">
@@ -474,7 +472,7 @@ html:not(.js) .more{display:none}
           <p>אצלנו פועלים צוותי הפקה מקצועיים של במאים, מפיקים, צלמים ועורכים, שמורכבים לפי מה שכל פרויקט צריך.</p>
         </div>
         <div class="about-side">
-        <div class="gi"><figure class="wipe about-ph"><img src="media/11-field.jpg" alt="" loading="lazy"></figure></div>
+        <div class="gi"><figure class="wipe about-ph"><img src="../media/11-field.jpg" alt="" loading="lazy"></figure></div>
         <div class="stats rv">
           <div class="stat"><span class="n">2010</span><span class="l">פועלים מאז</span></div>
           <div class="stat"><span class="n"><span data-n="300">300</span><sup>+</sup></span><span class="l">פרויקטים שהופקו</span></div>
@@ -524,7 +522,7 @@ html:not(.js) .more{display:none}
   </div>
 </footer>
 
-<a class="sk-back" href="index.html">פתיחה 1 · כל הסקיצות</a>
+<a class="sk-back" href="index.html">פתיחה 2 · כל הסקיצות</a>
 
 <script>
 (() => {

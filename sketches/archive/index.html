@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ארכיון · ליו הפקות · סקיצות</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FBF5EA">
+<link rel="icon" href="../mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&amp;family=Heebo:wght@300;400;500&amp;display=swap">
+<style>
+/* Layout: a quiet index. One sketch per row, the screenshots do the talking. */
+:root{
+  --cream:#FBF5EA; --paper:#FFFDF8; --sand:#F3E5CB; --line:#E6D6B8;
+  --ink:#1A1410; --mute:#6A5A47; --gold:#B8902F; --gold-ink:#7A5C14;
+  --display:'Frank Ruhl Libre','David Libre',Georgia,serif;
+  --sans:'Heebo','Arial Hebrew',Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--gold-ink);outline-offset:4px}
+
+header{padding-block:clamp(36px,7vw,72px) clamp(20px,4vw,36px)}
+.brand{display:flex;align-items:center;gap:14px}
+.brand i{width:44px;aspect-ratio:100/99.19;background:var(--ink);-webkit-mask:url(../mark.svg) center/contain no-repeat;mask:url(../mark.svg) center/contain no-repeat}
+.brand b{font-family:var(--display);font-weight:700;font-size:26px;line-height:1}
+.brand span{font-size:12px;font-weight:500;letter-spacing:.18em;color:var(--gold-ink)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(38px,8vw,72px);line-height:1.05;letter-spacing:-.01em;margin:clamp(24px,5vw,44px) 0 12px;text-wrap:balance}
+.intro{max-width:56ch;color:var(--mute);margin:0}
+.notes{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+.notes li{font-size:13px;font-weight:400;padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--paper);color:var(--mute)}
+
+main{display:grid;gap:clamp(18px,3vw,28px);padding-block:8px clamp(48px,8vw,96px)}
+.sk{display:grid;grid-template-columns:1fr;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .5s}
+.sk:hover{transform:translateY(-4px);box-shadow:0 24px 50px -28px rgba(122,92,20,.45);border-color:#D9C08A}
+.shots{position:relative;background:var(--sand);padding:clamp(16px,3vw,28px);padding-bottom:0;min-width:0}
+.shots .d{display:block;width:100%;height:auto;aspect-ratio:1440/900;object-fit:cover;object-position:top;border-radius:10px 10px 0 0;box-shadow:0 18px 40px -22px rgba(60,40,10,.5);background:var(--paper)}
+.shots .m{position:absolute;bottom:0;left:clamp(26px,5vw,48px);width:clamp(84px,24%,150px);height:auto;aspect-ratio:390/844;object-fit:cover;object-position:top;border:4px solid var(--ink);border-bottom:0;border-radius:16px 16px 0 0;box-shadow:0 18px 40px -16px rgba(40,25,5,.6);background:var(--paper);transform:translateY(8%);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.sk:hover .m{transform:translateY(2%)}
+.txt{padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:10px;min-width:0}
+.no{font-size:12px;font-weight:500;letter-spacing:.2em;color:var(--gold-ink)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,40px);line-height:1.1;margin:0}
+.txt p{margin:0;color:var(--mute);max-width:46ch}
+.meta{display:grid;gap:4px;margin:6px 0 0;font-size:14px}
+.meta div{display:flex;gap:10px}
+.meta dt{flex:none;width:5.2em;color:var(--gold-ink);font-weight:500}
+.meta dd{margin:0;color:var(--ink);font-weight:400}
+.go{margin-top:auto;padding-top:14px;font-weight:500;display:inline-flex;gap:10px;align-items:center}
+.go span{display:inline-block;transition:transform .4s}
+.sk:hover .go span{transform:translateX(-6px)}
+@media (min-width:820px){
+  .sk{grid-template-columns:1.25fr 1fr}
+  .sk:nth-child(even) .shots{order:2}
+  .txt{padding:clamp(28px,3.4vw,44px);justify-content:center}
+  .go{margin-top:8px}
+}
+.grp{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.2em;color:var(--gold-ink);margin:clamp(14px,3vw,26px) 0 0;display:flex;align-items:center;gap:14px}
+.grp::after{content:"";flex:1;height:1px;background:var(--line)}
+main>.grp:first-child{margin-top:0}
+.sk:first-of-type{border-color:var(--ink)}
+footer{border-top:1px solid var(--line);padding-block:22px 40px;font-size:13px;color:var(--mute)}
+footer a{text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* quick map */
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+.jump{position:sticky;top:0;z-index:20;background:rgba(251,245,234,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:calc(-1 * max(20px,env(safe-area-inset-left,0px)));padding:10px max(20px,env(safe-area-inset-left,0px))}
+.jump ul{display:flex;gap:8px;margin:0;padding:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+.jump ul::-webkit-scrollbar{display:none}
+.jump a{display:block;white-space:nowrap;text-decoration:none;font-size:14px;font-weight:500;padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:var(--paper)}
+.jump a:hover{border-color:var(--ink)}
+.quick{padding-block:clamp(22px,4vw,36px) 4px;display:grid;gap:clamp(18px,3vw,26px)}
+.quick h3{margin:0 0 10px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:10px}
+.tile{display:grid;gap:6px;text-decoration:none;font-size:12.5px;font-weight:500;line-height:1.25;text-align:center}
+.tile img{width:100%;height:auto;aspect-ratio:390/700;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--line);background:var(--paper);transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s}
+.tile:hover img{transform:translateY(-3px);border-color:var(--ink)}
+.tile b{display:block;font-weight:500;color:var(--gold-ink);font-size:11px;letter-spacing:.08em}
+@media (min-width:820px){.tiles{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:14px}.tile{font-size:13.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><i aria-hidden="true"></i><div><b>ליו</b><br><span>הפקות</span></div></div>
+    <h1>כל הגרסאות במקום אחד</h1>
+    <p class="intro">ארבע עשרה גרסאות לאותו תוכן, עם תמונות מתוך הפקות של ליו. לחיצה על כל תמונה קטנה פותחת את הגרסה; למטה יש תיאור מפורט של כל אחת.</p>
+  </header>
+
+  <nav class="jump" aria-label="קפיצה לקבוצה"><ul><li><a href="#final">גרסה סופית</a></li><li><a href="#open">פתיחות</a></li><li><a href="#warm">סקיצות חמות</a></li><li><a href="#neutral">סקיצות ניטרליות</a></li></ul></nav>
+
+  <section class="quick" aria-label="מבט מהיר">
+    <div><h3 class="grp">גרסה סופית</h3><div class="tiles"><a class="tile" href="final.html"><img src="previews/final-mobile.jpg" alt="" width="390" height="844"><span><b>גרסה סופית</b>נייר, עם סרטים בראש</span></a></div></div>
+    <div><h3 class="grp">פתיחות</h3><div class="tiles"><a class="tile" href="open-1.html"><img src="previews/open-1-mobile.jpg" alt="" width="390" height="844"><span><b>פתיחה 1</b>תמונה מלאה</span></a><a class="tile" href="open-2.html"><img src="previews/open-2-mobile.jpg" alt="" width="390" height="844"><span><b>פתיחה 2</b>תמונות באותיות</span></a><a class="tile" href="open-3.html"><img src="previews/open-3-mobile.jpg" alt="" width="390" height="844"><span><b>פתיחה 3</b>קולאז׳</span></a><a class="tile" href="open-4.html"><img src="previews/open-4-mobile.jpg" alt="" width="390" height="844"><span><b>פתיחה 4</b>הנפשת אור</span></a></div></div>
+    <div><h3 class="grp">סקיצות חמות</h3><div class="tiles"><a class="tile" href="1.html"><img src="previews/1-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 1</b>קיר שמש</span></a><a class="tile" href="2.html"><img src="previews/2-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 2</b>הראש מלא סרטים</span></a><a class="tile" href="3.html"><img src="previews/3-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 3</b>פוסטר</span></a><a class="tile" href="4.html"><img src="previews/4-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 4</b>גלריה</span></a><a class="tile" href="5.html"><img src="previews/5-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 5</b>מסלול השמש</span></a><a class="tile" href="6.html"><img src="previews/6-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 6</b>מוזאיקה</span></a><a class="tile" href="7.html"><img src="previews/7-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 7</b>גיליון קונטקט</span></a></div></div>
+    <div><h3 class="grp">סקיצות ניטרליות</h3><div class="tiles"><a class="tile" href="8.html"><img src="previews/8-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 8</b>נייר</span></a><a class="tile" href="9.html"><img src="previews/9-mobile.jpg" alt="" width="390" height="844"><span><b>סקיצה 9</b>אבן</span></a></div></div>
+  </section>
+
+  <main>
+    <h3 class="grp" id="final">גרסה סופית</h3>
+
+    <a class="sk" href="final.html">
+      <div class="shots"><img class="d" src="previews/final-desktop.jpg" alt="גרסה סופית במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/final-mobile.jpg" alt="גרסה סופית בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">גרסה סופית</span>
+        <h2>נייר, עם סרטים בראש</h2>
+        <p>הבסיס הניטרלי של סקיצה 8, עם פריימים שמתחלפים בתוך הצללית. סדר התוכן והניסוחים עודכנו: המסר קודם, העבודות מיד אחריו.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Heebo</dd></div><div><dt>צללית</dt><dd>חלון שדרכו רואים את הצילומים</dd></div><div><dt>סדר</dt><dd>פתיחה, עבודות, לקוחות, שירותים, תהליך, אודות, קשר</dd></div></dl>
+        <span class="go">לצפייה בגרסה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+    <h3 class="grp" id="open">ארבע פתיחות לגרסה הסופית</h3>
+
+    <a class="sk" href="open-1.html">
+      <div class="shots"><img class="d" src="previews/open-1-desktop.jpg" alt="פתיחה 1 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/open-1-mobile.jpg" alt="פתיחה 1 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">פתיחה 1</span>
+        <h2>תמונה מלאה</h2>
+        <p>תמונות מתחלפות ממלאות את כל מסך הפתיחה, והטקסט יושב על לוח בהיר שנחתך לתוכן.</p>
+        <dl class="meta"><div><dt>רקע</dt><dd>תמונות מקצה לקצה</dd></div><div><dt>צללית</dt><dd>קטנה, בלוגו שבתפריט</dd></div><div><dt>בהמשך</dt><dd>אפשר להחליף לווידאו</dd></div></dl>
+        <span class="go">לצפייה בפתיחה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="open-2.html">
+      <div class="shots"><img class="d" src="previews/open-2-desktop.jpg" alt="פתיחה 2 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/open-2-mobile.jpg" alt="פתיחה 2 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">פתיחה 2</span>
+        <h2>תמונות באותיות</h2>
+        <p>הכותרת הענקית היא החלון: התמונות נראות רק דרך האותיות, על רקע נקי.</p>
+        <dl class="meta"><div><dt>רקע</dt><dd>תמונות בתוך הכותרת</dd></div><div><dt>צללית</dt><dd>קטנה, בלוגו שבתפריט</dd></div><div><dt>בהמשך</dt><dd>אפשר להחליף לווידאו</dd></div></dl>
+        <span class="go">לצפייה בפתיחה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="open-3.html">
+      <div class="shots"><img class="d" src="previews/open-3-desktop.jpg" alt="פתיחה 3 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/open-3-mobile.jpg" alt="פתיחה 3 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">פתיחה 3</span>
+        <h2>קולאז׳</h2>
+        <p>שלוש תמונות מהסט ומהסרט מרחפות לאט ליד הכותרת.</p>
+        <dl class="meta"><div><dt>רקע</dt><dd>נקי, עם שלוש תמונות</dd></div><div><dt>צללית</dt><dd>קטנה, בלוגו שבתפריט</dd></div><div><dt>תנועה</dt><dd>ריחוף עדין</dd></div></dl>
+        <span class="go">לצפייה בפתיחה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="open-4.html">
+      <div class="shots"><img class="d" src="previews/open-4-desktop.jpg" alt="פתיחה 4 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/open-4-mobile.jpg" alt="פתיחה 4 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">פתיחה 4</span>
+        <h2>הנפשת אור</h2>
+        <p>בלי תמונה בפתיחה: כתמי אור חמים נעים לאט מאחורי הצללית.</p>
+        <dl class="meta"><div><dt>רקע</dt><dd>הנפשה שנוצרת בדפדפן</dd></div><div><dt>צללית</dt><dd>גדולה, פחם מלא</dd></div><div><dt>תנועה</dt><dd>אור שזז לאט</dd></div></dl>
+        <span class="go">לצפייה בפתיחה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+    <h3 class="grp" id="warm">שבע סקיצות בגוון חם</h3>
+
+    <a class="sk" href="1.html">
+      <div class="shots"><img class="d" src="previews/1-desktop.jpg" alt="סקיצה 1 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/1-mobile.jpg" alt="סקיצה 1 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 1</span>
+        <h2>קיר שמש</h2>
+        <p>הכי קרוב לתמונת המותג: קיר מואר בשמש של אחר הצהריים, צללי עלים שזזים לאט, והצללית מול שמש עולה.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Frank Ruhl Libre · Heebo</dd></div><div><dt>צללית</dt><dd>חום אספרסו עם אור שמש מאחור</dd></div><div><dt>תנועה</dt><dd>זריחה בטעינה, צללי עלים חיים</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="2.html">
+      <div class="shots"><img class="d" src="previews/2-desktop.jpg" alt="סקיצה 2 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/2-mobile.jpg" alt="סקיצה 2 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 2</span>
+        <h2>הראש מלא סרטים</h2>
+        <p>הצללית היא המסך: בתוך הראש של הילד מתחלפים פריימים מההפקות. נקי, מודרני ומדויק.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>IBM Plex Sans Hebrew · IBM Plex Mono</dd></div><div><dt>צללית</dt><dd>חלון שדרכו רואים את הצילומים</dd></div><div><dt>תנועה</dt><dd>פריימים מתחלפים בתוך הצללית</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="3.html">
+      <div class="shots"><img class="d" src="previews/3-desktop.jpg" alt="סקיצה 3 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/3-mobile.jpg" alt="סקיצה 3 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 3</span>
+        <h2>פוסטר</h2>
+        <p>טיפוגרפיה ענקית כמו כרזת פסטיבל, צללית כתומה שמשתלבת באותיות, ומשטחי צבע חמים.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Karantina · Noto Sans Hebrew</dd></div><div><dt>צללית</dt><dd>כתום שרוף, שטוח</dd></div><div><dt>תנועה</dt><dd>כותרות נשלפות, חותמת מסתובבת, פסים רצים</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="4.html">
+      <div class="shots"><img class="d" src="previews/4-desktop.jpg" alt="סקיצה 4 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/4-mobile.jpg" alt="סקיצה 4 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 4</span>
+        <h2>גלריה</h2>
+        <p>שקט ואלגנטי, עם הרבה אוויר וקווים דקים. הצללית מצוירת בקו זהב, והעבודות מוצגות כמו בתערוכה.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Bellefair · Assistant</dd></div><div><dt>צללית</dt><dd>קו זהב דק שמצייר את עצמו</dd></div><div><dt>תנועה</dt><dd>ציור הקו בטעינה, חשיפות איטיות</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="5.html">
+      <div class="shots"><img class="d" src="previews/5-desktop.jpg" alt="סקיצה 5 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/5-mobile.jpg" alt="סקיצה 5 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 5</span>
+        <h2>מסלול השמש</h2>
+        <p>יום שלם של אור לאורך הגלילה: השמש זורחת בפתיחה ושוקעת ליד פרטי הקשר, והצבעים משתנים איתה.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Suez One · Rubik</dd></div><div><dt>צללית</dt><dd>חום טרקוטה, על קו האופק</dd></div><div><dt>תנועה</dt><dd>שמש שנעה עם הגלילה</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="6.html">
+      <div class="shots"><img class="d" src="previews/6-desktop.jpg" alt="סקיצה 6 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/6-mobile.jpg" alt="סקיצה 6 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 6</span>
+        <h2>מוזאיקה</h2>
+        <p>כל האתר בנוי מאריחים מעוגלים, כמו מסך של אפליקציה: כותרת, צללית, פריימים חיים ועובדות במסך אחד.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Assistant</dd></div><div><dt>צללית</dt><dd>חום כהה על אריח זהוב, שמש מאחור</dd></div><div><dt>תנועה</dt><dd>אריחים שמתחברים בטעינה</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="7.html">
+      <div class="shots"><img class="d" src="previews/7-desktop.jpg" alt="סקיצה 7 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/7-mobile.jpg" alt="סקיצה 7 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 7</span>
+        <h2>גיליון קונטקט</h2>
+        <p>בשפה של המקצוע: רצועות פריימים על נייר, מספרי פריים, וסימון בעיפרון שמקיף את הפריים הנבחר.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Noto Serif Hebrew · Heebo</dd></div><div><dt>צללית</dt><dd>פריים נבחר ברצועה, מוקף בעיפרון כתום</dd></div><div><dt>תנועה</dt><dd>סימוני עיפרון שמציירים את עצמם</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+    <h3 class="grp" id="neutral">שתי סקיצות ניטרליות</h3>
+
+    <a class="sk" href="8.html">
+      <div class="shots"><img class="d" src="previews/8-desktop.jpg" alt="סקיצה 8 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/8-mobile.jpg" alt="סקיצה 8 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 8</span>
+        <h2>נייר</h2>
+        <p>ניטרלי ומודרני: לבן שבור ופחם, בלי צהוב וחום. הצבע בעמוד מגיע מהצילומים עצמם.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Heebo</dd></div><div><dt>צללית</dt><dd>פחם מלא, עם נקודת שמש אחת</dd></div><div><dt>תנועה</dt><dd>מהירה ומדויקת</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+
+    <a class="sk" href="9.html">
+      <div class="shots"><img class="d" src="previews/9-desktop.jpg" alt="סקיצה 9 במחשב" width="1440" height="900" loading="lazy"><img class="m" src="previews/9-mobile.jpg" alt="סקיצה 9 בטלפון" width="390" height="844" loading="lazy"></div>
+      <div class="txt">
+        <span class="no">סקיצה 9</span>
+        <h2>אבן</h2>
+        <p>ניטרלי ורך בגווני אבן. הצללית היא תבליט בצבע הקיר, ורואים אותה רק בזכות האור שנע עליה.</p>
+        <dl class="meta"><div><dt>פונטים</dt><dd>Frank Ruhl Libre · Assistant</dd></div><div><dt>צללית</dt><dd>תבליט בגוון הקיר</dd></div><div><dt>תנועה</dt><dd>אור שנע על התבליט</dd></div></dl>
+        <span class="go">לצפייה בסקיצה <span aria-hidden="true">←</span></span>
+      </div>
+    </a>
+  </main>
+
+  <footer>התמונות הן מתוך הפקות של ליו. הטקסטים והפרטים עדיין בבדיקה. <a href="../../index.html">לאתר הנוכחי</a></footer>
+</div>
+</body>
+</html>

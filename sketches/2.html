@@ -308,7 +308,6 @@ body.locked{overflow:hidden}
 .word .ico{position:relative;flex:none;height:30px;width:0;margin-inline-end:-.34em;opacity:0;transform:translateY(8px) scale(.7);transform-origin:50% 100%;transition:width .5s var(--ease),margin .5s var(--ease),opacity .4s,transform .6s cubic-bezier(.3,1.5,.5,1)}
 .nav.past .word .ico{width:30px;margin-inline-end:.08em;opacity:1;transform:none}
 .word .ico svg{position:absolute;inset:0;width:30px;height:30px;fill:var(--ink)}
-.word .ico .f{fill:var(--amber);clip-path:inset(calc((1 - var(--p,0)) * 100%) 0 0 0)}
 /* ---------- works: a sideways strip on phones ---------- */
 .wnav{display:none}
 .work picture{display:contents}
@@ -341,22 +340,9 @@ body.locked{overflow:hidden}
   .hero-sub{max-width:30em}
 }
 
-/* ---------- nav icon: variants to compare ---------- */
-.word .ico .sunl{display:none}
-[data-ico]:not([data-ico="fill"]) .word .ico .f{display:none}
-/* sun: soft backlight moving behind the head */
-[data-ico="sun"] .word .ico .sunl{display:block;position:absolute;left:var(--sx,88%);top:var(--sy,78%);width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:radial-gradient(circle,#FFE2A6 0%,rgba(236,150,50,.9) 34%,rgba(222,138,46,0) 70%);transition:left .25s linear,top .25s linear}
-/* draw: the head is drawn upward once, then stays still */
-[data-ico="draw"] .word .ico svg{clip-path:inset(100% 0 0 0);transition:clip-path .9s .15s var(--ease)}
-[data-ico="draw"] .nav.past .word .ico svg{clip-path:inset(0)}
-/* nod: a small nod on each new section */
-[data-ico="nod"] .word .ico svg{transform-origin:55% 95%}
-[data-ico="nod"] .word .ico.nod svg{animation:nod .9s var(--ease)}
-@keyframes nod{30%{transform:rotate(-9deg)}60%{transform:rotate(3deg)}100%{transform:none}}
-/* look: the head turns to face the scroll direction */
-[data-ico="look"] .word .ico svg{transition:transform .55s var(--ease)}
-[data-ico="look"] .word .ico.back svg{transform:scaleX(-1)}
-@media(prefers-reduced-motion:reduce){[data-ico] .word .ico svg{transition:none;animation:none}}
+/* ---------- nav icon: a soft sun travels behind the head as the page is read ---------- */
+.word .ico .sunl{position:absolute;left:var(--sx,88%);top:var(--sy,78%);width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:radial-gradient(circle,#FFE2A6 0%,rgba(236,150,50,.9) 34%,rgba(222,138,46,0) 70%);transition:left .25s linear,top .25s linear}
+@media(prefers-reduced-motion:reduce){.word .ico .sunl{transition:none}}
 </style>
 </head>
 <body>
@@ -364,7 +350,7 @@ body.locked{overflow:hidden}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="word" href="#top" aria-label="ליו הפקות, לראש העמוד"><i class="ico" id="ico" aria-hidden="true"><svg viewBox="0 0 100 99.19"><use href="#mk"/></svg><svg class="f" viewBox="0 0 100 99.19"><use href="#mk"/></svg></i><b>ליו</b><span>הפקות</span></a>
+    <a class="word" href="#top" aria-label="ליו הפקות, לראש העמוד"><i class="ico" id="ico" aria-hidden="true"><svg viewBox="0 0 100 99.19"><use href="#mk"/></svg></i><b>ליו</b><span>הפקות</span></a>
     <nav aria-label="ניווט ראשי">
       <ul class="nav-links">
         <li><a href="#about">אודות</a></li>
@@ -603,7 +589,6 @@ body.locked{overflow:hidden}
   </div>
 </footer>
 
-<a class="sk-back" href="index.html">סקיצה 2 · כל הסקיצות</a>
 
 <script>
 (() => {
@@ -693,33 +678,17 @@ body.locked{overflow:hidden}
     }
   }
 
-  // nav icon: appears once the big silhouette has scrolled away, then fills with amber as the page is read
+  // nav icon: appears once the big silhouette has scrolled away; a small sun crosses behind it as the page is read
   const ico = $('#ico'), hero = $('.hero');
   const prog = () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     nav.classList.toggle('past', scrollY > hero.offsetHeight * .45);
     const q = max > 0 ? Math.min(1, scrollY / max) : 0;
-    ico.style.setProperty('--p', q.toFixed(3));
-    // sun variant: a soft light travels behind the head in an arc, from sunrise to sunset
     ico.style.setProperty('--sx', (88 - q * 76).toFixed(1) + '%');
     ico.style.setProperty('--sy', (78 - Math.sin(q * Math.PI) * 62).toFixed(1) + '%');
-    // look variant: the head faces the direction you scroll
-    if (Math.abs(scrollY - lastY) > 6) { ico.classList.toggle('back', scrollY < lastY); lastY = scrollY; }
   };
-  let lastY = scrollY;
-  // icon behaviour to compare: ?ico=sun (default) | fill | draw | nod | look
-  const icoMode = (new URLSearchParams(location.search).get('ico') || 'sun').replace(/[^a-z]/g, '');
-  document.documentElement.dataset.ico = icoMode;
   ico.insertAdjacentHTML('afterbegin', '<b class="sunl"></b>');
   addEventListener('scroll', prog, { passive: true }); prog();
-  // nod variant: a small nod each time a new section comes into view
-  if (!reduce && 'IntersectionObserver' in window) {
-    const nio = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting || !nav.classList.contains('past')) return;
-      ico.classList.remove('nod'); void ico.offsetWidth; ico.classList.add('nod');
-    }), { rootMargin: '-45% 0px -50% 0px' });
-    $$('main > section').forEach(sec => nio.observe(sec));
-  }
 
   // works: on phones the strip scrolls sideways; the bar and counter follow it
   const strip = $('#works'), bar = $('#wbar'), cnt = $('#wcnt');
