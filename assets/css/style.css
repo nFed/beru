@@ -347,8 +347,10 @@ body.locked{overflow:hidden}
 .nav .word .ico{animation:none;margin-inline-end:.18em}
 .nav .word .ico svg{transform-origin:55% 96%;transform:rotate(var(--tilt,0deg));animation:icoDraw 1.2s .35s cubic-bezier(.2,.7,.1,1) both}
 @keyframes icoDraw{from{clip-path:inset(100% 0 0 0);translate:0 4px}to{clip-path:inset(0);translate:0 0}}
-@media(hover:hover){
-  .nav .word:hover .ico svg{animation:icoNod .9s cubic-bezier(.3,.7,.2,1)}
+/* the nod runs on the wrapper so it never replaces the draw-in: the mark stays visible on hover and after */
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .nav .word .ico{transform-origin:55% 96%}
+  .nav .word:hover .ico{animation:icoNod .9s cubic-bezier(.3,.7,.2,1)}
 }
 @keyframes icoNod{30%{rotate:-10deg}62%{rotate:4deg}100%{rotate:0deg}}
 @media(prefers-reduced-motion:reduce){
