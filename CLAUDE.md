@@ -17,7 +17,8 @@
   review covers both. The nav has an EN / עב switch.
 - Type: Karantina for headings (poster style), Heebo for text, IBM Plex Mono for small labels.
 - Hero: the silhouette with a film countdown (3-2-1) that plays once and opens onto a photo of Shmuel
-  behind the scenes, with a film look (warm grade, moving grain, vignette, light leak, slow push-in).
+  behind the scenes, with a light film look (natural colour, moving grain, soft vignette, faint light leak)
+  and a slow, smooth zoom in and out; no jumps or flicker.
 - Keep the existing copy; only light adaptations unless the owner asks otherwise.
 - The site lives at the repository root: `index.html` (+ `en/index.html`), `assets/css/style.css`,
   `assets/js/main.js`, `assets/img/`. Images are WebP in two widths with `srcset`; keep that when
