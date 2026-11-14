@@ -465,3 +465,18 @@ body.locked{overflow:hidden}
   .hero-cta .btn{height:clamp(44px,6.4svh,52px)}
 }
 .wnav #wcnt{color:#8F4E0C}
+
+/* ---------- footer on phones: short, no repeat of the logo (it stays in the bar above) or of the menu links ---------- */
+@media(max-width:899px){
+  .foot{padding-block:30px 88px}
+  .foot-top{gap:16px}
+  .foot-brand .lock{display:none}
+  .foot-brand p{font-size:15px;line-height:1.55}
+  .foot-cols{display:block}
+  .foot-cols>div:first-child{display:none}
+  .foot .foot-cols .fh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .foot-cols ul{display:flex;flex-wrap:wrap;gap:8px}
+  .foot-cols ul a{display:inline-flex;align-items:center;height:40px;padding-inline:16px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--line);font-size:14.5px;color:var(--ink-2);transition:box-shadow .25s,color .25s}
+  .foot-cols ul a:hover{box-shadow:inset 0 0 0 1.5px var(--amber);color:var(--amber-ink)}
+  .foot-bottom{flex-direction:column;gap:2px;margin-top:22px;padding-top:14px;font-size:12.5px}
+}
