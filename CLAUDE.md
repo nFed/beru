@@ -9,10 +9,18 @@
   (GitHub Pages serves `main`). No need to ask first.
 - The site is Hebrew and right-to-left: galleries, sliders, progress bars and arrows follow
   Hebrew reading direction (start on the right, advance to the left).
-- Brand: **Leeu Productions** (title case in the logo and in text). The silhouette mark sits to the
-  right of the name.
+- Brand: **Leeu Productions** (title case in text). The logo is **ליו הפקות** on the Hebrew site and
+  **Leeu Productions** on the English site; the silhouette mark (sunset gradient, never black) sits to
+  the right of the name in both.
+- Two languages: Hebrew is the default at the root (`index.html`, RTL); English is `en/index.html`
+  (LTR, mirrored directions). Every content or layout change goes into both, and the screenshot
+  review covers both. The nav has an EN / עב switch.
+- Type: Karantina for headings (poster style), Heebo for text, IBM Plex Mono for small labels.
+- Hero: the silhouette with a film countdown (3-2-1) that opens onto a frame.
 - Keep the existing copy; only light adaptations unless the owner asks otherwise.
-- The site lives at the repository root: `index.html`, `assets/css/style.css`,
+- The site lives at the repository root: `index.html` (+ `en/index.html`), `assets/css/style.css`,
   `assets/js/main.js`, `assets/img/`. Images are WebP in two widths with `srcset`; keep that when
   adding images. `404.html` forwards old links (`/site/`, `/sketches/…`). The previous site is in
   `archive/old-site/` and the earlier sketches in `archive/sketches/`; both are `noindex`.
+- `sketches/` holds the logo / font sketches (noindex) with a frozen copy of the stylesheet
+  (`sketches/style.css`), so changes to the main site do not alter them.

@@ -3,6 +3,8 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const pad = n => String(n).padStart(2, '0');
+  const rtl = document.documentElement.dir !== 'ltr';
+  const T = rtl ? { open: 'פתיחת תפריט', close: 'סגירת תפריט' } : { open: 'Open menu', close: 'Close menu' };
 
   // nav
   const nav = $('#nav');
@@ -13,7 +15,7 @@
   const burger = $('#burger'), menu = $('#menu');
   const setMenu = open => {
     menu.classList.toggle('open', open); document.body.classList.toggle('locked', open);
-    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
+    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? T.close : T.open);
   };
   burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
   $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
@@ -51,16 +53,18 @@
     const items = $$('.work', strip);
     const upd = () => {
       const max = strip.scrollWidth - strip.clientWidth; if (max <= 0) return;
-      const q = 1 - Math.min(1, Math.max(0, strip.scrollLeft) / max);
+      const x = Math.min(1, Math.max(0, strip.scrollLeft) / max), q = rtl ? 1 - x : x;
       bar.style.setProperty('--q', q.toFixed(3));
       const mid = strip.getBoundingClientRect(); let best = 0, bd = 1e9;
       items.forEach((it, i) => { const r = it.getBoundingClientRect(), d = Math.abs((r.left + r.right) / 2 - (mid.left + mid.right) / 2); if (d < bd) { bd = d; best = i; } });
       cnt.textContent = `${pad(best + 1)}/${pad(items.length)}`;
     };
-    // reverse the visual order (first frame ends up on the right) and open at that end
-    items.forEach((it, i) => it.style.setProperty('--o', items.length - i));
-    const toStart = () => { const max = strip.scrollWidth - strip.clientWidth; if (max > 0) strip.scrollLeft = max; };
-    toStart(); addEventListener('load', () => { toStart(); upd(); });
+    // Hebrew: reverse the visual order (first frame ends up on the right) and open at that end; English starts on the left
+    if (rtl) {
+      items.forEach((it, i) => it.style.setProperty('--o', items.length - i));
+      const toStart = () => { const max = strip.scrollWidth - strip.clientWidth; if (max > 0) strip.scrollLeft = max; };
+      toStart(); addEventListener('load', () => { toStart(); upd(); });
+    }
     strip.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
   }
 
