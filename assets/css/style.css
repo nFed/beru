@@ -409,8 +409,8 @@ body.locked{overflow:hidden}
 @keyframes iris{to{clip-path:circle(80% at 52% 49%)}}
 
 /* film look: a light, natural grade, moving film grain, a soft vignette and a faint light leak; after it opens the frame zooms slowly in and out, with no jumps */
-.lion .ph{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;object-position:50% 50%;filter:contrast(1.06) saturate(.9) sepia(.08) brightness(1.02);transform-origin:56% 38%;animation:drift 16s 3.8s ease-in-out infinite alternate}
-@keyframes drift{from{scale:1}to{scale:1.08;translate:-1% .6%}}
+.lion .ph{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;object-position:50% 50%;filter:contrast(1.06) saturate(.9) sepia(.08) brightness(1.02);transform-origin:57% 36%;animation:drift 18s 3.8s ease-in-out infinite alternate}
+@keyframes drift{from{scale:1}to{scale:1.16}}
 .lion .grade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,200,140,.14),rgba(255,200,140,0) 45%,rgba(40,20,5,.22));mix-blend-mode:soft-light}
 .lion .grade::after{content:"";position:absolute;inset:0;background:rgba(255,245,230,.05);mix-blend-mode:screen}
 .lion .leak{position:absolute;inset:-20%;background:radial-gradient(40% 35% at 88% 18%,rgba(255,140,60,.55),rgba(255,140,60,0) 70%);mix-blend-mode:screen;opacity:.25;animation:leak 9s 4.7s ease-in-out infinite alternate}
