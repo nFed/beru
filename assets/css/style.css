@@ -406,7 +406,7 @@ body.locked{overflow:hidden}
 @keyframes n3{0%,8.3%{opacity:1}8.34%,100%{opacity:0}}
 @keyframes n2{0%,8.33%{opacity:0}8.34%,16.6%{opacity:1}16.67%,100%{opacity:0}}
 @keyframes n1{0%,16.66%{opacity:0}16.67%,24.9%{opacity:1}25%,100%{opacity:0}}
-.lion .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 50%;clip-path:circle(0% at 52% 49%);animation:iris 12s 1.2s infinite both}
+.lion .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;clip-path:circle(0% at 52% 49%);animation:iris 12s 1.2s infinite both}
 @keyframes iris{0%,25%{clip-path:circle(0% at 52% 49%)}31%,92%{clip-path:circle(80% at 52% 49%)}98%,100%{clip-path:circle(0% at 52% 49%)}}
 @media(prefers-reduced-motion:reduce){
   .lion .m,.lion .sw,.lion .n{animation:none}
