@@ -1,0 +1,66 @@
+/* Sketches: font pairings and the Hebrew / bilingual wordmark */
+:root{--head:var(--sans)}
+:is(h1,h2,h3,.title,.word,.quote blockquote,.inhouse dt,.menu a){font-family:var(--head)}
+
+/* 2 · classic: Frank Ruhl Libre for headings, Assistant for text */
+.f-frank{--head:'Frank Ruhl Libre',serif;--sans:'Assistant','Heebo',Arial,sans-serif}
+.f-frank :is(h1,h2,.title){letter-spacing:-.02em}
+.f-frank .hero h1{font-weight:700}
+
+/* 3 · poster: condensed Karantina headings, Heebo text */
+.f-karantina{--head:'Karantina','Heebo',sans-serif;--sans:'Heebo',Arial,sans-serif}
+.f-karantina :is(h1,h2,h3,.title){letter-spacing:0}
+.f-karantina .hero h1{font-size:clamp(58px,18vw,80px);line-height:.88}
+.f-karantina .title{font-size:clamp(48px,7.6vw,96px);line-height:.92}
+.f-karantina .contact h2{font-size:clamp(58px,12vw,160px);line-height:.9}
+.f-karantina .service h3{font-size:clamp(34px,4.2vw,50px);line-height:1}
+.f-karantina :is(.work h3,.step h3,.inhouse dt){font-size:1.45em;line-height:1.05}
+.f-karantina .word{font-size:30px}
+.f-karantina .word span{font-weight:300}
+@media(min-width:900px){.f-karantina .hero h1{font-size:clamp(92px,min(11vw,21vh),176px)}}
+
+/* 4 · elegant: Bellefair headings (one weight), Assistant text */
+.f-bellefair{--head:'Bellefair','Frank Ruhl Libre',serif;--sans:'Assistant','Heebo',Arial,sans-serif}
+.f-bellefair :is(h1,h2,h3,.title,.word,.word b,.inhouse dt){font-weight:400;font-synthesis:none;letter-spacing:-.01em}
+.f-bellefair .hero h1{font-size:clamp(44px,13.6vw,62px);line-height:1.02}
+@media(min-width:900px){.f-bellefair .hero h1{font-size:clamp(70px,min(8.6vw,16.5vh),134px)}}
+.f-bellefair .word{font-size:24px}
+
+/* 5 · retro: Suez One headings (one weight), Rubik text */
+.f-suez{--head:'Suez One',serif;--sans:'Rubik','Heebo',Arial,sans-serif}
+.f-suez :is(h1,h2,h3,.title,.word,.word b,.inhouse dt){font-weight:400;font-synthesis:none;letter-spacing:-.015em}
+.f-suez body{font-weight:400}
+
+/* single-weight heading fonts: the second word is set apart by colour instead of weight */
+:is(.f-bellefair,.f-suez) .word span{color:var(--mute)}
+
+/* Hebrew wordmark: right to left, the silhouette still sits to the right of the name */
+:is(.lg-he,.lg-both) .word{direction:rtl}
+:is(.lg-he,.lg-both) .nav .word .ico{order:0;margin-inline-start:0;margin-inline-end:.04em}
+:is(.lg-he,.lg-both) .foot-brand .lock{direction:rtl}
+:is(.lg-he,.lg-both) .foot-brand .lock .foot-mark{order:0}
+.lg-he .word{letter-spacing:-.01em}
+
+/* bilingual: Hebrew name with the English name in small mono underneath */
+.word .nm{display:grid;gap:5px;justify-items:start;line-height:1;font-weight:400;color:var(--ink)}
+.word .nm .r{display:inline-flex;align-items:baseline;gap:.28em;font-weight:inherit;color:inherit}
+.word .nm small{font:500 7.5px/1 var(--mono);letter-spacing:.24em;color:var(--mute);direction:ltr;white-space:nowrap}
+.foot-brand .word .nm small{font-size:8.5px}
+.f-karantina .word .nm small{font-size:8px}
+
+/* the switcher's font / logo panel */
+.sk .aa{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;margin-inline-start:4px;border:0;border-radius:999px;background:rgba(255,251,243,.14);color:inherit;font:600 12.5px/1 'IBM Plex Sans Hebrew',Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.sk .aa span{font-weight:400;opacity:.85}
+.sk .aa[aria-expanded="true"]{background:#FFFBF3;color:#2A1C11}
+.sk .t{font-family:'IBM Plex Sans Hebrew',Arial,sans-serif}
+.sk.open{opacity:1!important;pointer-events:auto!important}
+.skp{position:absolute;bottom:calc(100% + 8px);inset-inline-start:0;width:min(340px,calc(100vw - 32px));padding:16px;border-radius:18px;background:rgba(42,28,17,.97);color:#FFFBF3;box-shadow:0 18px 40px -16px rgba(42,28,17,.7);display:grid;gap:14px;font-family:'IBM Plex Sans Hebrew',Arial,sans-serif}
+.skp[hidden]{display:none}
+.skp h5{margin:0 0 8px;font:500 11px/1 var(--mono);letter-spacing:.14em;color:#C9B18C}
+.skp .row{display:flex;flex-wrap:wrap;gap:6px}
+.sk .skp a{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;height:auto;padding:8px 12px;border-radius:12px;background:rgba(255,251,243,.08);font:500 13.5px/1.1 'IBM Plex Sans Hebrew',Arial,sans-serif}
+.sk .skp a b{font-weight:600}
+.sk .skp a small{font-size:11px;opacity:.7}
+.sk .skp a[aria-current]{background:#FFFBF3;color:#2A1C11}
+.sk .skp a.all{background:none;padding:2px 0 0;color:#F8D48A;font-size:13px}
+@media(max-width:560px){.sk .t{display:none}.sk .aa{margin-inline-start:2px}}
