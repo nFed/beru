@@ -450,7 +450,7 @@ body.locked{overflow:hidden}
 }
 @keyframes nudgeL{50%{transform:translateX(5px)}}
 .inhouse .inhouse-t,.foot .foot-cols .fh{font-family:var(--sans);letter-spacing:0}
-@media(min-width:900px){[lang="en"] .hero h1{font-size:clamp(76px,min(8.6vw,18vh),136px)}}
+@media(min-width:900px){[lang="en"] .hero h1{font-size:clamp(64px,min(7.6vw,17vh),110px)}}
 
 /* ---------- headlines: more air between lines and letters (the poster face is tight by default) ---------- */
 .hero h1{line-height:1;letter-spacing:.008em;word-spacing:.06em}
