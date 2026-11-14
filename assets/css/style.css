@@ -399,28 +399,32 @@ body.locked{overflow:hidden}
 .lion svg{direction:ltr}
 .lion .leader{position:absolute;inset:0;background:radial-gradient(70% 70% at 52% 49%,#FFF6E3,#EAD7B4)}
 .lion .leader svg{position:absolute;inset:0;width:100%;height:100%}
-.lion .sw{position:absolute;inset:0;background:conic-gradient(from 0deg at 52% 49.4%,rgba(163,91,16,.28) var(--a),transparent var(--a));animation:sw 1s .8s linear 3 backwards}
+.lion .sw{position:absolute;inset:0;background:conic-gradient(from 0deg at 52% 49.4%,rgba(163,91,16,.28) var(--a),transparent var(--a));animation:sw 1s .8s linear 3 forwards}
 @keyframes sw{from{--a:0deg}to{--a:360deg}}
 .lion .n{position:absolute;left:52%;top:49.4%;translate:-50% -52%;font:700 30cqw/1 var(--mono);color:#2A1C11;opacity:0}
 /* the countdown plays once: 3, 2, 1, then the iris opens and stays open */
 .lion .n3{animation:countN 1s .8s steps(1) forwards}.lion .n2{animation:countN 1s 1.8s steps(1) forwards}.lion .n1{animation:countN 1s 2.8s steps(1) forwards}
 @keyframes countN{0%{opacity:1}100%{opacity:0}}
-.lion .shot{position:absolute;inset:0;overflow:hidden;clip-path:circle(0% at 52% 49%);animation:iris .9s 3.8s cubic-bezier(.5,0,.2,1) forwards}
-@keyframes iris{to{clip-path:circle(80% at 52% 49%)}}
-
-/* film look: a light, natural grade, moving film grain, a soft vignette and a faint light leak; after it opens the frame zooms slowly in and out, with no jumps */
-.lion .ph{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;object-position:50% 50%;filter:contrast(1.06) saturate(.9) sepia(.08) brightness(1.02);transform-origin:57% 36%;animation:drift 18s 3.8s ease-in-out infinite alternate}
-@keyframes drift{from{scale:1}to{scale:1.16}}
-.lion .grade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,200,140,.14),rgba(255,200,140,0) 45%,rgba(40,20,5,.22));mix-blend-mode:soft-light}
-.lion .grade::after{content:"";position:absolute;inset:0;background:rgba(255,245,230,.05);mix-blend-mode:screen}
-.lion .leak{position:absolute;inset:-20%;background:radial-gradient(40% 35% at 88% 18%,rgba(255,140,60,.55),rgba(255,140,60,0) 70%);mix-blend-mode:screen;opacity:.25;animation:leak 9s 4.7s ease-in-out infinite alternate}
-@keyframes leak{to{opacity:.45;translate:-3% 2%}}
-.lion .vig{position:absolute;inset:0;background:radial-gradient(70% 66% at 52% 47%,rgba(0,0,0,0) 55%,rgba(30,15,5,.38))}
-.lion .grain{position:absolute;inset:-60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.7 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/160px 160px;mix-blend-mode:overlay;opacity:.6;animation:grain .5s steps(1) infinite}
+/* after 3-2-1 the sweep has filled the whole silhouette: it stays in that warm brown, with the rings, the cross and a centre dot */
+.lion .dot{position:absolute;left:52%;top:49%;width:3.4%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:#4A3826;opacity:0;animation:dotIn .5s 3.8s ease-out forwards}
+@keyframes dotIn{from{opacity:0;scale:0}to{opacity:1;scale:1}}
+/* then a quiet film loop flows inside the mark: tone-on-tone 35mm strips drift across, a soft projector light passes, fine grain */
+.lion .flow{position:absolute;inset:0;overflow:hidden;opacity:0;animation:flowIn 1.6s 3.6s ease-out forwards}
+@keyframes flowIn{to{opacity:1}}
+.lion .reel{position:absolute;left:-60%;width:220%;height:30%;top:20%;rotate:-9deg;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='100'%3E%3Crect width='120' height='100' fill='%23704519' fill-opacity='.2'/%3E%3Cg fill='%23FFF4E2' fill-opacity='.45'%3E%3Crect x='8' y='6' width='14' height='10' rx='2.5'/%3E%3Crect x='38' y='6' width='14' height='10' rx='2.5'/%3E%3Crect x='68' y='6' width='14' height='10' rx='2.5'/%3E%3Crect x='98' y='6' width='14' height='10' rx='2.5'/%3E%3Crect x='8' y='84' width='14' height='10' rx='2.5'/%3E%3Crect x='38' y='84' width='14' height='10' rx='2.5'/%3E%3Crect x='68' y='84' width='14' height='10' rx='2.5'/%3E%3Crect x='98' y='84' width='14' height='10' rx='2.5'/%3E%3C/g%3E%3Crect x='4' y='24' width='112' height='52' rx='4' fill='%23FFF4E2' fill-opacity='.16'/%3E%3C/svg%3E") 0 0/auto 100% repeat-x;animation:reel 26s linear infinite}
+.lion .reel.r2{top:62%;height:22%;rotate:-9deg;opacity:.6;animation-duration:38s;animation-direction:reverse}
+@keyframes reel{to{background-position-x:-1200px}}
+[dir="ltr"] .lion .reel{animation-direction:reverse}
+[dir="ltr"] .lion .reel.r2{animation-direction:normal}
+.lion .beam{position:absolute;inset:-30%;background:linear-gradient(105deg,rgba(255,240,215,0) 30%,rgba(255,240,215,.42) 46%,rgba(255,240,215,.1) 54%,rgba(255,240,215,0) 66%);mix-blend-mode:soft-light;animation:beam 11s ease-in-out infinite alternate}
+@keyframes beam{from{translate:-28% 0}to{translate:28% 0}}
+.lion .grain{position:absolute;inset:-60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.7 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/160px 160px;mix-blend-mode:overlay;opacity:.45;animation:grain .5s steps(1) infinite}
 @keyframes grain{0%{transform:translate(0,0)}17%{transform:translate(-23px,14px)}33%{transform:translate(17px,-31px)}50%{transform:translate(-41px,-9px)}67%{transform:translate(29px,37px)}83%{transform:translate(-11px,-43px)}}
 @media(prefers-reduced-motion:reduce){
-  .lion .m,.lion .sw,.lion .n,.lion .ph,.lion .leak,.lion .grain{animation:none}
-  .lion .shot{animation:none;clip-path:none}
+  .lion .m,.lion .n,.lion .dot,.lion .reel,.lion .beam,.lion .grain{animation:none}
+  .lion .flow{animation:none;opacity:1}
+  .lion .dot{opacity:1}
+  .lion .sw{animation:none;--a:360deg}
 }
 
 /* ---------- language switch: עב / EN ---------- */
