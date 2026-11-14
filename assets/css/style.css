@@ -399,18 +399,30 @@ body.locked{overflow:hidden}
 .lion svg{direction:ltr}
 .lion .leader{position:absolute;inset:0;background:radial-gradient(70% 70% at 52% 49%,#FFF6E3,#EAD7B4)}
 .lion .leader svg{position:absolute;inset:0;width:100%;height:100%}
-.lion .sw{position:absolute;inset:0;background:conic-gradient(from 0deg at 52% 49.4%,rgba(163,91,16,.28) var(--a),transparent var(--a));animation:sw 1s 1.2s linear infinite}
+.lion .sw{position:absolute;inset:0;background:conic-gradient(from 0deg at 52% 49.4%,rgba(163,91,16,.28) var(--a),transparent var(--a));animation:sw 1s .8s linear 3 backwards}
 @keyframes sw{from{--a:0deg}to{--a:360deg}}
 .lion .n{position:absolute;left:52%;top:49.4%;translate:-50% -52%;font:700 30cqw/1 var(--mono);color:#2A1C11;opacity:0}
-.lion .n3{animation:n3 12s 1.2s infinite}.lion .n2{animation:n2 12s 1.2s infinite}.lion .n1{animation:n1 12s 1.2s infinite}
-@keyframes n3{0%,8.3%{opacity:1}8.34%,100%{opacity:0}}
-@keyframes n2{0%,8.33%{opacity:0}8.34%,16.6%{opacity:1}16.67%,100%{opacity:0}}
-@keyframes n1{0%,16.66%{opacity:0}16.67%,24.9%{opacity:1}25%,100%{opacity:0}}
-.lion .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;clip-path:circle(0% at 52% 49%);animation:iris 12s 1.2s infinite both}
-@keyframes iris{0%,25%{clip-path:circle(0% at 52% 49%)}31%,92%{clip-path:circle(80% at 52% 49%)}98%,100%{clip-path:circle(0% at 52% 49%)}}
+/* the countdown plays once: 3, 2, 1, then the iris opens and stays open */
+.lion .n3{animation:countN 1s .8s steps(1) forwards}.lion .n2{animation:countN 1s 1.8s steps(1) forwards}.lion .n1{animation:countN 1s 2.8s steps(1) forwards}
+@keyframes countN{0%{opacity:1}100%{opacity:0}}
+.lion .shot{position:absolute;inset:0;overflow:hidden;clip-path:circle(0% at 52% 49%);animation:iris .9s 3.8s cubic-bezier(.5,0,.2,1) forwards}
+@keyframes iris{to{clip-path:circle(80% at 52% 49%)}}
+
+/* film look: a warm grade with lifted blacks, moving grain, a soft vignette, a faint light leak; after it opens the frame keeps breathing */
+.lion .ph{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;object-position:50% 50%;filter:contrast(1.12) saturate(.68) sepia(.38) brightness(1.02) hue-rotate(-6deg);animation:push 22s 3.8s ease-out forwards,weave 5s 4.7s steps(1) infinite}
+@keyframes push{from{scale:1.06}to{scale:1}}
+@keyframes weave{0%,100%{translate:0 0}22%{translate:.25% -.2%}47%{translate:-.2% .15%}71%{translate:.15% .25%}}
+.lion .grade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,170,80,.45),rgba(255,170,80,.1) 45%,rgba(70,30,5,.5));mix-blend-mode:soft-light}
+.lion .grade::after{content:"";position:absolute;inset:0;background:rgba(255,232,200,.1);mix-blend-mode:screen}
+.lion .leak{position:absolute;inset:-20%;background:radial-gradient(40% 35% at 88% 18%,rgba(255,140,60,.55),rgba(255,140,60,0) 70%);mix-blend-mode:screen;opacity:.55;animation:leak 7s 4.7s ease-in-out infinite alternate}
+@keyframes leak{to{opacity:.85;translate:-3% 2%}}
+.lion .vig{position:absolute;inset:0;background:radial-gradient(70% 66% at 52% 47%,rgba(0,0,0,0) 48%,rgba(40,18,4,.6));animation:flick 3.4s 4.7s steps(6) infinite}
+@keyframes flick{0%,100%{opacity:1}22%{opacity:.86}38%{opacity:1}61%{opacity:.9}80%{opacity:1}}
+.lion .grain{position:absolute;inset:-60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.7 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/160px 160px;mix-blend-mode:overlay;opacity:.8;animation:grain .45s steps(1) infinite}
+@keyframes grain{0%{transform:translate(0,0)}17%{transform:translate(-23px,14px)}33%{transform:translate(17px,-31px)}50%{transform:translate(-41px,-9px)}67%{transform:translate(29px,37px)}83%{transform:translate(-11px,-43px)}}
 @media(prefers-reduced-motion:reduce){
-  .lion .m,.lion .sw,.lion .n{animation:none}
-  .lion .ph{animation:none;clip-path:none}
+  .lion .m,.lion .sw,.lion .n,.lion .ph,.lion .leak,.lion .vig,.lion .grain{animation:none}
+  .lion .shot{animation:none;clip-path:none}
 }
 
 /* ---------- language switch: עב / EN ---------- */
