@@ -14,22 +14,30 @@
   location.replace(to + location.hash);
 })();
 </script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@700&amp;family=Heebo:wght@400;500&amp;display=swap">
 <style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FFFBF3;color:#2A1C11;font-family:'IBM Plex Sans Hebrew','Heebo',Arial,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
-h1{font-size:clamp(28px,6vw,44px);margin:0 0 12px;letter-spacing:-.02em}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FFFBF3;color:#2A1C11;font-family:'Heebo',Arial,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
+h1{font:700 clamp(48px,11vw,80px)/.95 'Karantina','Heebo',sans-serif;margin:0 0 14px}
 p{margin:0 0 28px;color:#73604B}
 a{display:inline-block;padding:14px 28px;border-radius:999px;background:#2A1C11;color:#FFFEFA;text-decoration:none}
 </style>
 </head>
 <body>
 <main>
-  <h1>הדף לא נמצא.</h1>
-  <p>ייתכן שהקישור ישן או שהדף הועבר.</p>
-  <a id="home" href="/">לדף הבית של Leeu Productions</a>
+  <h1 id="t">הדף לא נמצא.</h1>
+  <p id="d">ייתכן שהקישור ישן או שהדף הועבר.</p>
+  <a id="home" href="/">לדף הבית של ליו הפקות</a>
 </main>
 <script>
 // on GitHub Pages the site lives under /<repository>/
-if (/github\.io$/.test(location.hostname)) document.getElementById('home').href = '/' + location.pathname.split('/')[1] + '/';
+var base = /github\.io$/.test(location.hostname) ? '/' + location.pathname.split('/')[1] + '/' : '/';
+// English addresses (/en/…) or a non-Hebrew browser get the English page
+if (location.pathname.indexOf(base + 'en/') === 0 || !/^he|^iw/i.test(navigator.language || '')) {
+  document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; document.title = 'Page not found · Leeu Productions';
+  document.getElementById('t').textContent = 'Page not found.';
+  document.getElementById('d').textContent = 'The link may be old, or the page has moved.';
+  var h = document.getElementById('home'); h.textContent = 'Leeu Productions home'; h.href = base + 'en/';
+} else document.getElementById('home').href = base;
 </script>
 </body>
 </html>
