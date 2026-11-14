@@ -222,7 +222,7 @@ body.locked{overflow:hidden}
 .foot-brand .lock{display:flex;align-items:center;gap:14px}
 .foot-mark{width:46px;height:auto;fill:var(--amber-ink)}
 .foot-brand p{color:var(--mute);max-width:26em}
-.foot h4{font-size:13px;font-weight:500;color:var(--amber-ink);margin-bottom:10px}
+.foot .fh{font-family:var(--sans);letter-spacing:0;line-height:1.4;font-size:13px;font-weight:500;color:var(--amber-ink);margin-bottom:10px}
 .foot ul{display:grid;gap:6px;color:var(--ink-2)}
 .foot ul a:hover{color:var(--amber-ink)}
 .foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -293,20 +293,12 @@ body.locked{overflow:hidden}
   .hero-sub{max-width:30em}
 }
 
-/* ---------- film look: moving grain, a faint gate weave and light flicker instead of blur ---------- */
-@keyframes grain{0%{transform:translate(0,0)}12%{transform:translate(-23px,14px)}25%{transform:translate(17px,-31px)}37%{transform:translate(-41px,-9px)}50%{transform:translate(29px,37px)}62%{transform:translate(-11px,-43px)}75%{transform:translate(43px,7px)}87%{transform:translate(-33px,27px)}}
-@keyframes flick{0%,100%{opacity:1}20%{opacity:.82}35%{opacity:1}55%{opacity:.9}70%{opacity:1}85%{opacity:.86}}
-
-.nav .word .ico{width:30px;margin-inline-end:.08em;opacity:1;transform:none;animation:icoIn .9s .45s cubic-bezier(.3,1.5,.5,1) both}
-@keyframes icoIn{from{opacity:0;transform:translateY(8px) scale(.7)}to{opacity:1;transform:none}}
-
-
 /* ---------- Leeu Productions wordmark ---------- */
 .word{direction:ltr;letter-spacing:-.01em}
 .word span{letter-spacing:0}
 
 /* ---------- nav icon: no extra elements — drawn upward on load, leans with the scroll, nods on hover ---------- */
-.nav .word .ico{animation:none;margin-inline-end:.18em}
+.nav .word .ico{width:30px;opacity:1;transform:none;margin-inline-end:.18em}
 .nav .word .ico svg{transform-origin:55% 96%;transform:rotate(var(--tilt,0deg));animation:icoDraw 1.2s .35s cubic-bezier(.2,.7,.1,1) both}
 @keyframes icoDraw{from{clip-path:inset(100% 0 0 0);translate:0 4px}to{clip-path:inset(0);translate:0 0}}
 /* the nod runs on the wrapper so it never replaces the draw-in: the mark stays visible on hover and after */
@@ -318,8 +310,6 @@ body.locked{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .nav .word .ico svg{animation:none;transform:none}
 }
-
-
 
 /* ---------- logo: the silhouette sits to the right of the name, facing it ---------- */
 .nav .word .ico{order:2;margin-inline-end:0;margin-inline-start:.22em}
@@ -404,7 +394,7 @@ body.locked{overflow:hidden}
 @property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
 .screen.lion{container-type:inline-size;width:min(64vw,280px);aspect-ratio:100/99.19;align-self:center;filter:drop-shadow(0 24px 34px rgba(222,138,46,.3))}
 @media(min-width:900px){.screen.lion{width:min(86%,60vh,500px);justify-self:center}}
-.lion .m{position:absolute;inset:0;overflow:hidden;background:#F7EDDA;-webkit-mask:url(../img/mark.svg) center/100% 100% no-repeat;mask:url(../img/mark.svg) center/100% 100% no-repeat;animation:lionIn 1.3s .25s cubic-bezier(.2,.7,.1,1) both}
+.lion .m{position:absolute;inset:0;overflow:hidden;background:#F7EDDA;-webkit-mask:url(../img/mark.svg) center/100% 100% no-repeat;mask:url(../img/mark.svg) center/100% 100% no-repeat;animation:lionIn .9s .1s cubic-bezier(.2,.7,.1,1) both}
 @keyframes lionIn{from{clip-path:inset(100% 0 0 0);translate:0 3%}to{clip-path:inset(0);translate:0 0}}
 .lion svg{direction:ltr}
 .lion .leader{position:absolute;inset:0;background:radial-gradient(70% 70% at 52% 49%,#FFF6E3,#EAD7B4)}
@@ -445,5 +435,23 @@ body.locked{overflow:hidden}
   [dir="ltr"] .wnav .arr{animation-name:nudgeL}
 }
 @keyframes nudgeL{50%{transform:translateX(5px)}}
-.inhouse-t{font-family:var(--sans)}
-@media(min-width:900px){[lang="en"] .hero h1{font-size:clamp(84px,min(10vw,20vh),150px)}}
+.inhouse .inhouse-t,.foot .foot-cols .fh{font-family:var(--sans);letter-spacing:0}
+@media(min-width:900px){[lang="en"] .hero h1{font-size:clamp(76px,min(8.6vw,18vh),136px)}}
+
+/* ---------- headlines: more air between lines and letters (the poster face is tight by default) ---------- */
+.hero h1{line-height:1;letter-spacing:.008em;word-spacing:.06em}
+.hero h1 .ln{padding-block:.03em}
+:is(.title,.contact h2){line-height:1;letter-spacing:.008em;word-spacing:.05em}
+.service h3{line-height:1.05;letter-spacing:.008em}
+[lang="en"] :is(.hero h1,.title,.contact h2,.service h3){letter-spacing:.014em;word-spacing:.06em}
+[lang="en"] .hero h1{line-height:1.02}
+
+/* ---------- hero on phones: the whole opening frame fits the first screen, buttons included ---------- */
+@media(max-width:899px){
+  .hero .wrap{gap:clamp(8px,1.7svh,16px);padding-bottom:clamp(14px,2.6svh,26px)}
+  .screen.lion{width:min(62vw,260px,29svh)}
+  .hero h1{font-size:min(17vw,8.2svh,76px)}
+  .hero-sub{font-size:clamp(14px,2.05svh,15.5px);line-height:1.5}
+  .hero-cta .btn{height:clamp(44px,6.4svh,52px)}
+}
+.wnav #wcnt{color:#8F4E0C}

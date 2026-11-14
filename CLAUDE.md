@@ -20,7 +20,8 @@
 - Keep the existing copy; only light adaptations unless the owner asks otherwise.
 - The site lives at the repository root: `index.html` (+ `en/index.html`), `assets/css/style.css`,
   `assets/js/main.js`, `assets/img/`. Images are WebP in two widths with `srcset`; keep that when
-  adding images. `404.html` forwards old links (`/site/`, `/sketches/…`). The previous site is in
-  `archive/old-site/` and the earlier sketches in `archive/sketches/`; both are `noindex`.
-- `sketches/` holds the logo / font sketches (noindex) with a frozen copy of the stylesheet
-  (`sketches/style.css`), so changes to the main site do not alter them.
+  adding images. `404.html` forwards old links (`/site/`, `/sketches/…`) and is bilingual. The earlier sketches
+  are in `archive/sketches/`; they are `noindex`.
+- `archive/logo-sketches/` holds the logo / hero / font sketches (noindex) with a frozen copy of the
+  stylesheet (`archive/logo-sketches/style.css`), so changes to the main site do not alter them.
+- Section order: hero, work, services, process, about, testimonial, clients, ticker, contact.
