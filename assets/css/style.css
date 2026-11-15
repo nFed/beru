@@ -531,3 +531,16 @@ body{font-size:17.5px}
 /* the in-house list follows the last service row, which already draws a line: no second line */
 .inhouse{border-top:0;padding-top:0}
 @media(max-width:899px){.foot-brand p{font-size:16px}}
+
+/* ---------- phone opening frame: a larger mark with a clear outline, centred poster layout ---------- */
+.screen.lion{filter:drop-shadow(0 16px 26px rgba(120,70,20,.2))}
+.lion .leader{background:radial-gradient(64% 64% at 52% 49%,#FFF6E3 0%,#F1E1C3 70%,#E2C599 100%)}
+@media(max-width:899px){
+  .hero .wrap{justify-content:space-evenly}
+  .screen.lion{width:min(80vw,330px,36svh)}
+  .hero .slate{justify-content:center;gap:12px}
+  .hero-text{align-items:center;text-align:center}
+  .hero .eyebrow{justify-content:center}
+  .hero .eyebrow::before{display:none}
+  .hero-cta{justify-content:center}
+}
