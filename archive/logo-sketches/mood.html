@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>סקיצה: ערפל | Leeu Productions</title>
+<link rel="icon" href="../../assets/img/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&amp;family=Heebo:wght@300;400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+:root{--ink:#111;--ink-2:#2b2b2b;--mute:#5d5d5d;--paper:#F3F3F1;--head:'Karantina','Heebo',sans-serif;--sans:'Heebo',Arial,sans-serif;--mono:'IBM Plex Mono',monospace;--ease:cubic-bezier(.2,.7,.1,1)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#8d8d8b;color:var(--ink);font:400 18px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+
+/* ---------- the smoky backdrop: light in the middle, darker at the edges, fog drifting slowly ---------- */
+.stage{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:clip;isolation:isolate;
+  background:radial-gradient(60% 55% at 50% 48%,#EDEDEB 0%,#CFCFCC 38%,#9A9A97 72%,#5E5E5C 100%)}
+.fog{position:absolute;inset:-20%;z-index:-2;opacity:.55;mix-blend-mode:multiply;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000' viewBox='0 0 1600 1000' preserveAspectRatio='none'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0028 .0045' numOctaves='5' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.6 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  animation:drift 38s ease-in-out infinite alternate}
+.fog.f2{opacity:.35;mix-blend-mode:screen;transform:scaleX(-1);animation:drift2 52s ease-in-out infinite alternate;filter:invert(1)}
+@keyframes drift{from{transform:translate3d(-5%,-1%,0) scale(1.02)}to{transform:translate3d(5%,1%,0) scale(1.06)}}
+@keyframes drift2{from{transform:scaleX(-1) translate3d(-4%,1%,0)}to{transform:scaleX(-1) translate3d(4%,-1%,0) scale(1.05)}}
+.vig{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(75% 70% at 50% 46%,rgba(0,0,0,0) 45%,rgba(0,0,0,.42) 100%)}
+.scr{position:absolute;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none;opacity:.5}
+.grain{position:absolute;inset:-50%;z-index:3;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .6s steps(3) infinite}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-4%,3%)}66%{transform:translate(3%,-2%)}}
+
+/* ---------- bar ---------- */
+.nav{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,4vw,56px)}
+.word{display:inline-flex;align-items:center;gap:.3em;font:700 30px/1 var(--head)}
+.word span{font-weight:400}
+.word i{width:28px;height:28px;background:var(--ink);-webkit-mask:url(../../assets/img/mark.svg) center/contain no-repeat;mask:url(../../assets/img/mark.svg) center/contain no-repeat}
+.links{display:none;gap:32px;font-size:16px;color:var(--ink-2)}
+.pill{display:grid;place-items:center;height:32px;padding-inline:12px;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.25);font:500 12px var(--mono);letter-spacing:.06em}
+@media(min-width:900px){.links{display:flex}}
+
+/* ---------- the silhouette: solid ink, a faint lighter bloom inside like the original card, no text ---------- */
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;gap:clamp(10px,2svh,24px);padding:0 20px clamp(18px,3svh,36px);text-align:center}
+.mark{position:relative;width:min(66vw,34svh,440px);aspect-ratio:100/99.19;
+  background:radial-gradient(40% 36% at 54% 54%,#2a2a2a 0%,#141414 55%,#070707 100%);
+  -webkit-mask:url(../../assets/img/mark.svg) center/100% 100% no-repeat;mask:url(../../assets/img/mark.svg) center/100% 100% no-repeat;
+  animation:ink 2.2s .2s var(--ease) both}
+@keyframes ink{from{opacity:0;filter:blur(14px);transform:scale(1.04)}to{opacity:1;filter:blur(0);transform:none}}
+.mark::after{content:"";position:absolute;inset:0;opacity:.14;mix-blend-mode:screen;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.02' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .3 0 0 0 2 -1.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E") center/cover}
+.slate{display:flex;align-items:center;gap:12px;font:400 12px var(--mono);letter-spacing:.06em;color:var(--ink-2);margin-top:-6px}
+.slate b{width:7px;height:7px;border-radius:50%;background:#C8322B;animation:rec 1.6s steps(1) infinite}
+.slate i{width:18px;height:1px;background:rgba(0,0,0,.3)}
+@keyframes rec{50%{opacity:.25}}
+.txt{display:grid;justify-items:center;gap:clamp(8px,1.6svh,16px);animation:up 1.2s 1s var(--ease) both}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:15px;font-weight:500;color:var(--ink-2)}
+h1{margin:0;font:700 min(17vw,8.4svh,120px)/1 var(--head);letter-spacing:.01em;word-spacing:.06em;color:var(--ink)}
+h1 em{font-style:normal;color:#F7F7F5;-webkit-text-stroke:0;text-shadow:0 0 0 #000;background:#111;padding:0 .14em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.sub{margin:0;max-width:30em;font-size:clamp(15px,2.1svh,19px);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
+.cta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:12px;height:clamp(44px,6.4svh,56px);padding-inline:28px;border-radius:999px;background:var(--ink);color:#F3F3F1;font-weight:500;font-size:16px;transition:background .3s}
+.btn:hover{background:#3a3a3a}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.35)}
+.btn.ghost:hover{background:rgba(255,255,255,.35)}
+
+/* ---------- a short follow-on band so the mood can be judged beyond the first screen ---------- */
+.next{background:#161616;color:#E9E9E6;padding:clamp(56px,9vw,120px) clamp(20px,4vw,56px)}
+.next .in{max-width:1200px;margin-inline:auto}
+.next h2{margin:0 0 8px;font:700 clamp(56px,8vw,110px)/1 var(--head);letter-spacing:.01em}
+.next p{margin:0 0 clamp(28px,4vw,48px);color:#A9A9A5}
+.shots{display:grid;gap:14px}
+.shots img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:grayscale(1) contrast(1.08) brightness(.92);border-radius:3px;transition:filter .6s}
+.shots img:hover{filter:grayscale(.15) contrast(1.05)}
+@media(min-width:760px){.shots{grid-template-columns:1.3fr 1fr}}
+.note{padding:22px clamp(20px,4vw,56px);background:#0d0d0d;color:#8a8a86;font-size:14px;text-align:center}
+.note a{color:#E9E9E6;text-decoration:underline;text-underline-offset:3px}
+
+@media(prefers-reduced-motion:reduce){.fog,.grain,.mark,.txt,.slate b{animation:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <i class="fog" aria-hidden="true"></i><i class="fog f2" aria-hidden="true"></i>
+  <svg class="scr" aria-hidden="true" viewBox="0 0 1600 900" preserveAspectRatio="none"><g fill="none" stroke="#fff" stroke-linecap="round"><path d="M1150 352c90-6 170-4 240 0" stroke-width="2" opacity=".55"/><path d="M560 80c60-6 120-4 170-2" stroke-width="1.4" opacity=".45"/><path d="M1300 40l20 70" stroke-width="1" opacity=".35"/><path d="M220 610c40 10 70 30 90 60" stroke-width="1" opacity=".3"/><path d="M960 160l60 30" stroke-width="1.2" opacity=".4"/></g></svg>
+  <i class="vig" aria-hidden="true"></i>
+  <header class="nav">
+    <a class="word" href="#"><i aria-hidden="true"></i><b>ליו</b> <span>הפקות</span></a>
+    <nav class="links" aria-label="ניווט"><a href="#">עבודות</a><a href="#">שירותים</a><a href="#">תהליך</a><a href="#">אודות</a><a href="#">צור קשר</a></nav>
+    <a class="pill" href="index.html">סקיצות</a>
+  </header>
+  <main class="hero">
+    <div class="mark" role="img" aria-label="הצללית של ליו הפקות"></div>
+    <div class="slate" aria-hidden="true"><span>REC</span><b></b><i></i><span dir="ltr">00:00:00:00</span></div>
+    <div class="txt">
+      <div class="eyebrow">חברת הפקות וידאו · תל אביב · מאז 2010</div>
+      <h1>כל פרויקט הוא <em>יצירה.</em></h1>
+      <p class="sub">פרסומות, סדרות תוכן וסרטים למותגים, לחברות ולגופי תקשורת. מפיק אחד מלווה אתכם מהרעיון ועד הפריים האחרון.</p>
+      <div class="cta"><a class="btn" href="#">בואו נדבר <span>←</span></a><a class="btn ghost" href="#">לצפייה בעבודות</a></div>
+    </div>
+  </main>
+  <i class="grain" aria-hidden="true"></i>
+</div>
+<section class="next">
+  <div class="in">
+    <h2>עבודות נבחרות.</h2>
+    <p>רגע אחד מתוך כל הפקה.</p>
+    <div class="shots">
+      <img src="../../assets/img/work-1-1200.webp" alt="" loading="lazy">
+      <img src="../../assets/img/work-5-1200.webp" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+<div class="note">סקיצה נפרדת באווירת כרטיס הלוגו: ערפל אפור, צללית בדיו שחורה, בלי כיתוב בתוכה. <a href="../../">לאתר</a></div>
+<script>
+// running timecode, 25 fps
+(() => { const el = document.querySelector('.slate span[dir]'); const t0 = performance.now(); const p = n => String(n).padStart(2, '0');
+  const tick = () => { const f = Math.floor((performance.now() - t0) / 40); el.textContent = `00:${p(Math.floor(f / 1500) % 60)}:${p(Math.floor(f / 25) % 60)}:${p(f % 25)}`; requestAnimationFrame(tick); }; tick(); })();
+</script>
+</body>
+</html>
