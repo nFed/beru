@@ -558,7 +558,7 @@ body{font-size:17.5px}
 
 /* ---------- hero story: the countdown opens the film ----------
    3-2-1 plays inside the mark (0.8s to 3.8s). At its end the leader marks (rings, cross) clear away,
-   the film loop lights up inside the mark and the headline arrives with it. */
+   the film loop lights up inside the mark. The type does not wait for it: it is there from the start. */
 .lion .leader svg{animation:leaderOut .8s 3.8s ease-in-out forwards}
 @keyframes leaderOut{from{opacity:1}to{opacity:0}}
 .lion .dot{display:none}
@@ -566,8 +566,6 @@ body{font-size:17.5px}
 .lion .flow{animation:filmOn 1.4s 3.8s ease-out forwards}
 .lion.counted .leader svg{opacity:0}
 .lion.counted .flow{opacity:1}
-.js .hero h1 .ln>span{animation-delay:3.85s}
-.js .hero h1 .ln:nth-child(2)>span{animation-delay:3.97s}
 .js .hero.shown :is(h1 .ln>span,.fd){animation:none;opacity:1;transform:none}
 .slate .rec{letter-spacing:.14em}
 @media(prefers-reduced-motion:reduce){.lion .leader svg{animation:none;opacity:0}}
