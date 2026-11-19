@@ -608,3 +608,23 @@ body{font-size:17.5px}
   .hero-cta{order:6;margin-top:clamp(16px,2.8svh,24px);align-self:center}
   .hero-cta .btn{height:48px}
 }
+
+/* ---------- desktop hero: the same order as on phones, as one centred column ----------
+   eyebrow, headline (one line), mark, slate, text, buttons; the hero is as tall as its content so the work
+   section peeks in below. */
+@media(min-width:900px){
+  .hero{min-height:0}
+  .hero .wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:clamp(16px,2.6vh,32px);padding-bottom:clamp(40px,6vh,72px)}
+  .hero-text{display:contents}
+  .hero .eyebrow{order:1;justify-content:center}
+  .hero .eyebrow::before{display:none}
+  .hero h1{order:2;margin-top:clamp(14px,2.2vh,22px);text-align:center;font-size:clamp(64px,min(8vw,13.5vh),132px);white-space:nowrap}
+  [lang="en"] .hero h1{font-size:clamp(48px,min(5.6vw,11vh),96px)}
+  .hero h1 .ln{display:inline-block;vertical-align:top}
+  .hero h1 .ln+.ln{margin-inline-start:.28em}
+  .screen.lion{order:3;width:min(300px,31vh);margin:clamp(16px,2.6vh,28px) 0 0;justify-self:auto;align-self:center}
+  .hero .slate{order:4;margin-top:14px;align-self:center}
+  .hero-sub{order:5;margin-top:clamp(18px,3vh,30px);text-align:center;max-width:34em;text-wrap:balance}
+  .hero-cta{order:6;margin-top:clamp(18px,3vh,30px);justify-content:center}
+  #work{padding-top:clamp(56px,6vw,88px)}
+}

@@ -19,8 +19,9 @@
 - Hero: the silhouette with a film countdown (3-2-1) that plays once and opens the film: the sweep fills the mark
   in warm brown, then the leader marks (rings, cross) clear away, a quiet film loop lights up inside the mark
   (tone-on-tone 35mm strips drifting, a soft passing light, fine grain), and the
-  timecode under the mark (labelled REEL 01, no REC) starts from 00:00:00:00. On phones the order is eyebrow, headline, mark (150px), slate,
-  text, buttons (one row), with tight spacing (16px under the nav); the phone hero is as tall as its content, so the work section peeks in below. The headline and the rest of the type do not wait for the countdown.
+  timecode under the mark (labelled REEL 01, no REC) starts from 00:00:00:00. On phones and desktop alike the order is eyebrow, headline, mark,
+  slate, text, buttons (one row), as one centred column with tight spacing under the nav (desktop: the headline on
+  one line, mark up to 300px); the hero is as tall as its content, so the work section peeks in below. The headline and the rest of the type do not wait for the countdown.
   No photo in the hero; smooth motion only, no jumps.
 - Keep the existing copy; only light adaptations unless the owner asks otherwise.
 - The site lives at the repository root: `index.html` (+ `en/index.html`), `assets/css/style.css`,
