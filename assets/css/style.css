@@ -586,3 +586,12 @@ body{font-size:17.5px}
   .slate{grid-row:3;align-self:start;margin-top:clamp(14px,2.4vh,26px)}
   .hero-sub{text-wrap:balance}
 }
+
+/* ---------- phone hero: the mark sits just under the nav, the type follows it, and the hero is as tall as its
+   content, so the start of the work section peeks in below the buttons and invites the scroll ---------- */
+@media(max-width:899px){
+  .hero{min-height:0}
+  .hero .wrap{flex:none;justify-content:flex-start;padding-top:clamp(10px,2svh,20px);padding-bottom:clamp(24px,4svh,40px)}
+  .screen.lion{width:min(140px,21svh)}
+  #work{padding-top:36px}
+}
