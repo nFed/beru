@@ -29,11 +29,18 @@
   if (lion) {
     const done = () => {
       if (lion.classList.contains('counted')) return;
-      lion.classList.add('counted');
+      lion.classList.add('counted'); delete lion.dataset.n;
       if (!rolling) { rolling = true; t0 = performance.now(); }
     };
-    $('.n1', lion)?.addEventListener('animationend', done);
-    setTimeout(done, reduce ? 0 : 3900);
+    // the numerals follow the sweep: 3 when it starts, 2 and 1 on each turn, gone when it ends
+    const sw = $('.sw', lion);
+    if (sw && !reduce) {
+      let step = 3;
+      sw.addEventListener('animationstart', () => { if (!lion.classList.contains('counted')) lion.dataset.n = step; });
+      sw.addEventListener('animationiteration', () => { if (!lion.classList.contains('counted')) lion.dataset.n = --step; });
+      sw.addEventListener('animationend', done);
+    }
+    setTimeout(done, reduce ? 0 : 4300);
     // and the headline is shown for sure, even if its entrance was held back
     if (hero) setTimeout(() => hero.classList.add('shown'), reduce ? 0 : 5600);
   }

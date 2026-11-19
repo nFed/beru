@@ -608,3 +608,8 @@ body{font-size:17.5px}
   .hero-cta{order:6;margin-top:clamp(16px,2.8svh,24px);align-self:center}
   .hero-cta .btn{height:48px}
 }
+
+/* ---------- the 3-2-1 numerals sit above the masked silhouette, not inside it (Safari on iPhone stops repainting
+   content inside a mask, which left a numeral standing), and the script shows them in step with the sweep ---------- */
+.lion>.n{z-index:2;animation:none!important;opacity:0}
+.lion[data-n="3"]>.n3,.lion[data-n="2"]>.n2,.lion[data-n="1"]>.n1{opacity:1}
