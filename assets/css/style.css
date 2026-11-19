@@ -593,3 +593,18 @@ body{font-size:17.5px}
   .screen.lion{width:min(140px,21svh)}
   #work{padding-top:36px}
 }
+
+/* ---------- phone hero: the headline opens the page, the mark sits between it and the text ----------
+   Order on phones: eyebrow, headline, mark, slate, text, buttons. The text block dissolves into the column
+   (display: contents) so the mark can sit inside it; desktop keeps its two columns. */
+@media(max-width:899px){
+  .hero .wrap{padding-top:16px;padding-inline:22px}
+  .hero-text{display:contents}
+  .hero .eyebrow{order:1;align-self:center}
+  .hero h1{order:2;margin-top:clamp(14px,2.6svh,24px);text-align:center;align-self:center}
+  .screen.lion{order:3;width:min(150px,22svh);margin-top:16px}
+  .hero .slate{order:4;margin-top:10px}
+  .hero-sub{order:5;margin-top:clamp(16px,2.8svh,24px);text-align:center;align-self:center}
+  .hero-cta{order:6;margin-top:clamp(16px,2.8svh,24px);align-self:center}
+  .hero-cta .btn{height:48px}
+}
