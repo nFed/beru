@@ -21,25 +21,31 @@
   $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
-  // hero: a running timecode under the silhouette
-  const tc = $('#s-tc'), FPS = 25, t0 = performance.now();
+  // hero story: the 3-2-1 countdown opens the film. When it ends the leader marks clear, the film starts
+  // and the timecode starts running from zero. The end is taken from the countdown itself, with the clock as a backstop
+  // (a browser that held its animations must not leave a numeral standing).
+  const hero = $('.hero'), lion = $('.screen.lion'), tc = $('#s-tc'), FPS = 25;
+  let t0 = performance.now(), rolling = !(hero && hero.dataset.start === 'countdown') || reduce;
+  if (lion) {
+    const done = () => {
+      if (lion.classList.contains('counted')) return;
+      lion.classList.add('counted');
+      if (!rolling) { rolling = true; t0 = performance.now(); }
+    };
+    $('.n1', lion)?.addEventListener('animationend', done);
+    setTimeout(done, reduce ? 0 : 3900);
+    // and the headline is shown for sure, even if its entrance was held back
+    if (hero) setTimeout(() => hero.classList.add('shown'), reduce ? 0 : 5600);
+  }
   if (tc && !reduce) {
     const tick = now => {
-      if (!document.hidden) {
-        const ms = now - t0, sec = Math.floor(ms / 1000), f = Math.floor((ms % 1000) / (1000 / FPS));
+      if (!document.hidden && rolling) {
+        const ms = Math.max(0, now - t0), sec = Math.floor(ms / 1000), f = Math.floor((ms % 1000) / (1000 / FPS));
         tc.textContent = `00:${pad(Math.floor(sec / 60) % 60)}:${pad(sec % 60)}:${pad(f)}`;
       }
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
-  }
-
-  // hero: the 3-2-1 numerals are taken away when the countdown is over, whichever comes first: its end or the clock
-  const lion = $('.screen.lion');
-  if (lion) {
-    const done = () => lion.classList.add('counted');
-    $('.n1', lion)?.addEventListener('animationend', done);
-    setTimeout(done, reduce ? 0 : 3900);
   }
 
   // nav icon: the silhouette leans gently with the speed of the scroll and settles back when you stop
