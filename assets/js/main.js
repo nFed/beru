@@ -34,6 +34,14 @@
     requestAnimationFrame(tick);
   }
 
+  // hero: the 3-2-1 numerals are taken away when the countdown is over, whichever comes first: its end or the clock
+  const lion = $('.screen.lion');
+  if (lion) {
+    const done = () => lion.classList.add('counted');
+    $('.n1', lion)?.addEventListener('animationend', done);
+    setTimeout(done, reduce ? 0 : 3900);
+  }
+
   // nav icon: the silhouette leans gently with the speed of the scroll and settles back when you stop
   const ico = $('#ico');
   if (ico && !reduce) {

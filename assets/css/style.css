@@ -544,3 +544,14 @@ body{font-size:17.5px}
   .hero .eyebrow::before{display:none}
   .hero-cta{justify-content:center}
 }
+
+/* ---------- phone opening frame, rebalanced: a smaller mark, larger type ---------- */
+@media(max-width:899px){
+  .screen.lion{width:min(52vw,220px,27svh)}
+  .hero h1{font-size:min(19vw,10svh,84px)}
+  .hero .eyebrow{font-size:clamp(15px,2.2svh,16.5px)}
+  .hero-sub{font-size:clamp(16px,2.45svh,18.5px);line-height:1.5;max-width:22em;text-wrap:balance}
+  [lang="en"] .hero h1{font-size:min(16.4vw,9.6svh,80px)}
+}
+/* the countdown ends for sure once it has played (a browser that held its animations must not leave a numeral standing) */
+.lion.counted .n{display:none}
